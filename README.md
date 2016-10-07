@@ -1,45 +1,23 @@
-# Autm-rb
+# Ai
 
-Another theme for jekyll.
-based on shiori and midnight
+This website gathers a lot of information about ai in general and puts special emphasis on machine learning.
 
-##[DEMO][demo]
+## Purpose of the site
 
-- DISQUS comments
-- google analitics
-- pagination
-- tags
-- codehighlighting
-- bootstrap components
-- font awesome
+- to cover phylosophical issues
+- to cover ethical issues
+- to examine algorithms from ml
+- to introduce new algorithms
+- to provide summaries
+- to provide starting points for beginners
 
-#### Contribution
-Pull Requests always welcome.
+## [Github Pages][pages]
 
-## Screens
+This blog was created by using Github Pages which provides an easy way to create sites like this one. A sample site were downloaded from [JekyllThemes][themes] and refined.
 
-![](screenshots/home.png)
-![](screenshots/post.png)
-
-## Installation
-
-- [Fork this repository][fork]
-- Clone it: `git clone https://github.com/YOUR-USER/autm-rb`
-- Install the [GitHub Pages gem][pages] (includes Jekyll): `bundle install`
-- Run the jekyll server: `jekyll serve` or `bundle exec jekyll serve`
-
-## Customization
-
-Edit this files before using
-
-- _config.yml
-- /index.html - update default image and email
-- _includes/title.html - main title
-
-## Licensing
-
-[MIT](https://github.com/railsr/autm-rb/blob/master/LICENSE)
+## References
 
 [pages]: http://pages.github.com
-[fork]: https://github.com/railsr/autm-rb/fork
-[demo]: http://railsr.github.io/autm-rb/
+[fork]: https://github.com/adamtiger/ai/fork
+[jekyll theme]: http://railsr.github.io/autm-rb/
+[themes]: http://themes.jekyllrc.org/autm-rb/
