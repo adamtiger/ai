@@ -3,7 +3,7 @@ url: "adamtiger.github.io/ai" # the base hostname & protocol for your site.
 title: "Everything about ML, RL and AI"
 
 paginate: 10 #articles per page
-paginate_path: /ml/page:num #makes pagination working
+paginate_path: /ML/page:num #makes pagination working
 
 #contacts
 git: "https://github.com/adamtiger"  #your github url here.
