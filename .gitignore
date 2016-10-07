@@ -7,5 +7,6 @@ Qlearning/Debug/
 Qlearning/ipch/
 Qlearning/Qlearning/Debug/
 _site/
+*.lock
 
 
