@@ -1,5 +1,6 @@
 # Visual C++ Projects
 
+*.vs
 *.txt
 *.db
 Qlearning/Debug/
