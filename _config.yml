@@ -1,14 +1,12 @@
 baseurl: "" # The subpath of your site. Use "" if you're hosting a blog at the root level.
-url: "username.github.io" # the base hostname & protocol for your site.
-title: "username-blog"
+url: "localhost:4000" # the base hostname & protocol for your site.
+title: "Everything about ML, RL and AI"
 
 paginate: 10 #articles per page
-paginate_path: /blog/page:num #makes pagination working
+paginate_path: /ML/page:num #makes pagination working
 
 #contacts
-git: "https://github.com/railsr"  #your github url here.
-stackoverflow: "http://stackoverflow.com/users/1231365/railsr" #Add your stackoverflow url here.
-twitter: "https://twitter.com/railsr7"  #Add your twitter url here.
+git: "https://github.com/adamtiger"  #your github url here.
 
 #disqus comment
 disqus:
