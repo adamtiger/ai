@@ -41,8 +41,8 @@ liquid:
 timezone: Etc/GMT0
 
 # Blog Address configs
-baseurl: "/blog"
-url: "https://mlibre.github.io"
+baseurl: "/ai"
+url: "https://adamtiger.github.io"
 #
 # baseurl: ""
 # url: "http://localhost:4000"
