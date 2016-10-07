@@ -1,5 +1,9 @@
-_site
-.sass-cache
-Gemfile.lock
-.DS_Store
-_site/
+# Visual C++ Projects
+
+*.txt
+*.db
+Qlearning/Debug/
+Qlearning/ipch/
+Qlearning/Qlearning/Debug/
+
+
