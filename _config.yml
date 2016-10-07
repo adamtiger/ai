@@ -1,5 +1,5 @@
 baseurl: "" # The subpath of your site. Use "" if you're hosting a blog at the root level.
-url: "adamtiger.github.io" # the base hostname & protocol for your site.
+url: "adamtiger.github.io/ai" # the base hostname & protocol for your site.
 title: "Everything about ML, RL and AI"
 
 paginate: 10 #articles per page
