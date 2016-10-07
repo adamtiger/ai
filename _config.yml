@@ -10,7 +10,7 @@ git: "https://github.com/adamtiger"  #your github url here.
 
 #disqus comment
 disqus:
-    shortname: "test" #your disqus comment short name
+    shortname: "DISQS" #your disqus comment short name
 
 #google analytics
 google:
