@@ -19,5 +19,7 @@ This blog was created by using Github Pages which provides an easy way to create
 
 [pages]: http://pages.github.com
 [fork]: https://github.com/adamtiger/ai/fork
+[Fork][fork]
 [jekyll theme]: http://railsr.github.io/autm-rb/
+[Current Theme][jekyll theme]
 [themes]: http://themes.jekyllrc.org/autm-rb/
