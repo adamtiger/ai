@@ -1,48 +1,48 @@
-# Post settings
-collections:
-    Posts_en:
-        output: true
-        permalink: /en/posts/:title/
-    Posts_fa:
-        output: true
-        permalink: /fa/posts/:title/
+baseurl: "" # The subpath of your site. Use "" if you're hosting a blog at the root level.
+url: "username.github.io" # the base hostname & protocol for your site.
+title: "username-blog"
 
-future: true
-excerpt_separator: <!--more-->
-markdown: kramdown
-highlighter: rouge
-theme: minima
+paginate: 10 #articles per page
+paginate_path: /blog/page:num #makes pagination working
 
-# Blog information
-title: mlibre personal blog
-description: >
-    Here is my personal blog(mlibre). I write about everything, about Linux, about world, about goodness, about ...
-    In this blog you will find Tutorials, Education texts, Academic things and ...
-email: m.gh@linuxmail.org
-author: I like To live as Free & OpenSource, Make world better place, ....
-github_username: mlibre
-favicon: /files/images/favicon.png
+#contacts
+git: "https://github.com/railsr"  #your github url here.
+stackoverflow: "http://stackoverflow.com/users/1231365/railsr" #Add your stackoverflow url here.
+twitter: "https://twitter.com/railsr7"  #Add your twitter url here.
 
-# My image folder
-my_images_path: files/images/my/
+#disqus comment
+disqus:
+    shortname: "test" #your disqus comment short name
 
-# configuration
-gems: ["octopress-paginate" , "jekyll-seo-tag"]
-exclude:    ["default.gems" , "Gemfile" , "Gemfile.lock" , ".gitignore" , "license" , ".git" , "readme.md"]
-keep_files: [".git" , "en/license.html" , "readme.md"]
-source: .
-destination: ./site
-layouts_dir: _layouts
-markdown_ext: "md"
-liquid:
-    error_mode: strict
+#google analytics
+google:
+    tracking-id: "" #your tracking id here
 
-# Timezone
-timezone: Etc/GMT0
+gems:
+  - jekyll-sitemap
+  - jekyll-paginate
 
-# Blog Address configs
-baseurl: "/ai"
-url: "https://adamtiger.github.io"
-#
-# baseurl: ""
-# url: "http://localhost:4000"
+# This is used by feed.xml. Uncomment if you want to use it.
+# description: "..."
+
+exclude:
+  - "README.md"
+  - "CHANGELOG.md"
+  - "Gemfile"
+  - "Gemfile.lock"
+
+permalink: /posts/:title
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  -
+    scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
