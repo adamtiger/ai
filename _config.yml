@@ -1,123 +1,48 @@
-inc:
-  # Blog Information
-  title:        "Jekyll Incorporated"
-  subtitle:     "Modern Jekyll based blog for companies"
-  cover_image:  blog-cover.jpg
-  logo:         logo.png
-  
-  # Company information
-  company:      Incorporated
-  url:          http://sendtoinc.com/
-  facebook:     sendtoinc
-  twitter:      sendtoinc
-  gplus:        '101183822199340201470'
-  about_link:   https://sendtoinc.com/about/
-  
-  # Product Information
-  product_link: http://incorporated.sendtoinc.com/
-  tagline:      "Get a modern blog for your company"
-  
-  # Comments
-  disqus:
-    # Eg. "exampleblog" Set to false to disable comments
-    shortname:  false
-  
-  # Sharing settings
-  sharing:
-    twitter:    false
-    facebook:   false
-    gplus:      false
-    hn:         false
-    
-  
- # Analytics     
-  analytics:
-    google: false # Add tracking code in _includes/_google-analytics.html
-      
-      
-  # Google Fonts
-  # eg. 'Droid+Sans:400,700|Droid+Serif:400,700'
-  google_font: 'Droid+Sans:400,700'
-  
-  # Setup your fonts, colors etc at _assets/stylesheets/main.scss
+# Post settings
+collections:
+    Posts_en:
+        output: true
+        permalink: /en/posts/:title/
+    Posts_fa:
+        output: true
+        permalink: /fa/posts/:title/
 
-url:         http://incorporated.sendtoinc.com
-source:      .
-destination: ./_site
-plugins_dir:     ./_plugins
-layouts_dir:     ./_layouts
-include:     ['.htaccess']
-exclude:     []
-timezone:    nil
+future: true
+excerpt_separator: <!--more-->
+markdown: kramdown
+highlighter: rouge
+theme: minima
 
-# Show future posts
-future:      false
-show_drafts: nil
-limit_posts: 0
-highlighter:    rouge
+# Blog information
+title: mlibre personal blog
+description: >
+    Here is my personal blog(mlibre). I write about everything, about Linux, about world, about goodness, about ...
+    In this blog you will find Tutorials, Education texts, Academic things and ...
+email: m.gh@linuxmail.org
+author: I like To live as Free & OpenSource, Make world better place, ....
+github_username: mlibre
+favicon: /files/images/favicon.png
 
-permalink:     pretty
-paginate_path: 'page:num'
-paginate: 10
+# My image folder
+my_images_path: files/images/my/
 
-markdown:      kramdown
-markdown_ext:  markdown,mkd,mkdn,md
-textile_ext:   textile
+# configuration
+gems: ["octopress-paginate" , "jekyll-seo-tag"]
+exclude:    ["default.gems" , "Gemfile" , "Gemfile.lock" , ".gitignore" , "license" , ".git" , "readme.md"]
+keep_files: [".git" , "en/license.html" , "readme.md"]
+source: .
+destination: ./site
+layouts_dir: _layouts
+markdown_ext: "md"
+liquid:
+    error_mode: strict
 
-excerpt_separator: "<!-- more -->"
+# Timezone
+timezone: Etc/GMT0
 
-safe:        false
-host:        0.0.0.0
-port:        4000
-baseurl:     /
-lsi:         false
-
-maruku:
-  use_tex:    false
-  use_divs:   false
-  png_engine: blahtex
-  png_dir:    images/latex
-  png_url:    /images/latex
-
-rdiscount:
-  extensions: []
-
-redcarpet:
-  extensions: []
-
-kramdown:
-  auto_ids: true
-  footnote_nr: 1
-  entity_output: as_char
-  toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
-
-  coderay:
-    coderay_wrap: div
-    coderay_line_numbers: inline
-    coderay_line_numbers_start: 1
-    coderay_tab_width: 4
-    coderay_bold_every: 10
-    coderay_css: style
-
-redcloth:
-  hard_breaks: true
-
+# Blog Address configs
+baseurl: "/blog"
+url: "https://mlibre.github.io"
 #
-# jekyll-assets: see more at https://github.com/ixti/jekyll-assets
-#
-assets:
-
-  dirname: assets
-  baseurl: /assets/
-  sources:
-    - _assets/javascripts
-    - _assets/stylesheets
-    - _assets/images
-  js_compressor: uglifier
-  css_compressor: sass
-  cachebust: none
-  cache: false
-  gzip: [ text/css, application/javascript ]
-  debug: false
+# baseurl: ""
+# url: "http://localhost:4000"

@@ -1,0 +1,16 @@
+---
+layout: page
+lang: fa
+---
+
+{% for post in site.Posts_fa %}
+    <div id="Post" class="Post text_good_2">
+        <article class="Article">
+            <a class="post_link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}</a>
+            <br>
+            {{ post.excerpt }}
+        </article>
+    </div>
+{% endfor %}
+
+</div>

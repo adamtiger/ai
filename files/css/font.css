@@ -1,0 +1,16 @@
+@font-face
+{
+	font-family: "Amaranth-Regular";
+	src: url("../font/amaranth/Amaranth-Regular.otf") format("opentype");
+}
+@font-face
+{
+	font-family: 'OpenSans-Regular';
+	src: url("../font/open_sans/OpenSans-Regular.ttf");
+}
+@font-face
+{
+	font-family: 'Rochester-Regular';
+	src: url("../font/rochester/Rochester-Regular.eot");
+	src: url("../font/rochester/Rochester-Regular.ttf");
+}

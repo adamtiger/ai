@@ -1,0 +1,25 @@
+---
+---
+<script>
+// set tags
+var tags = {};
+{% for post in site.Posts_en %}
+    {% assign tags = tags | append: post.tags | remove: '[' | remove: ']' | remove: ','| remove: ' ' %}
+{% endfor %}
+{% assign tags = tags | replace: '""' , '#' | remove: '"' | split: '#' | uniq | join: ' ' | split: ' ' %}
+{% for tag in tags %}
+    tags["{{tag}}"] = [];
+{% endfor %}
+
+// create index
+{% for post in site.Posts_en %}
+    {% for tag in post.tags %}
+        tags["{{tag}}"].push("{{site.baseurl | append: post.url}}")
+    {% endfor %}
+{% endfor %}
+
+for( key in tags )
+{
+    console.log(key , tags[key]);
+}
+</script>
