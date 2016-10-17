@@ -6,10 +6,10 @@
 struct Position {
 
 	explicit Position():
-	x(0), y(0) {}
+		x(0), y(0) {}
 
 	Position(int x, int y) :
-	x(x), y(y) {}
+		x(x), y(y) {}
 
 	Position(const Position& pos):
 		x(pos.x), y(pos.y) {}
@@ -39,35 +39,37 @@ public:
 	}
 
 	WindyGridWorld(
-		int height, int width, 
+		int width, int height, 
 		int startx, int starty,
 		int goalx, int goaly):
-		_start(startx, starty), _goal(goalx, goaly),
+		_start(startx, starty), _goal(goalx, goaly), _actual(_start),
 		_height(height), _width(width), _numsteps(0)
 	{
 	}
 
-	void Move(int dx, int dy) {
+	const Position& Move(int dx, int dy) { // x: horiontal, y: vertical
 
 		++_numsteps;
 
+		dy += _strength[_actual.x];
+
 		bool left, right, bottom, top;
-		left = _actual.x + dx < 0 ? false : true;
+		left = _actual.x + dx < 0 ? _actual.x = 0 : _actual.x += 0;
 		right = _actual.x + dx + 1 > _width ? false : true;
 		bottom = _actual.y + dy < 0 ? false : true;
 		top = _actual.y + dy + 1 > _height ? false : true;
 
-		if (!(left && right && bottom && top)) {
-			if (!left) { _actual.x = 0; _actual.y += dy; }
-			else if (!bottom) { _actual.x += dx; _actual.y = 0; }
-			else if (!right) { _actual.x = _width - 1; _actual.y += dy; }
-			else { _actual.x += dx; _actual.y = _height - 1; }
-		}
-		else {
-			_actual.MoveWith(dx, dy);
-		}
+		if (_actual.x + dx < 0) _actual.x = 0;
+		else if (_actual.x + dx + 1 > _width) _actual.x = _width - 1;
+		else _actual.x += dx;
+		
+		if (_actual.y + dy < 0) _actual.y = 0;
+		else if (_actual.y + dy + 1 > _height) _actual.y = _height - 1;
+		else _actual.y += dy;
 
 		_traces.push_back(_actual);
+
+		return _actual;
 	}
 
 	void StartNewEpisode() {
@@ -85,7 +87,20 @@ public:
 	}
 
 	bool IsTerminated() {
-		return (_start == _goal);
+		return (_actual == _goal);
+	}
+
+	bool IsFailed2Converge(int max_numsteps) {
+		return max_numsteps < _numsteps;
+	}
+
+	const Position& GetCurrent() {
+		return _actual;
+	}
+
+	void SetStrength(const int* data, const int length) {
+		for (int i = 0; i < length; ++i)
+			_strength.push_back(data[i]);
 	}
 
 private:
@@ -98,6 +113,7 @@ private:
 	Position _goal;
 
 	std::vector<Position> _traces; // The path of the agent.
+	std::vector<int> _strength; 
 
 	int _numsteps;
 };

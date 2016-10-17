@@ -7,8 +7,7 @@
 namespace rl {
 	namespace q {
 
-		typedef const Action& tAction;
-		typedef const State& tState;
+#define NUMBER_OF_ACTIONS 4
 
 		enum ActionType {
 
@@ -24,6 +23,12 @@ namespace rl {
 			int x;
 			int y;
 			bool terminal;
+
+			State(int id, int x, int y, bool terminal) {
+				this->id = id;
+				this->x = x; this->y = y;
+				this->terminal = terminal;
+			}
 		};
 
 		struct Action {
@@ -39,15 +44,31 @@ namespace rl {
 				default: return "Unknown type";
 				}
 			}
+
+			void get_deviation(int* dx_ou, int* dy_ou) const{
+				switch (action) {
+				case eUp:    *dx_ou = 0; *dy_ou = 1; break;
+				case eDown:  *dx_ou = 0; *dy_ou = -1; break;
+				case eLeft:  *dx_ou = -1; *dy_ou = 0; break;
+				case eRight: *dx_ou = 1; *dy_ou = 0; break;
+				}
+			}
 		};
+
+		typedef const Action& tAction;
+		typedef const State& tState;
 
 		struct ActionStateValue {
 
 		public:
 
+			explicit ActionStateValue(int numStates) {
+				InitZeros(numStates);
+			}
+
 			void InitZeros(int numStates) {
 				for (int i = 0; i < numStates; ++i) {
-					std::vector<float> row(4, 0);
+					std::vector<float> row(NUMBER_OF_ACTIONS, 0);
 					_qsa.push_back(row);
 				}
 			}
@@ -56,9 +77,13 @@ namespace rl {
 				return get_value(st, act);
 			}
 
+			const std::vector<float>& operator()(tState st) const {
+				return _qsa.at(st.id);
+			}
+
 		private:
 
-			float& get_value(State& st, Action& act) {
+			float& get_value(tState st, tAction act){
 				
 				float& value = (_qsa.at(st.id)).at(act.action);
 				return value;
@@ -74,12 +99,35 @@ namespace rl {
 
 		public:
 
-			Policy(const ac_st_value& values):
+			Policy(ac_st_value& values):
 			_values(values) {}
+
+			Action use_policy(tState st) {
+				Action act;
+				int idx = 0;
+				float value = 0.0f;
+				for (int i = 0; i < NUMBER_OF_ACTIONS; ++i) {
+					act.action = (ActionType)i;
+					if (value < _values(st, act)) { value = _values(st, act); idx = i; }
+				}
+
+				const int prob_eps = 3; // 3 transitions have this ratio
+				const int prob_best = 91;
+				int prob = rand() % 100;
+				int flag = 0;
+				bool cont = true;
+				for (int i = 0; cont && i < NUMBER_OF_ACTIONS; ++i) {
+					i == idx ? flag += prob_best : flag += prob_eps;
+					if (prob < flag) { idx = i; cont = false; }
+				}
+
+				act.action = (ActionType)idx;
+				return act;
+			}
 
 		private:
 
-			const ac_st_value& _values;
+			ac_st_value& _values;
 		};
 
 	}
