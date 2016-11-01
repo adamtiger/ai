@@ -3,10 +3,26 @@
 *.vs
 *.txt
 *.db
+*.opendb
 Qlearning/Debug/
 Qlearning/ipch/
 Qlearning/Qlearning/Debug/
 _site/
 *.lock
+
+# Visual C# Projects
+
+*.exe
+*.obj
+*.cache
+*.csproj.user
+.vs/*
+*.nupkg
+*.suo
+WindyGridWorld/WindyGridWorld.GUI/bin/*
+WindyGridWorld/WindyGridWorld.GUI/obj/*
+WindyGridWorld/Debug/*
+WindyGridWorld/WindyGridWorld.CLI/Debug/*
+WindyGridWorld/WindyGridWorld.RL/Debug/*
 
 
