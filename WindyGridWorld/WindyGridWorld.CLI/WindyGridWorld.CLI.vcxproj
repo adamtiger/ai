@@ -111,6 +111,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ProjectReference Include="..\WindyGridWorld.RL\WindyGridWorld.RL.vcxproj">
+      <Project>{4454ea7e-b7c4-4632-af7e-0d13558d63d9}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

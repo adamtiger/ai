@@ -24,5 +24,6 @@ WindyGridWorld/WindyGridWorld.GUI/obj/*
 WindyGridWorld/Debug/*
 WindyGridWorld/WindyGridWorld.CLI/Debug/*
 WindyGridWorld/WindyGridWorld.RL/Debug/*
+WindyGridWorld/UnitTestForWPF/obj/*
 
 
