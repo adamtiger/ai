@@ -97,6 +97,12 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WindyGridWorld.CLI\WindyGridWorld.CLI.vcxproj">
+      <Project>{ff50c747-45a3-4926-b4e1-f00374311fe6}</Project>
+      <Name>WindyGridWorld.CLI</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

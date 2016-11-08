@@ -1,4 +1,5 @@
-﻿using System;
+﻿using native.wrapper;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,10 +11,13 @@ namespace WindyGridWorld.GUI
 
     public class RLControl
     {
+        // Wrapper class from CLI
+        LearningFrameworkWrapper lfw;
 
         public RLControl()
         {
             iter = 0;
+            lfw = new LearningFrameworkWrapper();
         }
 
         public void StartRL(
@@ -31,6 +35,7 @@ namespace WindyGridWorld.GUI
             numEps = numofEpisodes;
 
             // TODO: CLI call (set the initial values)
+            lfw.InitFramework(5);
 
             container = new TraceContainer(); 
             container.Add(0, 1, 2);
@@ -43,7 +48,7 @@ namespace WindyGridWorld.GUI
 
             iter += nextNepisode;
 
-            return iter * 1.0 / numEps;
+            return 1.0;
         }
 
         private int iter;

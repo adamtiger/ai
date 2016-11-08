@@ -111,6 +111,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="LearningFrameworkWrapper.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="LearningFrameworkWrapper.cpp" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\WindyGridWorld.RL\WindyGridWorld.RL.vcxproj">
       <Project>{4454ea7e-b7c4-4632-af7e-0d13558d63d9}</Project>
     </ProjectReference>
