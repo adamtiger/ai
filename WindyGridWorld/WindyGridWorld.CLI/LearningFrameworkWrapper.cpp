@@ -6,6 +6,16 @@ native::wrapper::LearningFrameworkWrapper::LearningFrameworkWrapper():
 {
 }
 
+native::wrapper::LearningFrameworkWrapper::~LearningFrameworkWrapper()
+{
+	Destroy();
+}
+
+native::wrapper::LearningFrameworkWrapper::!LearningFrameworkWrapper()
+{
+	Destroy();
+}
+
 void native::wrapper::LearningFrameworkWrapper::InitFramework(
 	int type, int rows, int columns, int numofEpisodes, int startX, int startY,     
 	int targetX, int targetY, double alpha, double gamma) 
@@ -37,4 +47,12 @@ int native::wrapper::LearningFrameworkWrapper::GetCoordX(int idx) {
 
 int native::wrapper::LearningFrameworkWrapper::GetCoordY(int idx) {
 	return lf->GetCoordY(idx);
+}
+
+
+void native::wrapper::LearningFrameworkWrapper::Destroy() {
+	if (lf != nullptr) {
+		delete lf;
+		lf = nullptr;
+	}
 }

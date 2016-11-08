@@ -134,10 +134,7 @@ namespace WindyGridWorld.GUI
 
         public void Learn()
         {
-            // The 10 percentage of the episodes are executed once.
-            int next10Eps = (int)Math.Round(nEps * 0.1);
-
-            double progress = rlControl.Learn(next10Eps, container);
+            double progress = rlControl.Learn(container);
 
             ProcessStatusChanged_RefreshBar(progress);
 

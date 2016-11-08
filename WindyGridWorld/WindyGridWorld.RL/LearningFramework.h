@@ -1,6 +1,9 @@
 #ifndef __LEARNING_FRAMEWORK__
 #define __LEARNING_FRAMEWORK__
 
+#include "Environment.h"
+#include "Logger.h"
+
 namespace native {
 
 	class __declspec(dllexport) LearningFramework {

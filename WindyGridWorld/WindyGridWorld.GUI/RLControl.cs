@@ -16,42 +16,45 @@ namespace WindyGridWorld.GUI
 
         public RLControl()
         {
-            iter = 0;
             lfw = new LearningFrameworkWrapper();
         }
 
         public void StartRL(
-            int type,                   // the type of the rl algorithm
-            int rows, int columns,      // the size of the world
-            int numofEpisodes,          // number of learning episodes
-            int startX, int startY,     // coordinates of the starting cell
-            int targetX, int targetY,   // coordinates of the target cell
-            double alpha,               // the learning rate
-            double gamma,               // in case of discounted reward
+            int type,                    // the type of the rl algorithm
+            int rows, int columns,       // the size of the world
+            int numofEpisodes,           // number of learning episodes
+            int startX, int startY,      // coordinates of the starting cell
+            int targetX, int targetY,    // coordinates of the target cell
+            double alpha,                // the learning rate
+            double gamma,                // in case of discounted reward
             out TraceContainer container // the epsiodes with the trace of the agent
             )
         {
-            iter = 0;
             numEps = numofEpisodes;
 
-            // TODO: CLI call (set the initial values)
-            lfw.InitFramework(5);
+            lfw.InitFramework(
+                type, rows, columns, numofEpisodes, startX, startY,
+                targetX, targetY, alpha, gamma);
 
             container = new TraceContainer(); 
-            container.Add(0, 1, 2);
         }
 
-        public double Learn(int nextNepisode, TraceContainer container)
+        public double Learn(TraceContainer container)
         {
-            // TODO: CLI calls (learn and copy the positions if necessary)
-            Thread.Sleep(1000);
+            lfw.Learn();
 
-            iter += nextNepisode;
+            int epsId = lfw.GetEpisodeId();
+            for (int idx = 0; idx < lfw.GetPathLength(); ++idx)
+            {
+                int x = lfw.GetCoordX(idx);
+                int y = lfw.GetCoordY(idx);
 
-            return 1.0;
+                container.Add(epsId, x, y);
+            }
+
+            return lfw.GetProgress();
         }
 
-        private int iter;
         private int numEps;
     }
 }

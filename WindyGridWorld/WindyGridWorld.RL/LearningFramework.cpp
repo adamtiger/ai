@@ -18,22 +18,22 @@ void native::LearningFramework::Learn() {
 }
 
 double native::LearningFramework::GetProgress() {
-	return 0;
+	return 0.0; ;
 }
 
 int native::LearningFramework::GetPathLength() {
-	return 0;
+	return native::frw::Logger::Instance()->GetPathLength();
 }
 
 int native::LearningFramework::GetEpisodeId() {
-	return 0;
+	return native::frw::Logger::Instance()->GetEpisodeId();
 }
 
 int native::LearningFramework::GetCoordX(int idx) {
-	return 0;
+	return native::frw::Logger::Instance()->GetXcoord(idx);
 }
 
 int native::LearningFramework::GetCoordY(int idx) {
-	return 0;
+	return native::frw::Logger::Instance()->GetYcoord(idx);
 }
 
