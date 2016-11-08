@@ -110,10 +110,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="ActionSelectors.h" />
+    <ClInclude Include="Environment.h" />
+    <ClInclude Include="IAlgorithm.h" />
     <ClInclude Include="LearningFramework.h" />
+    <ClInclude Include="Logger.h" />
+    <ClInclude Include="Q.h" />
+    <ClInclude Include="Qlambda.h" />
+    <ClInclude Include="Sarsa.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ActionSelectors.cpp" />
+    <ClCompile Include="Environment.cpp" />
     <ClCompile Include="LearningFramework.cpp" />
+    <ClCompile Include="Logger.cpp" />
+    <ClCompile Include="Q.cpp" />
+    <ClCompile Include="Qlambda.cpp" />
+    <ClCompile Include="Sarsa.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

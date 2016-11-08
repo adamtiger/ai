@@ -27,6 +27,15 @@ void Logger::Activate(int epsId) {
 void Logger::Passivate(){
 	is_active_ = false;
 	epsId_ = -1;
+	path_x_coords_.clear();
+	path_y_coords_.clear();
+}
+
+void Logger::Add(int x, int y) {
+	if (is_active_) {
+		path_x_coords_.push_back(x);
+		path_y_coords_.push_back(y);
+	}
 }
 
 int Logger::GetEpisodeId() const{

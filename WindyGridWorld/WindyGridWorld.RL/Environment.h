@@ -1,7 +1,7 @@
 #ifndef __ENVIRONMENT__
 #define __ENVIRONMENT__
 
-#include "Logger.h"
+#include <vector>
 
 using namespace std;
 
@@ -12,19 +12,23 @@ namespace native {
 
 		public:
 
-			Cell(int x, int y) :
+			Cell(int x = 0, int y= 0) :
 				x(x), y(y) {}
 
 			int x;
 			int y;
+
+			bool operator==(const Cell& o) const{
+				return (this->x == o.x) && (this->y == o.y); 
+			}
 		};
 
 		class Environment {
 
 		public:
 
+			explicit Environment();
 			Environment(
-				Logger* log,
 				int rows, int cols,
 				int startX, int startY,
 				int targetX, int targetY);
@@ -33,9 +37,12 @@ namespace native {
 
 			void ExecuteAction(int action);
 
+			int GetX() const;
+			int GetY() const;
+
 		private:
 
-			Logger* log_;
+			void restrict2gridworld(Cell& candidate);
 
 			int rows_;
 			int cols_;
@@ -44,7 +51,9 @@ namespace native {
 
 			Cell current_;
 
+			vector<int> wind_strength_;
 		};
+
 	} // frw
 } // native
 

@@ -1,14 +1,15 @@
 #ifndef __LEARNING_FRAMEWORK__
 #define __LEARNING_FRAMEWORK__
 
-#include "Environment.h"
-#include "Logger.h"
+#include "IAlgorithm.h"
 
 namespace native {
 
 	class __declspec(dllexport) LearningFramework {
 
 	public:
+
+		~LearningFramework();
 
 		void InitFramework(
 			int type,                   // the type of the rl algorithm
@@ -28,6 +29,12 @@ namespace native {
 		int GetEpisodeId();
 		int GetCoordX(int idx);
 		int GetCoordY(int idx);
+
+	private:
+
+		int iter;
+		int numEps;
+		frw::IAlgorithm* alg;
 	};
 
 } // native
