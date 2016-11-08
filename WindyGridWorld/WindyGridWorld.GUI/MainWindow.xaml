@@ -40,6 +40,7 @@
             <ComboBoxItem Content="Dynamic"/>
             <ComboBoxItem Content="Q learning"/>
         </ComboBox>
+        <Button x:Name="reStart" Content="Restart" HorizontalAlignment="Left" Height="20" Margin="108,235,0,0" VerticalAlignment="Top" Width="60" Click="reStart_Click"/>
 
     </Grid>
 </Window>

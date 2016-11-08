@@ -56,6 +56,41 @@ namespace WindyGridWorld.GUI
                 tgX, tgY, 
                 double.Parse(alpha.Text), double.Parse(gamma.Text), 
                 out container);
+
+            // Avoid further changes of the parameters.
+            rows.IsEnabled = false;
+            columns.IsEnabled = false;
+            startX.IsEnabled = false;
+            startY.IsEnabled = false;
+            targetX.IsEnabled = false;
+            targetY.IsEnabled = false;
+            gamma.IsEnabled = false;
+            alpha.IsEnabled = false;
+            numEps.IsEnabled = false;
+            typeSelector.IsEnabled = false;
+            startRL.IsEnabled = false;
+
+            // Fire changes to the UI.
+            RePaint();
+        }
+
+        private void reStart_Click(object sender, RoutedEventArgs e)
+        {
+            rows.IsEnabled = true;
+            columns.IsEnabled = true;
+            startX.IsEnabled = true;
+            startY.IsEnabled = true;
+            targetX.IsEnabled = true;
+            targetY.IsEnabled = true;
+            gamma.IsEnabled = true;
+            alpha.IsEnabled = true;
+            numEps.IsEnabled = true;
+            typeSelector.IsEnabled = true;
+            startRL.IsEnabled = true;
+
+            canvas.Children.Clear();
+
+            ProcessStatusChanged_RefreshBar(0.0);
         }
 
         // Load the given episode.

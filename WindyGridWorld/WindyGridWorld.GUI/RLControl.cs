@@ -10,6 +10,12 @@ namespace WindyGridWorld.GUI
 
     public class RLControl
     {
+
+        public RLControl()
+        {
+            iter = 0;
+        }
+
         public void StartRL(
             int type,                   // the type of the rl algorithm
             int rows, int columns,      // the size of the world
@@ -21,11 +27,27 @@ namespace WindyGridWorld.GUI
             out TraceContainer container // the epsiodes with the trace of the agent
             )
         {
+            iter = 0;
+            numEps = numofEpisodes;
+
             container = new TraceContainer(); // todo
             container.Add(0, 1, 2);
             processStatusChanged(0.5);
         }
 
-        public event ProcessStatusChanged processStatusChanged; 
+        public void Learn(int nextNepisode, TraceContainer container)
+        {
+            // TODO: CLI calls (learn and copy the positions)
+
+            iter += nextNepisode;
+
+            double progress = iter * 1.0 / numEps;
+            processStatusChanged(progress);
+        }
+
+        public event ProcessStatusChanged processStatusChanged;
+
+        private int iter;
+        private int numEps;
     }
 }
