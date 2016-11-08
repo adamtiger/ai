@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WindyGridWorld.GUI
 {
@@ -20,6 +21,8 @@ namespace WindyGridWorld.GUI
     /// </summary>
     public partial class MainWindow : Window
     {
+        public delegate void LearnDelegate();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -29,7 +32,6 @@ namespace WindyGridWorld.GUI
 
             // Initialize the rlController.
             rlControl = new RLControl();
-            rlControl.processStatusChanged += ProcessStatusChanged_RefreshBar;
 
             // Initialize variables.
             idx = 0;
@@ -44,18 +46,21 @@ namespace WindyGridWorld.GUI
         {
             numRows = int.Parse(rows.Text);
             numCols = int.Parse(columns.Text);
+            nEps = int.Parse(numEps.Text);
             stX = int.Parse(startX.Text);
             stY = int.Parse(startY.Text);
             tgX = int.Parse(targetX.Text);
             tgY = int.Parse(targetY.Text);
+            aph = double.Parse(alpha.Text);
+            gm = double.Parse(gamma.Text);
 
             rlControl.StartRL(
                 typeSelector.SelectedIndex, numRows, numCols,
-                int.Parse(numEps.Text), 
-                stX, stY,
-                tgX, tgY, 
-                double.Parse(alpha.Text), double.Parse(gamma.Text), 
-                out container);
+                nEps, stX, stY, tgX, tgY, aph, gm, out container);
+
+            // Run learning in background.
+            startRL.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new LearnDelegate(Learn));
+
 
             // Avoid further changes of the parameters.
             rows.IsEnabled = false;
@@ -126,6 +131,22 @@ namespace WindyGridWorld.GUI
         #endregion
 
         #region(Helper functions)
+
+        public void Learn()
+        {
+            // The 10 percentage of the episodes are executed once.
+            int next10Eps = (int)Math.Round(nEps * 0.1);
+
+            double progress = rlControl.Learn(next10Eps, container);
+
+            ProcessStatusChanged_RefreshBar(progress);
+
+            if (progress < 1.0)
+            {
+                startRL.Dispatcher.BeginInvoke(DispatcherPriority.SystemIdle, new LearnDelegate(Learn));
+            }
+
+        }
 
         private void DrawAgent()
         {
@@ -227,6 +248,9 @@ namespace WindyGridWorld.GUI
 
         private int numRows;
         private int numCols;
+        private int nEps;
+        private double aph;
+        private double gm;
         private int stX;
         private int stY;
         private int tgX;

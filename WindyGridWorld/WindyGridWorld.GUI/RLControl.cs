@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace WindyGridWorld.GUI
 {
-    public delegate void ProcessStatusChanged(double percentage);
 
     public class RLControl
     {
@@ -30,22 +30,21 @@ namespace WindyGridWorld.GUI
             iter = 0;
             numEps = numofEpisodes;
 
-            container = new TraceContainer(); // todo
+            // TODO: CLI call (set the initial values)
+
+            container = new TraceContainer(); 
             container.Add(0, 1, 2);
-            processStatusChanged(0.5);
         }
 
-        public void Learn(int nextNepisode, TraceContainer container)
+        public double Learn(int nextNepisode, TraceContainer container)
         {
-            // TODO: CLI calls (learn and copy the positions)
+            // TODO: CLI calls (learn and copy the positions if necessary)
+            Thread.Sleep(1000);
 
             iter += nextNepisode;
 
-            double progress = iter * 1.0 / numEps;
-            processStatusChanged(progress);
+            return iter * 1.0 / numEps;
         }
-
-        public event ProcessStatusChanged processStatusChanged;
 
         private int iter;
         private int numEps;
