@@ -6,14 +6,20 @@ using namespace native::frw;
 
 Environment::Environment():
 	rows_(0), cols_(0), start_(0,0), 
-	target_(0,0), current_(0,0){}
+	target_(0,0), current_(0,0)
+{
+	generate_wind(cols_);
+}
 
 Environment::Environment(
 	int rows, int cols,
 	int startX, int startY,
 	int targetX, int targetY):
 	rows_(rows), cols_(cols), start_(startX, startY),
-	target_(targetX, targetY), current_(start_) {}
+	target_(targetX, targetY), current_(start_) 
+{
+	generate_wind(cols_);
+}
 
 double Environment::RewardFunc() const{
 
@@ -35,16 +41,16 @@ void Environment::ExecuteAction(int action) {
 
 	switch (action) {
 	case 0: // LEFT
-		cnd.x = current_.x - 1; cnd.y = current_.y + wind_strength_[cnd.y];
+		cnd.x = current_.x - 1; cnd.y = current_.y + wind_strength_[current_.x];
 		break;
 	case 1: // UP
-		cnd.x = current_.x; cnd.y = current_.y + wind_strength_[cnd.y] - 1;
+		cnd.x = current_.x; cnd.y = current_.y + wind_strength_[current_.x] - 1;
 		break;
 	case 2: // RIGHT
-		cnd.x = current_.x + 1; cnd.y = current_.y + wind_strength_[cnd.y];
+		cnd.x = current_.x + 1; cnd.y = current_.y + wind_strength_[current_.x];
 		break;
 	case 3: // DOWN
-		cnd.x = current_.x; cnd.y = current_.y + wind_strength_[cnd.y] + 1;
+		cnd.x = current_.x; cnd.y = current_.y + wind_strength_[current_.x] + 1;
 		break;
 	default:
 		assert(action < 4);
@@ -57,12 +63,25 @@ void Environment::ExecuteAction(int action) {
 	Logger::Instance()->Add(cnd.x, cnd.y);
 }
 
-int Environment::GetX() const{
-	return current_.x;
+int Environment::GetValuesNumber() const {
+	return rows_ * cols_;
 }
 
-int Environment::GetY() const{
-	return current_.y;
+int Environment::GetCurrentAsIndex() const {
+
+	return map_grid2line(current_.x, current_.y);
+}
+
+bool Environment::IsTerminated() const {
+	return current_ == target_;
+}
+
+void Environment::ResetAgent() {
+	current_ = start_;
+}
+
+int Environment::map_grid2line(int x, int y) const {
+	return x * rows_ + y;
 }
 
 void Environment::restrict2gridworld(Cell& cnd) {
@@ -70,9 +89,18 @@ void Environment::restrict2gridworld(Cell& cnd) {
 	if (cnd.x < 0)
 		cnd.x = 0;
 	if (cnd.x >= cols_)
-		cnd.x = cols_;
+		cnd.x = cols_-1;
 	if (cnd.y < 0)
 		cnd.y = 0;
 	if (cnd.y >= rows_)
-		cnd.y =rows_;
+		cnd.y =rows_-1;
+}
+
+void Environment::generate_wind(int cols) {
+
+	wind_strength_.resize(cols);
+
+	for (int i = 0; i < cols; ++i) {
+		wind_strength_[i] = 0;//i % 3 - 1;
+	}
 }

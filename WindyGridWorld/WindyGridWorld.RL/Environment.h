@@ -37,12 +37,19 @@ namespace native {
 
 			void ExecuteAction(int action);
 
-			int GetX() const;
-			int GetY() const;
+			int GetValuesNumber() const;
+
+			int GetCurrentAsIndex() const;
+
+			bool IsTerminated() const;
+
+			void ResetAgent();
 
 		private:
 
+			int map_grid2line(int x, int y) const;
 			void restrict2gridworld(Cell& candidate);
+			void generate_wind(int cols);
 
 			int rows_;
 			int cols_;

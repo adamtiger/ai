@@ -61,7 +61,6 @@ namespace WindyGridWorld.GUI
             // Run learning in background.
             startRL.Dispatcher.BeginInvoke(DispatcherPriority.Normal, new LearnDelegate(Learn));
 
-
             // Avoid further changes of the parameters.
             rows.IsEnabled = false;
             columns.IsEnabled = false;
@@ -224,16 +223,16 @@ namespace WindyGridWorld.GUI
         private void RePaint()
         {
             PaintWindyGridWorld();
-            for (int i = 0; i < idx + 1; ++i)
+            for (idx = 0; !container.IsEmpty && idx < container.GetLength(episode); ++idx)
                 DrawAgent();
         }
-
-        #endregion
 
         private void ProcessStatusChanged_RefreshBar(double percentage)
         {
             progressBar.Value = percentage * 100;
         }
+
+        #endregion
 
         #region(Variables)
         private TraceContainer container;

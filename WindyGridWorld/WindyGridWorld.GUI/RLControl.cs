@@ -44,6 +44,7 @@ namespace WindyGridWorld.GUI
             lfw.Learn();
 
             int epsId = lfw.GetEpisodeId();
+            int k = lfw.GetPathLength();
             for (int idx = 0; idx < lfw.GetPathLength(); ++idx)
             {
                 int x = lfw.GetCoordX(idx);

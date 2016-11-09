@@ -13,6 +13,17 @@ namespace native {
 
 			virtual void DoOneLearningIterate();
 			virtual void SetEnvironment(frw::Environment* env);
+
+		private:
+
+			int max(int idx) const;
+
+			frw::Environment* env_;
+
+			double alpha_;
+			double gamma_;
+
+			vector<vector<double>> qsa_;
 		};
 	}
 }
