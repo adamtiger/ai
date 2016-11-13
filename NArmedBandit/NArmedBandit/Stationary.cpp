@@ -16,7 +16,7 @@ float NormalDistribution::Generate() const {
 	float u_r = (rand() % 1000) / 1000.0f;
 	float u_fi = (rand() % 1000) / 1000.0f;
 
-	float x_gauss = szigma_ * sqrtf(-2*logf(1 - u_r)) * cosf(u_fi) + mu_;
+	float x_gauss = szigma_ * sqrtf(-2*logf(1 - u_r)) * cosf(2 * 3.14 * u_fi) + mu_;
 
 	return x_gauss;
 }
@@ -62,7 +62,7 @@ float Stationary::GetValue(int idx) const {
 
 int Stationary::choose_action() const {
 
-	int rd = rand() % 100;
+	int rd = rand() % 100 + 1;
 	int choosen = 0;
 
 	int max_idx = 0;
