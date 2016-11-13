@@ -10,6 +10,10 @@ Qlearning/Qlearning/Debug/
 _site/
 *.lock
 
+NArmedBandit/Debug/
+NArmedBandit/ipch/
+NArmedBandit/NArmedBandit/Debug/
+
 # Visual C# Projects
 
 *.exe
