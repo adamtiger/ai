@@ -4,9 +4,9 @@
 #include "stdafx.h"
 #include <iostream>
 #include "Stationary.h"
+#include "NonStationary.h"
 
-int main()
-{
+void StationaryAnalysis1() {
 
 	bandit::stationary::Stationary stn;
 
@@ -21,6 +21,36 @@ int main()
 	}
 
 	std::cout << "Finsihed" << std::endl;
+}
+
+void NonStationaryAnalysis1() {
+
+	bandit::nonstationary::NonStationary nstn;
+
+	for (int i = 0; i < 10000; ++i) {
+
+		nstn.DoTrial();
+
+		if (i % 500 == 0)
+			nstn.ChangeEnv();
+	}
+
+	for (int i = 0; i < 10; ++i) {
+
+		float val = nstn.GetValue(i);
+
+		std::cout << "Action-value: " << i + 1 << " -> " << val << " : " << nstn.GetMu(i) << std::endl;
+	}
+
+	std::cout << "Finsihed" << std::endl;
+}
+
+int main()
+{
+
+	//StationaryAnalysis1();
+
+	NonStationaryAnalysis1();
 
     return 0;
 }
