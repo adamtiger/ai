@@ -59,8 +59,6 @@ void Environment::ExecuteAction(int action) {
 	restrict2gridworld(cnd);
 
 	current_ = cnd;
-
-	Logger::Instance()->Add(cnd.x, cnd.y);
 }
 
 int Environment::GetValuesNumber() const {
@@ -72,7 +70,9 @@ int Environment::GetCurrentAsIndex() const {
 	return map_grid2line(current_.x, current_.y);
 }
 
-bool Environment::IsTerminated() const {
+bool Environment::IsTerminated() {
+
+	Logger::Instance()->Add(current_.x, current_.y);
 	return current_ == target_;
 }
 

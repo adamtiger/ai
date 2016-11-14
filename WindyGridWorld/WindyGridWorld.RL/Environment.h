@@ -41,7 +41,7 @@ namespace native {
 
 			int GetCurrentAsIndex() const;
 
-			bool IsTerminated() const;
+			bool IsTerminated();
 
 			void ResetAgent();
 

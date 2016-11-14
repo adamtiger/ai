@@ -15,6 +15,6 @@ void native::alg::ActionSelectors::EpsilonGreedy(int suggested, int* choosen){
 	}
 }
 
-void native::alg::ActionSelectors::Softmax(int suggested, int* choosen)
-{
+void native::alg::ActionSelectors::Softmax(int suggested, int* choosen){
+
 }

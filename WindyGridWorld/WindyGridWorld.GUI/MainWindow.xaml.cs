@@ -101,6 +101,8 @@ namespace WindyGridWorld.GUI
         private void getEpsiode_Click(object sender, RoutedEventArgs e)
         {
             episode = int.Parse(episodeNum.Text);
+            idx = 0;
+            RePaint();
         }
 
         // Handle the agent.
@@ -108,12 +110,14 @@ namespace WindyGridWorld.GUI
         private void zeros_Click(object sender, RoutedEventArgs e)
         {
             idx = 0;
+            RePaint();
         }
 
         // Step to the next position on the grid.
         private void next_Click(object sender, RoutedEventArgs e)
         {
             idx += 1;
+            RePaint();
         }
 
         // Show the learning curve.
@@ -223,7 +227,7 @@ namespace WindyGridWorld.GUI
         private void RePaint()
         {
             PaintWindyGridWorld();
-            for (idx = 0; !container.IsEmpty && idx < container.GetLength(episode); ++idx)
+            if( !container.IsEmpty && idx < container.GetLength(episode))
                 DrawAgent();
         }
 

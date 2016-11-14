@@ -4,6 +4,7 @@
 
 // Algorithms
 #include "Q.h"
+#include "Sarsa.h"
 
 using namespace native::frw;
 using namespace native::alg;
@@ -31,6 +32,9 @@ void LearningFramework::InitFramework(
 	switch (type) {
 	case 0:
 		alg = new Q(alpha, gamma);
+		break;
+	case 1:
+		alg = new Sarsa(alpha, gamma);
 		break;
 	}
 
