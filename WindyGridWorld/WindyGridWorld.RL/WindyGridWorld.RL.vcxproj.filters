@@ -45,6 +45,9 @@
     <ClInclude Include="IAlgorithm.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sarsalambda.h">
+      <Filter>Header Files\algs</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LearningFramework.cpp">
@@ -67,6 +70,9 @@
     </ClCompile>
     <ClCompile Include="ActionSelectors.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sarsalambda.cpp">
+      <Filter>Source Files\algs</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

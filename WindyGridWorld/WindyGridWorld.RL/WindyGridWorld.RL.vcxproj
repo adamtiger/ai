@@ -118,6 +118,7 @@
     <ClInclude Include="Q.h" />
     <ClInclude Include="Qlambda.h" />
     <ClInclude Include="Sarsa.h" />
+    <ClInclude Include="Sarsalambda.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ActionSelectors.cpp" />
@@ -127,6 +128,7 @@
     <ClCompile Include="Q.cpp" />
     <ClCompile Include="Qlambda.cpp" />
     <ClCompile Include="Sarsa.cpp" />
+    <ClCompile Include="Sarsalambda.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
