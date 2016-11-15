@@ -24,7 +24,7 @@ NArmedBandit/NArmedBandit/Debug/
 *.nupkg
 
 # Python projects:
-.pyc
+*.pyc
 *.suo
 WindyGridWorld/WindyGridWorld.GUI/bin/*
 WindyGridWorld/WindyGridWorld.GUI/obj/*
