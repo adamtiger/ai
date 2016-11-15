@@ -22,6 +22,9 @@ NArmedBandit/NArmedBandit/Debug/
 *.csproj.user
 .vs/*
 *.nupkg
+
+# Python projects:
+.pyc
 *.suo
 WindyGridWorld/WindyGridWorld.GUI/bin/*
 WindyGridWorld/WindyGridWorld.GUI/obj/*
