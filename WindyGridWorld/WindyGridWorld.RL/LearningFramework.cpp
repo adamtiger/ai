@@ -5,6 +5,8 @@
 // Algorithms
 #include "Q.h"
 #include "Sarsa.h"
+#include "Qlambda.h"
+#include "Sarsalambda.h"
 
 using namespace native::frw;
 using namespace native::alg;
@@ -36,7 +38,15 @@ void LearningFramework::InitFramework(
 	case 1:
 		alg = new Sarsa(alpha, gamma);
 		break;
+	case 2:
+		alg = new QLambda(alpha, gamma);
+		break;
+	case 3:
+		alg = new SarsaLambda(alpha, gamma);
+		break;
+
 	}
+
 
 	alg->SetEnvironment(env);
 }

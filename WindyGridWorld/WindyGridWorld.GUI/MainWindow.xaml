@@ -39,6 +39,8 @@
         <ComboBox x:Name="typeSelector" HorizontalAlignment="Left" Height="31" Margin="143,41,0,0" VerticalAlignment="Top" Width="53">
             <ComboBoxItem Content="Q"/>
             <ComboBoxItem Content="Sarsa"/>
+            <ComboBoxItem Content="QLambda"/>
+            <ComboBoxItem Content="SarsaLambda"/>
         </ComboBox>
         <Button x:Name="reStart" Content="Restart" HorizontalAlignment="Left" Height="20" Margin="108,235,0,0" VerticalAlignment="Top" Width="60" Click="reStart_Click"/>
 
