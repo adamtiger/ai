@@ -23,8 +23,6 @@ NArmedBandit/NArmedBandit/Debug/
 .vs/*
 *.nupkg
 
-# Python projects:
-*.pyc
 *.suo
 WindyGridWorld/WindyGridWorld.GUI/bin/*
 WindyGridWorld/WindyGridWorld.GUI/obj/*
@@ -33,4 +31,6 @@ WindyGridWorld/WindyGridWorld.CLI/Debug/*
 WindyGridWorld/WindyGridWorld.RL/Debug/*
 WindyGridWorld/UnitTestForWPF/obj/*
 
+# Python projects:
+*.pyc
 
