@@ -38,4 +38,4 @@ WindyGridWorld/UnitTestForWPF/obj/*
 
 # Python projects:
 *.pyc
-
+*.swp
