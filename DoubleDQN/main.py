@@ -17,7 +17,7 @@ def testGame(os):
   episend = False	
   action = os.nextAction(obs)
 
-  while(!episend):
+  while(not episend):
     obs, rw, done, inf = env.step(action)
     action = os.nextAction(obs)
     episend = done
@@ -45,11 +45,11 @@ def train(os, fname):
       env.reset()
 
   # Start learning.
-  while(!exit):
+  while(not exit):
     episend = False	
     obs = env.reset()
     action = os.nextActionAndTrain(obs, 0.0)
-    while(!episend):
+    while(not episend):
       obs, rw, done, inf = env.step(action)
       action = os.nextActionAndTrain(obs, rw)
       episend = done

@@ -1,12 +1,13 @@
 import gym
-import dqn
 
 # This is the abstract class for al of the agents.
 
+alpha = 0.00025
+
 class BaseAgent:
 
-  def __init__(self):
-    self.DQN = dqnDQN()
+  def __init__(self, dqn):
+    self.DQN = dqn
     self.action = 0
     self.rw = 0
     self.obs_old = []
@@ -18,7 +19,7 @@ class BaseAgent:
     self.DQN.init(obs1, action1, rw1, obs2)
     
   def nextActionAndTrain(self, obs, rw):
-    if len(self.obs_old) != 0
+    if len(self.obs_old) != 0:
       self.DQN.train(self.obs_old, self.action, self.rw, obs)
     self.obs_old = obs
     self.rw = rw
