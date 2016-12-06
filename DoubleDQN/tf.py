@@ -1,4 +1,4 @@
-import tensorflow as tf
+import numpy as np
 import random as r
 r.seed(113)
 
@@ -20,25 +20,52 @@ class IDnn:
     def train(self, mini_batch):
         raise NotImplementedError()
 
-# The deep neural network to approximate the action-values.        
+# The deep neural network to approximate the action-values.    
+
+from keras.models import Sequential
+from keras.layers import Dense, Activation, Convolution2D, Flatten
+from keras.optimizers import RMSprop
+    
 class Dnn(IDnn):
+
+    def __create_model(self, actions, alpha):
+      model = Sequential()
+      model.add(Convolution2D(32, 8, 8, border_mode='valid', input_shape=(84, 84, 4), subsample=(4, 4)))
+      model.add(Activation('relu'))
+      model.add(Convolution2D(64, 4, 4, border_mode='valid', subsample=(2, 2)))
+      model.add(Activation('relu'))
+      model.add(Convolution2D(64, 3, 3, border_mode='valid', subsample=(1, 1)))
+      model.add(Activation('relu'))
+      model.add(Flatten())
+      model.add(Dense(512))
+      model.add(Activation('relu'))
+      model.add(Dense(actions))
+      
+      rmsprop = RMSprop(lr=alpha)
+      model.compile(optimizer=rmsprop, loss='mse')
+      
+      return model
 
     def __init__(self, actions, batch_size, alpha):
         self.actions = actions
         self.batch_size = batch_size
         self.alpha = alpha
+        self.Q = self.__create_model(actions, alpha)
+        self.Q_ = self.__create_model(actions, alpha)
 
-    def get_action_number():
+    def get_action_number(self):
         return self.actions
 
     def argmaxQ(self, state):
-        raise NotImplementedError()
+        return self.Q.predict(state, batch_size=1).argmax()
         
     def Q_frozen(self, state, action):
-        raise NotImplementedError()
+        return self.Q_.predict(state, batch_size=1)[0, action]
     
     def update_network(self):
-        raise NotIMplementedError()
+        self.Q_.set_weights(self.Q.get_weights())
         
     def train(self, mini_batch):
-        raise NotImplementedError()
+        target = self.Q.predict(mini_batch[0], batch_size=32)
+        target[:, mini_batch[1]] = mini_batch[2]
+        self.Q.fit(mini_batch[0], target, nb_epoch=1, batch_size=32, verbose=0)

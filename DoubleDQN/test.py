@@ -202,10 +202,59 @@ def test_DQN():
     test_DQN_action()
 
 # --------------------------------------------
+import numpy as np
 
 # Test for the neural network.
 
-# TODO
+def setup_network():
+    nn = tf.Dnn(5, 32, 0.0001)
+    return nn
+
+def test_network_init():
+    nn = setup_network()
+    
+    assert getattr(nn, 'actions') == 5, "The number of actions should be 5 instead of: %r" % getattr(nn, 'actions')
+    assert getattr(nn, 'batch_size') == 32, "The number of actions should be 32 instead of: %r" % getattr(nn, 'batch_size')
+    getattr(nn, 'Q').summary()
+    
+    print "successful: test_network_init"
+    
+def test_network_get_action():
+    nn = setup_network()
+    
+    assert nn.get_action_number() == 5, "The number of actions should be 5 instead of: %r" % nn.get_action_number()
+    
+    print "successful: test_network_get_action()"
+
+# Only checks whether the sizes are correct and the learning happens.
+# No assertion.
+def test_network_train():
+    nn = setup_network()
+    
+    
+    # Generate examples (5000 pieces)
+    n = 320
+    x = np.random.rand(n, 84, 84, 4)
+    a = np.random.randint(0, 5, (n))
+    y = np.random.rand(n)
+    
+    for i in range(1, n/32):
+        l = (i-1)*32
+        h = i*32
+        batch = [x[l:h],a[l:h], y[l:h]]
+        nn.train(batch)
+    
+    nn.update_network()
+    
+    nn.argmaxQ(x[0:1])
+    nn.Q_frozen(x[1:2], 1)
+    
+    print "successful: test_network_train()"
+    
+def test_network():
+    test_network_init()
+    test_network_get_action()
+    test_network_train()
 
 # Function to run all tests
 def run_AllTests():
@@ -213,6 +262,7 @@ def run_AllTests():
     test_ExperienceReplay()
     test_EpsGreedy()
     test_DQN()
+    test_network()
     
     print "All tests succeeded."
   
