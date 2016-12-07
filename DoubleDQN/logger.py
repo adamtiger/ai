@@ -9,8 +9,12 @@ class Logger:
     """
 
     def __init__(self):
-        pass
+        self.cntr = 0
 
     def write(self, obs, rw, done):
-        pass
+        self.cntr += 1
+        if done:
+            print self.cntr
+            self.cntr = 0
+    
     

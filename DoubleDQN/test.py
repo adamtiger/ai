@@ -1,4 +1,4 @@
-import main as m
+import environment
 import gym
 import dqn
 
@@ -133,8 +133,8 @@ class MockDnn(tf.IDnn):
 
 def setup_DQN():
     mock = MockDnn(10, 3)
-    class_dqn = dqn.DQN(mock, 0.99)
-    class_dqn.set_params(8, 25, 5, 3, 1.0, 0.1, 2)
+    class_dqn = dqn.DQN(mock)
+    class_dqn.set_params(8, 25, 5, 3, 1.0, 0.1, 2, 0.99)
     return class_dqn
 
 def test_DQN_init():
@@ -224,7 +224,7 @@ def test_network_get_action():
     
     assert nn.get_action_number() == 5, "The number of actions should be 5 instead of: %r" % nn.get_action_number()
     
-    print "successful: test_network_get_action()"
+    print "successful: test_network_get_action"
 
 # Only checks whether the sizes are correct and the learning happens.
 # No assertion.
@@ -232,7 +232,7 @@ def test_network_train():
     nn = setup_network()
     
     
-    # Generate examples (5000 pieces)
+    # Generate examples 
     n = 320
     x = np.random.rand(n, 84, 84, 4)
     a = np.random.randint(0, 5, (n))
@@ -249,12 +249,26 @@ def test_network_train():
     nn.argmaxQ(x[0:1])
     nn.Q_frozen(x[1:2], 1)
     
-    print "successful: test_network_train()"
+    print "successful: test_network_train"
     
 def test_network():
     test_network_init()
     test_network_get_action()
     test_network_train()
+
+# -----------------------------------------
+
+# Test preprocessing
+
+def test_preprocessing():
+    env = gym.make('Breakout-v0')
+    img = env.reset()
+    environment.init_state(env)
+    ou = environment.preprocessing(img)
+    
+    assert (1,84,84,4) == ou.shape, "The output shape is wrong."
+    
+    print "successful: test_preprocessing"
 
 # Function to run all tests
 def run_AllTests():
@@ -263,8 +277,10 @@ def run_AllTests():
     test_EpsGreedy()
     test_DQN()
     test_network()
+    test_preprocessing()
     
     print "All tests succeeded."
+    return True
   
 # RUN THE TESTS  
 run_AllTests()

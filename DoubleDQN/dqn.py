@@ -1,5 +1,6 @@
 import gym
 import random as r
+import numpy as np
 
 r.seed(133)
 
@@ -26,7 +27,7 @@ class ExpReplay:
 
     # Returns a list of tuples. (experiences)
     def sample(self):
-        batch = [0]*self.mxbtch
+        batch = [()]*self.mxbtch
         for i in range(0, self.mxbtch):
             k = r.randint(0, self.length-1)
             batch[i] = self.mem[k]
@@ -59,19 +60,19 @@ class EpsGreedy:
 # Class for implementing Double deep Q-network.
 class DQN:
 
-    def __init__(self, tf, gamma):
+    def __init__(self, tf):
         self._actions = tf.get_action_number()
         self._tf = tf
-        self._gamma = gamma
         self._cntr = 0
 
-    def set_params(self, C, max_iter, mem_size, batch_size, exp_start, exp_end, last_fm):
+    def set_params(self, C, max_iter, mem_size, batch_size, exp_start, exp_end, last_fm, gamma):
         self.max_iter = max_iter
         self.C = C
         self.batch_size = batch_size
         self.last_fm = last_fm
         self.erply = ExpReplay(mem_size, batch_size)
         self.grdy = EpsGreedy(exp_start, exp_end, last_fm, self._actions)
+        self._gamma = gamma
     
     # Functions to interact with the environment.
 
@@ -84,11 +85,16 @@ class DQN:
         self.erply.add((obs, action, rw, obs_nx))
         if self._cntr % 4 == 0:
             batch = self.erply.sample()
-            tr_batch = [()]*self.batch_size
+            y = np.zeros((self.batch_size))
+            actions = np.zeros((self.batch_size))
+            states = np.zeros((self.batch_size, 84,84,4))
             for i in range(0, self.batch_size):
                 a = self._tf.argmaxQ(batch[i][3])
-                y_i = batch[i][2] + self._gamma * self._tf.Q_frozen(batch[i][3], a)
-                tr_batch[i] = (batch[i][0], batch[i][1], y_i)
+                y[i] = batch[i][2] + self._gamma * self._tf.Q_frozen(batch[i][3], a)
+                actions[i] = batch[i][1]
+                states[i] = batch[i][0]
+            actions_int = actions.astype(int)
+            tr_batch = [states[:], actions_int[:], y[:]]
             self._tf.train(tr_batch)
             if self._cntr % self.C == 0:
                 self._tf.update_network()
