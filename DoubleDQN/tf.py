@@ -5,10 +5,10 @@ r.seed(113)
 # Base class for using the network from outside.
 class IDnn:
 
-    def get_action_number():
+    def get_action_number(self):
         raise NotImplementedError()
 
-    def get_batch_size():
+    def get_batch_size(self):
         raise NotImplementedError()
 
     def argmaxQ(self, state):
@@ -59,7 +59,7 @@ class Dnn(IDnn):
     def get_action_number(self):
         return self.actions
 
-    def get_batch_size():
+    def get_batch_size(self):
         return self.batch_size
 
     def argmaxQ(self, state):

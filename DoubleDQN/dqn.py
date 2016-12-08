@@ -70,7 +70,7 @@ class DQN:
         self.max_iter = max_iter
         self.batch_size = tf.get_batch_size()
         self.last_fm = last_fm
-        self.erply = ExpReplay(mem_size, batch_size)
+        self.erply = ExpReplay(mem_size, self.batch_size)
         self.grdy = EpsGreedy(exp_start, exp_end, last_fm, self._actions)
         self._gamma = gamma
     

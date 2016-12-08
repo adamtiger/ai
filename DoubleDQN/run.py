@@ -9,11 +9,11 @@ actions = 6
 batch_size = 32
 alpha = 0.00025
 C = 100
-max_iter =100000#50000000
+max_iter =1000000#50000000
 mem_size = 5000#1000000
 exp_start = 1.0
 exp_end = 0.1
-last_fm = 100000#1000000
+last_fm = 500000#1000000
 gamma = 0.99
 
 tf_f = tf.Dnn(actions, batch_size, alpha)

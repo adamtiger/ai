@@ -112,7 +112,7 @@ class MockDnn(tf.IDnn):
     def get_action_number(self):
         return self.actions
 
-    def get_action_number(self):
+    def get_batch_size(self):
         return self.batch_size
         
     def get_seq(self):
@@ -297,6 +297,7 @@ def run_AllTests():
     test_DQN()
     test_network()
     test_preprocessing()
+    test_logger()
     
     print "All tests succeeded."
     return True

@@ -19,7 +19,7 @@ import tf
 # Global variables and constants:
 
 state = [] # list to store the most recent frames
-evaluation_freq = 2000#1000000
+evaluation_freq = 50000#1000000
 evaluation_number = 10
 log = logger.Logger(evaluation_number)
 init_number_in_replay_mem = 1000#50000
