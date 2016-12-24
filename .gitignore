@@ -8,11 +8,16 @@ Qlearning/Debug/
 Qlearning/ipch/
 Qlearning/Qlearning/Debug/
 _site/
+_posts/
 *.lock
 
 NArmedBandit/Debug/
 NArmedBandit/ipch/
 NArmedBandit/NArmedBandit/Debug/
+
+MountainCar/Debug/
+MountainCar/ipch/
+MountainCar/MountainCar/Debug/
 
 # Visual C# Projects
 
