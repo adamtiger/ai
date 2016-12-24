@@ -1,6 +1,9 @@
 #include "LearningCoordinator.h"
 
 #include <random>
+#include <iostream>
+
+using namespace std;
 
 #define XMAX 3.14
 
@@ -21,14 +24,21 @@ LearningCoordinator::~LearningCoordinator(){
 
 void LearningCoordinator::DoLearning(int nm_episodes){
 
+	cout << "Start learning!" << endl;
+
 	for (int eps = 0; eps < nm_episodes; ++eps) {
 
 		reset_system();
 		run_epsiode();
+
+		if (eps % 10 == 0)
+			cout << "Current episode: " << eps << endl;
 	}
 }
 
 void LearningCoordinator::TestAgent(){
+
+	cout << "Start test!" << endl;
 
 	reset_system();
 
@@ -47,6 +57,7 @@ void LearningCoordinator::TestAgent(){
 		x_dot = engine_->GetCurrentXdot();
 		y = engine_->GetCurrentY();
 
+		logger_->AddNewData(x, y);
 
 		state = coarseCoding_->GetFeatureVectorAt(x, x_dot);
 		action = agent_->Policy();
@@ -108,7 +119,6 @@ void LearningCoordinator::run_epsiode(){
 			reward = -0.001;
 		}
 			
-
 		agent_->UpdateThetaValues(state, action, reward, next_state, next_action);
 
 		state = next_state;
