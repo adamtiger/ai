@@ -17,6 +17,8 @@ private:
 	// Tests:
 
 	static void test_UpdateFeatureVectorAt();
+
+	static void test_ExecutingAction();
 };
 
 #endif // __TESTSER__

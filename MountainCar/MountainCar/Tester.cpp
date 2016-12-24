@@ -2,10 +2,12 @@
 #include <assert.h>
 
 #include "CoarseCoding.h"
+#include "PhysicsEngine.h"
 
 void Tester::RunAllTests(){
 
 	test_UpdateFeatureVectorAt();
+	test_ExecutingAction();
 }
 
 void Tester::test_result_printer(bool success, std::string name){
@@ -35,4 +37,20 @@ void Tester::test_UpdateFeatureVectorAt(){
 	assert(idx == 36);
 
 	test_result_printer(true, "UpdateFeatureVectorAt");
+}
+
+void Tester::test_ExecutingAction(){
+
+	PhysicsEngine* physicsEngine = PhysicsEngine::CreateDefault(1.2);
+	assert(physicsEngine->GetCurrentX() == 0.0);
+	assert(physicsEngine->GetCurrentXdot() == 0.0);
+
+	physicsEngine->ExecutingAction(1);
+	assert(physicsEngine->GetCurrentX() == 0.0);
+	assert(physicsEngine->GetCurrentXdot() != 0.0);
+
+
+	delete physicsEngine;
+
+	test_result_printer(true, "ExecutingAction");
 }
