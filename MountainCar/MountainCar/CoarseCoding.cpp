@@ -37,7 +37,7 @@ void CoarseCoding::rescale_xdot(double& x_dot){
 
 int CoarseCoding::calculate_cell_idx(double x, double x_dot){
 
-	int r_idx = sqrt(x*x + x_dot*x_dot) * r_slices_;
+	int r_idx = floor(sqrt(x*x + x_dot*x_dot) * r_slices_);
 	
 	int phi_idx = calculate_phi_idx(x, x_dot);
 
@@ -48,7 +48,14 @@ int CoarseCoding::calculate_phi_idx(double x, double x_dot){
 
 	double phi = fabs(atan(x_dot / x));
 
-	if (fabs(x) < 0.00000001) { // Use a tolerance value instead of the exact equality.
+	if (fabs(x_dot) < 0.00000001) { // Use a tolerance value instead of the exact equality.
+		if (fabs(x) < 0.00000001)
+			phi = 0.0;
+		else {
+			phi = signbit(x) ? PI : 0.0;
+		}
+	}
+	else if (fabs(x) < 0.00000001) {
 		phi = PI / 2.0;
 	}
 	else if (x > 0.0 && x_dot < 0.0) {
@@ -57,9 +64,9 @@ int CoarseCoding::calculate_phi_idx(double x, double x_dot){
 	else if (x < 0.0 && x_dot > 0.0) {
 		phi = PI - phi;
 	}
-	else if (x<0.0 && x_dot >0.0) {
+	else if (x<0.0 && x_dot > 0.0) {
 		phi = PI + phi;
 	}
 
-	return phi / phi_slices_;
+	return floor((phi / (2.0 * PI)) * (double)phi_slices_);
 }

@@ -4,8 +4,6 @@
 #include <string>
 #include <iostream>
 
-#include "CoarseCoding.h"
-
 class Tester {
 	
 public:
