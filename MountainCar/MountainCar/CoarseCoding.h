@@ -19,10 +19,7 @@ public:
 		int    phi_slices // The number of slices in central angle.
 	);
 
-	void UpdateFeatureVectorAt(double x, double x_dot);
-
-	int GetFeatureVector();
-
+	int GetFeatureVectorAt(double x, double x_dot);
 
 private:
 

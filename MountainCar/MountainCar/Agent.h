@@ -25,7 +25,7 @@ public:
 		double gamma        // The discounting factor.
 	);
 
-	void Initialize(int state);
+	void Initialize();
 
 	void UpdateThetaValues(int state, Action action, double reward, int next_state, Action next_action);
 

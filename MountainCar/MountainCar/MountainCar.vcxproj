@@ -157,6 +157,7 @@
   <ItemGroup>
     <ClCompile Include="Agent.cpp" />
     <ClCompile Include="CoarseCoding.cpp" />
+    <ClCompile Include="LearningCoordinator.cpp" />
     <ClCompile Include="MountainCar.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="stdafx.cpp">

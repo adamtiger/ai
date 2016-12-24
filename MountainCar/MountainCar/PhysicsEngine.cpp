@@ -51,6 +51,12 @@ double PhysicsEngine::CalcMaxSpeed(){
 	return sqrt(2 * G + a_car_ * sqrt(2) * PI);
 }
 
+void PhysicsEngine::ResetSystem(){
+	x_ = 0.0;
+	x_dot_ = 0.0;
+	y_ = 0.0;
+}
+
 PhysicsEngine::PhysicsEngine(double a_car, double delta_t) {
 
 	a_car_ = fabs(a_car);

@@ -10,9 +10,9 @@ Agent::Agent(int nm_features, double alpha, double gamma){
 	gamma_ = gamma;
 }
 
-void Agent::Initialize(int state){
+void Agent::Initialize(){
 
-	state_ = state;
+	state_ = 0;
 
 	if (left_thetas_.empty())
 		left_thetas_.resize(nm_features_);

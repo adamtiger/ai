@@ -13,17 +13,14 @@ CoarseCoding::CoarseCoding(double max_x, double max_xdot, int r_slices, int phi_
 	phi_slices_ = phi_slices;
 }
 
-void CoarseCoding::UpdateFeatureVectorAt(double x, double x_dot){
+int CoarseCoding::GetFeatureVectorAt(double x, double x_dot){
 
 	rescale_x(x);
 	rescale_xdot(x_dot);
 	feature_ = calculate_cell_idx(x, x_dot);
-}
-
-int CoarseCoding::GetFeatureVector(){
-
 	return feature_;
 }
+
 
 void CoarseCoding::rescale_x(double& x){
 

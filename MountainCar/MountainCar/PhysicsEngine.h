@@ -23,6 +23,8 @@ public:
 
 	double CalcMaxSpeed(); 
 
+	void ResetSystem();
+
 private:
 
 	PhysicsEngine(double a_car, double delta_t);
