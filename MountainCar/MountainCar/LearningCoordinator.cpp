@@ -9,12 +9,14 @@ LearningCoordinator::LearningCoordinator(int r_slices, int phi_slices, double a_
 	engine_ = PhysicsEngine::CreateDefault(a_car);
 	coarseCoding_ = new CoarseCoding(XMAX, engine_->CalcMaxSpeed(), r_slices, phi_slices);
 	agent_ = new Agent(r_slices * phi_slices, alpha, gamma);
+	logger_ = new Logger();
 }
 
 LearningCoordinator::~LearningCoordinator(){
 	delete engine_;
 	delete coarseCoding_;
 	delete agent_;
+	delete logger_;
 }
 
 void LearningCoordinator::DoLearning(int nm_episodes){
@@ -43,6 +45,8 @@ void LearningCoordinator::TestAgent(){
 
 		x = engine_->GetCurrentX();
 		x_dot = engine_->GetCurrentXdot();
+		y = engine_->GetCurrentY();
+
 
 		state = coarseCoding_->GetFeatureVectorAt(x, x_dot);
 		action = agent_->Policy();
@@ -55,6 +59,11 @@ void LearningCoordinator::TestAgent(){
 
 		it += 1;
 	}
+}
+
+Logger * LearningCoordinator::GetLogger(){
+
+	return logger_;
 }
 
 void LearningCoordinator::reset_system(){

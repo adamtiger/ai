@@ -19,7 +19,7 @@ public:
 
 	double GetCurrentX();
 	double GetCurrentXdot(); // horizontal velocity
-	double getCurrentY();
+	double GetCurrentY();
 
 	double CalcMaxSpeed(); 
 

@@ -29,6 +29,8 @@ public:
 
 	void TestAgent();
 
+	Logger* GetLogger();
+
 private:
 
 	void reset_system();
@@ -41,7 +43,7 @@ private:
 	Agent* agent_;
 	CoarseCoding* coarseCoding_;
 	PhysicsEngine* engine_;
-	//Logger* logger;
+	Logger* logger_;
 };
 
 #endif // __LEARNING_COORDINATOR__

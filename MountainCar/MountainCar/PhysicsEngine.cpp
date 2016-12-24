@@ -41,7 +41,7 @@ double PhysicsEngine::GetCurrentXdot(){
 	return x_dot_;
 }
 
-double PhysicsEngine::getCurrentY(){
+double PhysicsEngine::GetCurrentY(){
 
 	return sin(x_ - PI / 2.0) + 1;
 }
