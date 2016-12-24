@@ -155,6 +155,7 @@
     <ClInclude Include="Tester.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Agent.cpp" />
     <ClCompile Include="CoarseCoding.cpp" />
     <ClCompile Include="MountainCar.cpp" />
     <ClCompile Include="PhysicsEngine.cpp" />

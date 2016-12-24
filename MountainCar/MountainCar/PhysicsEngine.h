@@ -1,7 +1,12 @@
 #ifndef __PHYSICS_ENGINE__
 #define __PHYSICS_ENGINE__
 
-
+/*
+	This is the simulator of the car on a mountain slope.
+	The shape of the slope is a sine function. 
+	In fact, the car is at the bottom of a valley as a starting position.
+	The car can use full throttle forward or backward.
+*/
 
 class PhysicsEngine {
 
@@ -13,10 +18,10 @@ public:
 	void ExecutingAction(int action);
 
 	double GetCurrentX();
-	double GetCurrentXdot();
+	double GetCurrentXdot(); // horizontal velocity
 	double getCurrentY();
 
-	double CalcMaxSpeed();
+	double CalcMaxSpeed(); 
 
 private:
 

@@ -3,11 +3,13 @@
 
 #include "CoarseCoding.h"
 #include "PhysicsEngine.h"
+#include "Agent.h"
 
 void Tester::RunAllTests(){
 
 	test_UpdateFeatureVectorAt();
 	test_ExecutingAction();
+	test_Agent();
 }
 
 void Tester::test_result_printer(bool success, std::string name){
@@ -53,4 +55,12 @@ void Tester::test_ExecutingAction(){
 	delete physicsEngine;
 
 	test_result_printer(true, "ExecutingAction");
+}
+
+void Tester::test_Agent(){
+
+	Agent agent(10, 0.01, 0.95);
+	assert(agent.Policy() == LEFT);
+
+	test_result_printer(true, "Agent");
 }
