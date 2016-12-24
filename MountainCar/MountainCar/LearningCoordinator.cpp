@@ -11,7 +11,7 @@ LearningCoordinator::LearningCoordinator(int r_slices, int phi_slices, double a_
 	
 	engine_ = PhysicsEngine::CreateDefault(a_car);
 	coarseCoding_ = new CoarseCoding(XMAX, engine_->CalcMaxSpeed(), r_slices, phi_slices);
-	agent_ = new Agent(r_slices * phi_slices, alpha, gamma);
+	agent_ = new Agent((r_slices + 1) * phi_slices * 1.5, alpha, gamma);
 	logger_ = new Logger();
 }
 
@@ -26,12 +26,14 @@ void LearningCoordinator::DoLearning(int nm_episodes){
 
 	cout << "Start learning!" << endl;
 
+	int piece = nm_episodes / 10;
+
 	for (int eps = 0; eps < nm_episodes; ++eps) {
 
 		reset_system();
 		run_epsiode();
 
-		if (eps % 10 == 0)
+		if (eps % piece == 0)
 			cout << "Current episode: " << eps << endl;
 	}
 }
@@ -42,7 +44,7 @@ void LearningCoordinator::TestAgent(){
 
 	reset_system();
 
-	int  max_iter = 5000;
+	int  max_iter = 50000;
 	int  it = 0;
 	bool exit = false;
 
@@ -85,7 +87,7 @@ void LearningCoordinator::reset_system(){
 
 void LearningCoordinator::run_epsiode(){
 
-	int  max_iter = 5000;
+	int  max_iter = 50000;
 	int  it       = 0;
 	bool exit     = false;
 
@@ -133,7 +135,7 @@ Action LearningCoordinator::epsilon_greedy(){
 
 	// Randomly decide whether to do the other action
 
-	bool other = rand() % 100 + 1 > 90;
+	bool other = rand() % 100 + 1 > 95;
 
 	if (other)
 		action = action == LEFT ? RIGHT : LEFT;

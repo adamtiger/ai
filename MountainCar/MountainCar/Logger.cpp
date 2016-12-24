@@ -8,8 +8,6 @@ void Logger::AddNewData(double x, double y){
 
 	xs_.push_back(x);
 	ys_.push_back(y);
-
-	cout << "x -> " << x << " ; y -> " << y << endl;
 }
 
 void Logger::Save2File(std::string name){

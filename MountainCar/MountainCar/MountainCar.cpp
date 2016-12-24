@@ -11,7 +11,7 @@ int main()
 
 	LearningCoordinator lc(10, 16, 0.2, 0.02, 0.98);
 
-	lc.DoLearning(1000);
+	lc.DoLearning(10000);
 
 	lc.TestAgent();
 
