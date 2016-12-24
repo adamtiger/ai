@@ -4,7 +4,7 @@
 Agent::Agent(int nm_features, double alpha, double gamma){
 
 	nm_features_ = nm_features;
-	Initialize(0);
+	Initialize();
 
 	alpha_ = alpha;
 	gamma_ = gamma;
