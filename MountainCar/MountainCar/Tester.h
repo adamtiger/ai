@@ -21,6 +21,8 @@ private:
 	static void test_ExecutingAction();
 
 	static void test_Agent();
+
+	static void test_Logger();
 };
 
 #endif // __TESTSER__

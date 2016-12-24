@@ -23,6 +23,8 @@ public:
 		double gamma
 	);
 
+	~LearningCoordinator();
+
 	void DoLearning(int nm_episodes);
 
 	void TestAgent();

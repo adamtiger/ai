@@ -11,6 +11,12 @@ LearningCoordinator::LearningCoordinator(int r_slices, int phi_slices, double a_
 	agent_ = new Agent(r_slices * phi_slices, alpha, gamma);
 }
 
+LearningCoordinator::~LearningCoordinator(){
+	delete engine_;
+	delete coarseCoding_;
+	delete agent_;
+}
+
 void LearningCoordinator::DoLearning(int nm_episodes){
 
 	for (int eps = 0; eps < nm_episodes; ++eps) {
