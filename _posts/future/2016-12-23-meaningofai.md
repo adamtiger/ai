@@ -61,6 +61,6 @@ It is true that some of the jobs which currently exist will disappear as AI is g
 
 In the long run the benefits of AI are clearer. It can solve problems which are due to the large population; it can protect the Earth from external dangers coming from the space.
 
-![colonize](/images/coloniseSpace.jpg "Colonizing the space")
+![colonize](ai/images/coloniseSpace.jpg "Colonizing the space")
 
 Our time is limited in the Earth because the sun will not keep shining forever. Therefore it is vital in the far future to colonize the space which requires extremely advanced technology. May be it is impossible within a human body and we will transform into a strange creature which is half human and half machine to fuse the advantages both of them.
