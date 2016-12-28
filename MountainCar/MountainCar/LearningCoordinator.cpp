@@ -11,7 +11,7 @@ LearningCoordinator::LearningCoordinator(int r_slices, int phi_slices, double a_
 	
 	engine_ = PhysicsEngine::CreateDefault(a_car);
 	coarseCoding_ = new CoarseCoding(XMAX, engine_->CalcMaxSpeed(), r_slices, phi_slices);
-	agent_ = new Agent((r_slices + 1) * phi_slices * 1.5, alpha, gamma);
+	agent_ = new Agent((r_slices + 1) * phi_slices * 1.5, alpha, gamma); // the maximum distance is sqrt(2) * 'a' in case of a square
 	logger_ = new Logger();
 }
 
