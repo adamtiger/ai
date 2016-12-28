@@ -8,7 +8,7 @@ Nowadays, we hear about AI on a regular base due to its fast development. A huge
 
 For instance Isaac Asimov's *I, robot* story showcases the failure the well-founded (it seems) three rules. 
 
-![irobot](ai/images/irobot.jpg "I robot")
+![irobot](/ai/images/irobot.jpg "I robot")
 
 Lots of other films, books, novels were written in connection with AI and all of them ask some important questions to consider regarding the possible failures.  
 
