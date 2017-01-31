@@ -2,6 +2,7 @@ _site
 .sass-cache
 Gemfile.lock
 .DS_Store
+*.svg
 _site/
 Qlearning/
 NArmedBandit/
