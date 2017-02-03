@@ -30,6 +30,7 @@ exclude:
   - "Gemfile.lock"
 
 permalink: /posts/:title
+markdown: maruku
 
 defaults:
   -
