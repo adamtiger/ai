@@ -5,6 +5,7 @@
 In this project the break-through result on using machine learning to play Atari2600's games is reproduced. The following two article is taken account:
 
 [Human-level control through deep reinforcment learning](http://www.nature.com/nature/journal/v518/n7540/full/nature14236.html)
+
 [Deep Reinforcement Learning with Double Q-learning](https://arxiv.org/abs/1509.06461)
 
 In this case three games are examined: Breakout, Freeway and Riverraid. The environment is given by OpenAi gym, the neural network was built with Keras. The project is in-progress.
