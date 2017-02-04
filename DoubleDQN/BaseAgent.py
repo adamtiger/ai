@@ -2,7 +2,6 @@ import gym
 
 # This is the abstract class for al of the agents.
 
-alpha = 0.00025
 
 class BaseAgent:
 
