@@ -277,17 +277,14 @@ import logger
 # Test logger
 
 def test_logger():
-    obs1 = np.random.rand((84,84,4))
-    rw1 = r.random()
-    done1 = False
-    obs2 = np.random.rand((84,84,4))
-    rw2 = r.random()
-    done2 = True
+    obs = np.random.rand(12,84,84,4)
+    rw = np.random.rand(12)
+    done = [False, False, True, False, True, False, True, False, False, True, False, True]
 
-    l = logger.Logger()
+    l = logger.Logger(3)
 
-    l.write(obs1, rw1, done1)
-    l.write(obs2, rw2, done2)
+    for i in range(0, 12):
+        l.write(obs[i], rw[i], done[i])
 
 # Function to run all tests
 def run_AllTests():
