@@ -111,6 +111,9 @@ class MockDnn(tf.IDnn):
 
     def get_action_number(self):
         return self.actions
+
+    def get_action_number(self):
+        return self.batch_size
         
     def get_seq(self):
         return self.seq
@@ -133,8 +136,8 @@ class MockDnn(tf.IDnn):
 
 def setup_DQN():
     mock = MockDnn(10, 3)
-    class_dqn = dqn.DQN(mock)
-    class_dqn.set_params(8, 25, 5, 3, 1.0, 0.1, 2, 0.99)
+    class_dqn = dqn.DQN()
+    class_dqn.set_params(mock, 8, 25, 5, 1.0, 0.1, 2, 0.99)
     return class_dqn
 
 def test_DQN_init():

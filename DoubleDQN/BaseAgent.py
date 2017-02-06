@@ -18,7 +18,7 @@ class BaseAgent:
     self.DQN.init(obs1, action1, rw1, obs2)
     
   def nextActionAndTrain(self, obs, rw):
-    if len(self.obs_old) != 0:
+    if len(self.obs_old) != 0: 
       self.DQN.train(self.obs_old, self.action, self.rw, obs)
     self.obs_old = obs
     self.rw = rw

@@ -60,15 +60,15 @@ class EpsGreedy:
 # Class for implementing Double deep Q-network.
 class DQN:
 
-    def __init__(self, tf):
-        self._actions = tf.get_action_number()
-        self._tf = tf
+    def __init__(self):
         self._cntr = 0
 
-    def set_params(self, C, max_iter, mem_size, batch_size, exp_start, exp_end, last_fm, gamma):
-        self.max_iter = max_iter
+    def set_params(self, tf, C, max_iter, mem_size, exp_start, exp_end, last_fm, gamma):
+        self._actions = tf.get_action_number()
+        self._tf = tf
         self.C = C
-        self.batch_size = batch_size
+        self.max_iter = max_iter
+        self.batch_size = tf.get_batch_size()
         self.last_fm = last_fm
         self.erply = ExpReplay(mem_size, batch_size)
         self.grdy = EpsGreedy(exp_start, exp_end, last_fm, self._actions)

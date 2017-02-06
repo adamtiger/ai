@@ -8,6 +8,9 @@ class IDnn:
     def get_action_number():
         raise NotImplementedError()
 
+    def get_batch_size():
+        raise NotImplementedError()
+
     def argmaxQ(self, state):
         raise NotImplementedError()
         
@@ -55,6 +58,9 @@ class Dnn(IDnn):
 
     def get_action_number(self):
         return self.actions
+
+    def get_batch_size():
+        return self.batch_size
 
     def argmaxQ(self, state):
         return self.Q.predict(state, batch_size=1).argmax()
