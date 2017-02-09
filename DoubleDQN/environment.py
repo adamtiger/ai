@@ -2,6 +2,7 @@ import gym
 import numpy as np
 import scipy.misc as sc
 import math as m
+from gym import wrappers
 
 # This file is for running the different Atari
 # environments. 3 of them are examined:
@@ -19,10 +20,11 @@ import tf
 # Global variables and constants:
 
 state = [] # list to store the most recent frames
-evaluation_freq = 50000#1000000
+evaluation_freq =10000#1000000
 evaluation_number = 10
 log = logger.Logger(evaluation_number)
 init_number_in_replay_mem = 1000#50000
+evaluation_counter = 0
 
 def map2Y(img):
     """ Calculates the luminance from the input RGB picture.
@@ -91,8 +93,13 @@ def preprocessing(img):
     return ou_state
 
 def evaluate(os):
+    
+    global evaluation_counter
+    evaluation_counter += 1
   
     env = os.makeEnvironment()
+    file_name = 'files/videos-' + str(evaluation_counter)
+    env = wrappers.Monitor(env, file_name)
     
     for i in range(0,evaluation_number):
         episend = False

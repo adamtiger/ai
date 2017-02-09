@@ -42,16 +42,26 @@ class EpsGreedy:
         self.frame = fn_frame # The number of frames during the exploration is linearly annealed
         self.exp = self.start
         self.actions = actions
+        self.no_op = 0
 
     def action(self, act):
         explore = (r.random() < self.exp)
         c_act = act
-        if explore:
+        if act == 0:
+            self.no_op += 1
+        if explore and self.no_op < 40:
             k = r.randint(0, self.actions-2)
             if k >= act:
               c_act = k + 1
             else:
               c_act = k
+        elif explore:
+            k = r.randint(1, self.actions-2) # do not generate no_op (act = 0)
+            if k >= act:
+              c_act = k + 1
+            else:
+              c_act = k
+            self.no_op = 0
         return c_act
 
     def anneal(self):
@@ -105,6 +115,9 @@ class DQN:
         a = self._tf.argmaxQ(obs)
         a = self.grdy.action(a)
         return a
+        
+    def action_nogreedy(self, obs):
+        return self._tf.argmaxQ(obs)
 
     def end(self):
         return self._cntr > self.max_iter

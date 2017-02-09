@@ -26,7 +26,7 @@ class BaseAgent:
     return self.action
     
   def nextAction(self, obs):
-    return self.DQN.action(obs)
+    return self.DQN.action_nogreedy(obs)
     
   def isTrainingFinished(self):
     return self.DQN.end()
