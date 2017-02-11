@@ -56,11 +56,7 @@ class EpsGreedy:
             else:
               c_act = k
         elif explore:
-            k = r.randint(1, self.actions-2) # do not generate no_op (act = 0)
-            if k >= act:
-              c_act = k + 1
-            else:
-              c_act = k
+            c_act = r.randint(1, self.actions-2) # do not generate no_op (act = 0)
             self.no_op = 0
         return c_act
 
@@ -121,6 +117,9 @@ class DQN:
 
     def end(self):
         return self._cntr > self.max_iter
+        
+    def save(self, fname):
+        self._tf.save(fname)
 
 
 
