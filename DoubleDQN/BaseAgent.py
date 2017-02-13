@@ -32,7 +32,7 @@ class BaseAgent:
     return self.DQN.end()
     
   def saveAgent(self, fname):
-    pass
+    self.DQN.save(fname)
 
 
 # Special environments for testing Double DQN

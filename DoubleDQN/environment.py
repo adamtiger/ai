@@ -20,7 +20,7 @@ import tf
 # Global variables and constants:
 
 state = [] # list to store the most recent frames
-evaluation_freq =10000#1000000
+evaluation_freq =5000#1000000
 evaluation_number = 10
 log = logger.Logger(evaluation_number)
 init_number_in_replay_mem = 1000#50000
@@ -105,7 +105,9 @@ def evaluate(os):
         episend = False
         obs = env.reset()
         fi = preprocessing(obs)
-        action = os.nextAction(fi)
+        action = 0
+        while action == 0:
+            action = env.action_space.sample()
 
         while(not episend):
             obs, rw, done, inf = env.step(action)
