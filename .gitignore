@@ -41,3 +41,5 @@ WindyGridWorld/UnitTestForWPF/obj/*
 # Python projects:
 *.pyc
 *.swp
+*.hdf5
+*.mp4
