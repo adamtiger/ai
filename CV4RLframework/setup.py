@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 setup(name='cv4RLframework',
       version='0.1',
@@ -7,5 +7,6 @@ setup(name='cv4RLframework',
       author='Adam Budai',
       author_email='budai8adam@gmail.com',
       license='MIT',
-      packages=['cv4pool', 'cv4alg', 'cv4env'],
+      packages=[package for package in find_packages()
+                if package.startswith('cv4rl')],
       zip_safe=False)
