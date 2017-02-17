@@ -18,9 +18,12 @@ class Image:
     def get_coord_from_white_vec(self, idx):
         return self.white_vec[idx]
         
-    def get_white_vec_length():
+    def get_white_vec_length(self):
         return len(self.white_vec)
-        
+    
+    def shape(self):
+        return self.base_img.shape
+    
     def __gen_segm_vec(self):
         x_size = self.sgm_img.shape[0]
         y_size = self.sgm_img.shape[1]
@@ -68,8 +71,8 @@ class ImagePool:
         rand_idxs = np.random.randint(0, len(self.file_list)/2, (self.size))
 
         for idx in rand_idxs:
-            base_img = misc.imread(self.folder + '/' + self.file_list[idx], 'RGB')
-            sgm_img = misc.imread(self.folder + '/' +self.file_list[idx + 1], 'L')
+            base_img = misc.imread(self.folder + '/' + self.file_list[idx], False, 'RGB')
+            sgm_img = misc.imread(self.folder + '/' +self.file_list[idx + 1], False, 'L')
             img = Image(base_img, sgm_img)
             self._add(img)
     

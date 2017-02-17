@@ -36,9 +36,9 @@ def test_cv4pool():
 # Testing the Environment.
 
 def __init_env_tests():
-    return benv.BaseEnvironment(2, 5, "vTestImages")
+    return benv.BaseEnvironment(2, 5, 100, "vTestImages") 
 
-def test_generate_new_situation():
+def test_environment():
     env = __init_env_tests()
     env.generate_new_situation()
     path = env.get_correct()
@@ -50,12 +50,9 @@ def test_generate_new_situation():
     path = env.get_correct()
     misc.imsave('third_path.png', path)
 
-def test_environment():
-    test_generate_new_situation()
-
 def run_all_tests():
     
-    test_cv4pool()
+    #test_cv4pool()
     test_environment()
     
 # RUN THE TESTS
