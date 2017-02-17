@@ -1,4 +1,5 @@
 from cv4rl.cv4pool import pool
+from cv4rl.cv4env import BaseEnvironment as benv
 
 # Testing the ImagePool.
 
@@ -30,12 +31,21 @@ def test_cv4pool_get_pixel_base():
 def test_cv4pool():
     test_cv4pool_add()
     test_cv4pool_get_pixel_base()
-    
+
+# Testing the Environment.
+
+def __init_env_tests():
+    return benv.BaseEnvironment(2, 5, "vTestImages")
+
+def 
+
+def test_environment():
+    pass
 
 def run_all_tests():
     
     test_cv4pool()
-    
+    test_environment()
     
 # RUN THE TESTS
 
