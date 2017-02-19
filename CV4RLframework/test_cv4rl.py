@@ -1,5 +1,6 @@
 from cv4rl.cv4pool import pool
 from cv4rl.cv4env import BaseEnvironment as benv
+from scipy import misc
 
 # Testing the ImagePool.
 
@@ -37,10 +38,20 @@ def test_cv4pool():
 def __init_env_tests():
     return benv.BaseEnvironment(2, 5, "vTestImages")
 
-def 
+def test_generate_new_situation():
+    env = __init_env_tests()
+    env.generate_new_situation()
+    path = env.get_correct()
+    misc.imsave('first_path.png', path)
+    env.generate_new_situation()
+    path = env.get_correct()
+    misc.imsave('second_path.png', path)
+    env.generate_new_situation()
+    path = env.get_correct()
+    misc.imsave('third_path.png', path)
 
 def test_environment():
-    pass
+    test_generate_new_situation()
 
 def run_all_tests():
     
