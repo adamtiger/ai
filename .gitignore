@@ -38,6 +38,11 @@ WindyGridWorld/WindyGridWorld.CLI/Debug/*
 WindyGridWorld/WindyGridWorld.RL/Debug/*
 WindyGridWorld/UnitTestForWPF/obj/*
 
+NNSharp/NNSharp/bin/*
+NNSharp/NNSharp/obj/*
+NNSharp/Debug/*
+NNSharp/Release/*
+
 # Python projects:
 *.pyc
 *.swp
