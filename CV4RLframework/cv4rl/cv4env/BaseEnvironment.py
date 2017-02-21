@@ -41,9 +41,8 @@ class BaseEnvironment:
         st_idx = r.randint(0, lngth-1)
         coord = self.image.get_coord_from_white_vec(st_idx)
         self.stop = False
-        
         self.start = coord
-        print self.start
+        counter = 0
         
         # Generate rectangle.
         height = r.randint(5, self.rect_size)
@@ -55,15 +54,15 @@ class BaseEnvironment:
         idx_0 = 0
         idx_1 = 1
         self.canvas = np.zeros((self.rect.get_width(), self.rect.get_height()), dtype=int)
-        print self.canvas.shape
         
-        while (not self.stop):
+        while (not self.stop and counter < 1000):
             for idx in range(idx_0, idx_1):
                 neighbors = self.__neighbors(tree[idx])
                 neighbors = self.__check_conditions(neighbors)
                 tree = tree + neighbors
             idx_0 = idx_1
             idx_1 = len(tree)
+            counter += 1
         
         # Propagate back the sequence.
         generated_line = [self.target[0]]
@@ -74,7 +73,7 @@ class BaseEnvironment:
             assert not np.array_equal(next_point, np.array([-2, -2])), "Wrong tree!"
             if np.array_equal(next_point, np.array([-1, -1])):
                 end = True
-            generated_line.append(next_point)
+            generated_line.append(current_point)
             current_point = next_point
 
         self.correct_path = generated_line
@@ -97,9 +96,7 @@ class BaseEnvironment:
         should_remove = []
         for i in range(0, 8):
             x = neighbors[i][0][0]
-            print x
             y = neighbors[i][0][1]
-            print y
             
             if (x < 0.0 or x >= self.image.shape()[0]-1):
                 should_remove.append(i)
@@ -115,7 +112,7 @@ class BaseEnvironment:
                 self.target = neighbors[i]
             elif (self.canvas[x - self.rect.get_left(), y - self.rect.get_top()] == 1):
                 should_remove.append(i)
-            elif (self.image.get_pixel_sgm(x, y) < 150.0):
+            elif (self.image.get_pixel_sgm(x, y) < 200.0):
                 should_remove.append(i)
                 
         checked_neighbors = []   
@@ -123,7 +120,6 @@ class BaseEnvironment:
             if not(i in should_remove):
                 checked_neighbors.append(neighbors[i])
             self.canvas[neighbors[i][0][0] - self.rect.get_left(), neighbors[i][0][1] - self.rect.get_top()] = 1
-        print len(checked_neighbors)
         return checked_neighbors
 
     def __find(self, tree, xy):

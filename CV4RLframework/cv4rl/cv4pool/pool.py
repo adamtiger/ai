@@ -25,7 +25,7 @@ class Image:
         return self.base_img.shape
     
     def __gen_segm_vec(self):
-        x_size = self.sgm_img.shape[0]
+        x_size = self.sgm_img.shape[0] # May be reverse order!
         y_size = self.sgm_img.shape[1]
         vec = []
         
@@ -34,7 +34,7 @@ class Image:
                 if (self.sgm_img[x, y] > 200.0):
                     vec.append((x, y))
                     self.sgm_img[x, y] = 255.0
-                elif (self.sgm_img[x, y] < 150.0):
+                elif (self.sgm_img[x, y] < 200.0):
                     self.sgm_img[x, y] = 0.0
         
         return vec
