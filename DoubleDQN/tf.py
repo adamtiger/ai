@@ -1,4 +1,3 @@
-import numpy as np
 import random as r
 r.seed(113)
 
@@ -18,7 +17,7 @@ class IDnn:
         raise NotImplementedError()
     
     def update_network(self):
-        raise NotIMplementedError()
+        raise NotImplementedError()
         
     def train(self, mini_batch):
         raise NotImplementedError()

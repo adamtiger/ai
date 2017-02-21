@@ -1,4 +1,3 @@
-import gym
 import numpy as np
 import scipy.misc as sc
 import math as m
@@ -13,8 +12,7 @@ from gym import wrappers
 
 import BaseAgent as ba
 import logger
-import dqn
-import tf
+
 #import test
 
 # Global variables and constants:

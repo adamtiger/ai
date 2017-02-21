@@ -1,5 +1,17 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Tue Feb 21 23:22:19 2017
+
+@author: Adam Budai
+"""
+
 import random as r
 import numpy as np
+from BaseAlg import BaseAlgorithm
+
+from keras.models import Sequential
+from keras.layers import Dense, Activation, Convolution2D, Flatten
+from keras.optimizers import RMSprop
 
 r.seed(133)
 
@@ -61,7 +73,62 @@ class EpsGreedy:
 
     def anneal(self):
         self.exp = self.exp - (self.start - self.end)/self.frame
+
+
+class Dnn:
+
+    def __create_model(self, actions, alpha):
+      model = Sequential()
+      model.add(Convolution2D(32, 8, 8, border_mode='valid', input_shape=(84, 84, 4), subsample=(4, 4)))
+      model.add(Activation('relu'))
+      model.add(Convolution2D(64, 4, 4, border_mode='valid', subsample=(2, 2)))
+      model.add(Activation('relu'))
+      model.add(Convolution2D(64, 3, 3, border_mode='valid', subsample=(1, 1)))
+      model.add(Activation('relu'))
+      model.add(Flatten())
+      model.add(Dense(512))
+      model.add(Activation('relu'))
+      model.add(Dense(actions))
+      
+      rmsprop = RMSprop(lr=alpha)
+      model.compile(optimizer=rmsprop, loss='mse')
+      
+      return model
+
+    def __init__(self, actions, batch_size, alpha):
+        self.actions = actions
+        self.batch_size = batch_size
+        self.alpha = alpha
+        self.Q = self.__create_model(actions, alpha)
+        self.Q_ = self.__create_model(actions, alpha)
+
+    def get_action_number(self):
+        return self.actions
+
+    def get_batch_size(self):
+        return self.batch_size
+
+    def argmaxQ(self, state):
+        return self.Q.predict(state, batch_size=1).argmax()
+        
+    def Q_frozen(self, state, action):
+        return self.Q_.predict(state, batch_size=1)[0, action]
     
+    def update_network(self):
+        self.Q_.set_weights(self.Q.get_weights())
+        
+    def train(self, mini_batch):
+        target = self.Q.predict(mini_batch[0], batch_size=self.batch_size)
+        target[:, mini_batch[1]] = mini_batch[2]
+        self.Q.fit(mini_batch[0], target, nb_epoch=1, batch_size=self.batch_size, verbose=0)
+        
+    def save(self, fname):
+        self.Q.save_weights(fname)
+        
+    def load(self, fname):
+        self.Q.load_weights(fname, by_name = False)
+
+        
 # Class for implementing Double deep Q-network.
 class DQN:
 
@@ -126,6 +193,32 @@ class DQN:
         
     def save(self, fname):
         self._tf.save(fname)
+        
+class DqnAgent(BaseAlgorithm):
 
+  def __init__(self, dqn):
+    self.DQN = dqn
+    self.action = 0
+    self.rw = 0
+    self.obs_old = []
+  
 
-
+  def init(self, obs1, action1, rw1, obs2):
+    self.DQN.init(obs1, action1, rw1, obs2)
+    
+  def next_action_train(self, obs, rw):
+    if len(self.obs_old) != 0: 
+      self.DQN.train(self.obs_old, self.action, self.rw, obs)
+    self.obs_old = obs
+    self.rw = rw
+    self.action = self.DQN.action(obs)
+    return self.action
+    
+  def next_action(self, obs):
+    return self.DQN.action_nogreedy(obs)
+    
+  def is_training_finished(self):
+    return self.DQN.end()
+    
+  def save_agent(self, fname):
+    self.DQN.save(fname)
