@@ -1,6 +1,6 @@
-![cover](AI_logo3.jpg)
+[![cover](AI_logo3.jpg)](https://adamtiger.github.io/ai/)
 
-# Examples for ml algorithms
+# Looking deeper, understanding the world better
 
 ## A3C
 
