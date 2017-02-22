@@ -3,7 +3,13 @@ import random as r
 import numpy as np
 
 class Rect:
-
+    
+    """
+    
+    During path generation a rectangular is generated.
+    
+    """
+    
     def __init__(self, top, left, height, width):
         self.top = top
         self.left = left
@@ -24,12 +30,29 @@ class Rect:
 
 
 class BaseEnvironment:
-
-    def __init__(self, pool_size, refresh_freq, rect_size, folder):
+    
+    """
+    All the environments used by the RL agents should inherit
+    from this class.
+    
+    generate_new_situation:
+      definition: situation is a curve with a start and target point.
+      -> Choose a random white pixel as a start point.
+      -> Generate a rectengular around the start point.
+      -> Find all the white pixels in the rectengular in a parent-child chain manner.
+      -> The first point choosen from the boundary will be a target.
+      -> Following the chain from the target to the start point gives the generated curve.
+    """
+    
+    def __init__(self, pool_size, refresh_freq, min_rect_size, max_rect_size, folder):
+        assert min_rect_size < max_rect_size and min_rect_size > 0, "Wrong lower and upper bound for the size of rectengular."
+        
+        # Init the variables for the class.
         self.pool = p.ImagePool(pool_size, refresh_freq, folder)
         self.image = self.pool.next_image()
         self.correct_path = []
-        self.rect_size = rect_size
+        self.max_rect_size = max_rect_size
+        self.min_rect_size = min_rect_size
         self.stop = False
         self.rect = Rect(0, 0, 0, 0)
         self.target = 0
@@ -43,19 +66,20 @@ class BaseEnvironment:
         self.stop = False
         self.start = coord
         counter = 0
+        max_iter = 5000
         
         # Generate rectangle.
-        height = r.randint(5, self.rect_size)
-        width  = r.randint(5, self.rect_size)
-        self.rect = Rect(coord[1] - height, coord[0] - width, 2*height, 2*width)
+        height = r.randint(self.min_rect_size, self.max_rect_size)
+        width  = r.randint(self.min_rect_size, self.max_rect_size)
+        self.rect = Rect(coord[0] - height, coord[1] - width, 2*height, 2*width)
         
         # Flood it. BFS like algorithm. Parent-child structure.
         tree = [(coord, np.array([-1, -1]))]
         idx_0 = 0
         idx_1 = 1
-        self.canvas = np.zeros((self.rect.get_width(), self.rect.get_height()), dtype=int)
+        self.canvas = np.zeros((self.rect.get_height(), self.rect.get_width()), dtype=int)
         
-        while (not self.stop and counter < 1000):
+        while (not self.stop and counter < max_iter):
             for idx in range(idx_0, idx_1):
                 neighbors = self.__neighbors(tree[idx])
                 neighbors = self.__check_conditions(neighbors)
@@ -63,6 +87,9 @@ class BaseEnvironment:
             idx_0 = idx_1
             idx_1 = len(tree)
             counter += 1
+        
+        if counter >= max_iter:
+            self.target = tree[len(tree)-1]
         
         # Propagate back the sequence.
         generated_line = [self.target[0]]
@@ -102,15 +129,15 @@ class BaseEnvironment:
                 should_remove.append(i)
             elif (y < 0.0 or y >= self.image.shape()[1]-1):
                 should_remove.append(i)
-            elif (x < self.rect.get_left() or x >= self.rect.get_left() + self.rect.get_width()-1):
+            elif (x < self.rect.get_top() or x >= self.rect.get_top() + self.rect.get_height()-1):
                 should_remove.append(i)
                 self.stop = True
                 self.target = neighbors[i]
-            elif (y < self.rect.get_top() or y >= self.rect.get_top() + self.rect.get_height()-1):
+            elif (y < self.rect.get_left() or y >= self.rect.get_left() + self.rect.get_width()-1):
                 should_remove.append(i)
                 self.stop = True
                 self.target = neighbors[i]
-            elif (self.canvas[x - self.rect.get_left(), y - self.rect.get_top()] == 1):
+            elif (self.canvas[x - self.rect.get_top(), y - self.rect.get_left()] == 1):
                 should_remove.append(i)
             elif (self.image.get_pixel_sgm(x, y) < 200.0):
                 should_remove.append(i)
@@ -119,7 +146,7 @@ class BaseEnvironment:
         for i in range(0, 8):
             if not(i in should_remove):
                 checked_neighbors.append(neighbors[i])
-            self.canvas[neighbors[i][0][0] - self.rect.get_left(), neighbors[i][0][1] - self.rect.get_top()] = 1
+            self.canvas[neighbors[i][0][0] - self.rect.get_top(), neighbors[i][0][1] - self.rect.get_left()] = 1
         return checked_neighbors
 
     def __find(self, tree, xy):

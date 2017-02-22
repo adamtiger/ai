@@ -37,12 +37,19 @@ def test_cv4pool():
 # Testing the Environment.
 
 def __init_env_tests():
-    return benv.BaseEnvironment(2, 5, 50, "vTestImages") 
+    return benv.BaseEnvironment(2, 5, 100, 200, "vTestImages") 
 
 def __map2img(path, pth):
     for i in range(0, len(pth)):
-        path[pth[i][0], pth[i][1]] = 150.0
-
+        path[pth[i][0], pth[i][1]] = 250.0
+        
+def __check_generated_curve(sgm_img, pth):
+    correct = True
+    for idx in range(0, len(pth)):
+        if (int(sgm_img[pth[idx][0], pth[idx][1]]) < 200.0):
+            correct = False
+    return correct
+    
 def test_environment():
     env = __init_env_tests()
     img = getattr(env, 'image')
@@ -52,20 +59,23 @@ def test_environment():
     env.generate_new_situation()
     pth = env.get_correct()
     __map2img(path, pth)
-    misc.imsave('first_path.png', path)
     env.generate_new_situation()
     pth = env.get_correct()
     __map2img(path, pth)
-    misc.imsave('second_path.png', path)
     env.generate_new_situation()
     pth = env.get_correct()
     __map2img(path, pth)
-    misc.imsave('third_path.png', path)
+    misc.imsave('path.png', path)
+    assert __check_generated_curve(sgm_img, pth) == True, 'Wrong generated path.'
+    
+    print "The test_environment was successful!"
 
 def run_all_tests():
     
-    #test_cv4pool()
+    test_cv4pool()
     test_environment()
+    
+    print "All tests were successful."
     
 # RUN THE TESTS
 

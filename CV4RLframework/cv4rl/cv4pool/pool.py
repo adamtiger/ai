@@ -2,8 +2,23 @@ import numpy as np
 from scipy import misc
 import os
 
-class Image:
+# This module contains all of the necessary functions to
+# create and handle the image pool. 
 
+
+class Image:
+    
+    """
+      Represents an abstract image which consists of two images:
+      1) the original image which was segmented (base_img)
+      2) a gray-scale image which shows the segmenting curves (sgm_img)
+      
+      The size of the two images are the same.
+      
+      Functions:
+        __gen_segm_vec(): gathers the white pixels from the segmented picture
+    """
+    
     def __init__(self, base_img, segmented_img):
         self.base_img = base_img
         self.sgm_img = segmented_img
@@ -22,10 +37,10 @@ class Image:
         return len(self.white_vec)
     
     def shape(self):
-        return self.base_img.shape
+        return self.sgm_img.shape
     
     def __gen_segm_vec(self):
-        x_size = self.sgm_img.shape[0] # May be reverse order!
+        x_size = self.sgm_img.shape[0]
         y_size = self.sgm_img.shape[1]
         vec = []
         
@@ -41,6 +56,16 @@ class Image:
                     
                     
 class ImagePool:
+    
+    """
+      Represents a collection of Image-s. 
+      The pool automatically refreshes itself from the
+      storage by randomly choosing new images.
+      
+      The pool gives a random picture from the pool when
+      the environment asks for it.
+      
+    """
     
     def __init__(self, size_pool, refresh_freq, folder):
         self.size = size_pool
