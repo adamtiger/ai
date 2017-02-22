@@ -1,6 +1,6 @@
 ![cover](AI_logo3.jpg)
 
-# Examples for ml algorithms
+# Looking deeper, understanding the world better
 
 ## A3C
 
