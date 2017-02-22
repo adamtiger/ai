@@ -23,3 +23,9 @@ The recommendation process uses reinforcement learning to develop better recomme
 
 ![Structure](images/cv4rlfm.png)
 
+The top module shows the block diagram of the process which generates training pictures for the algorithm. The perfect solutions are created manually. The live-polyline algorithm has a naiv implementation which does not use machine learning but can help drawing the border lines easier. To join the curve pieces where they meet the gaps are searched and replaced with lines. 
+
+The training is computationally demanding therefore it is delegated to a different server. The best tools for neural network training are written in Python so the training part was also written in Python. The basic idea is to use more pictures at once in order to force the algorithm to learn how to cope with images which have different characteristics. 
+
+At the end the weights of the neural network is saved then refilled on the C# side. 
+
