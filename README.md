@@ -1,4 +1,4 @@
-![cover](AI_logo3.jpg)
+[![cover]](AI_logo3.jpg)(https://adamtiger.github.io/ai/)
 
 # Looking deeper, understanding the world better
 
