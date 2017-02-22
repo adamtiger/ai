@@ -2,14 +2,14 @@
 
 ## Contents
 * [cv4sensorhub](#cv4sensorhub)
-* [A special tool: live-polyline](#a-special-tool:-live-polyline)
+* [A special tool live-polyline](#a-special-tool-live-polyline)
 * [Structure of the RL framework](#structure-of-the-rl-framework)
 
 ### cv4sensorhub
 
 [cv4sensorhub](http://bmeaut.github.io/cv4sensorhub/) is an environment for interdisciplinary image processing tasks. The CV4RLframework connects to a special image processing problem, namely to live-polylines. 
 
-### A special tool: live-polyline
+### A special tool live-polyline
 
 ![LivePolyline example](images/LivePolygonElesben.png)
 
@@ -21,5 +21,5 @@ Live-polyline is a special drawing tool to help this. The only thing the user sh
 
 The recommendation process uses reinforcement learning to develop better recommendation strategies. This documentation shows the structure of the framework but not algorithm.
 
-![Structure](images/cv4rlfrm.png)
+![Structure](images/cv4rlfm.png)
 
