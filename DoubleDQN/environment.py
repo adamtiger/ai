@@ -60,7 +60,7 @@ def rescale(img):
     return img_ou
     
 def init_state(env):
-    """ At the very beginning the there was not
+    """ At the very beginning there was not
     appeared four consequtive frames yet.
 
     Gathers the first four frames during no-op.
