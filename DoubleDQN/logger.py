@@ -20,7 +20,7 @@ class Logger:
         self.cntr += 1
         self.ret.append(rw)
         if done:
-            print self.cntr
+            print (self.cntr)
             self.runs_in_eval +=1
             rw_file_name = "files/rewards/reward" + str(self.num_evals) + "_" + str(self.runs_in_eval) + ".json"
             if self.runs_in_eval == self.runs_evaluation:

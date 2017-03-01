@@ -18,7 +18,7 @@ import logger
 # Global variables and constants:
 
 state = [] # list to store the most recent frames
-evaluation_freq =5000#1000000
+evaluation_freq =100#1000000
 evaluation_number = 10
 log = logger.Logger(evaluation_number)
 init_number_in_replay_mem = 1000#50000
@@ -118,7 +118,7 @@ def evaluate(os):
 
 def train(os, fname):
     
-    print "Start training."
+    print ("Start training.")
     
     env = os.makeEnvironment()
     exit = False
@@ -127,7 +127,7 @@ def train(os, fname):
     
     init_state(env)
     
-    print "State was initialized."
+    print ("State was initialized.")
     
     # Fill up the experience replay memory with
     # experiences.
@@ -145,7 +145,7 @@ def train(os, fname):
         if done:
             env.reset()
     
-    print "Experience replay was filled up."
+    print ("Experience replay was filled up.")
     
     # Start learning.
     while(not exit):
@@ -157,7 +157,7 @@ def train(os, fname):
             obs, rw, done, inf = env.step(action)
             cntr += 1
             if cntr % 100 == 0:
-                print "Current iteration: %r" % cntr
+                print ("Current iteration: %r" % cntr)
             fi = preprocessing(obs)
             action = os.nextActionAndTrain(fi, rw)
             episend = done
@@ -165,7 +165,7 @@ def train(os, fname):
         if (m.floor(cntr / evaluation_freq)-k_evaluate) > 0.0001: # evaluate the performance of the agent
             k_evaluate += 1
             evaluate(os)
-            print "An evaluation occured."
+            print ("An evaluation occured.")
         
     os.saveAgent(fname)  
     

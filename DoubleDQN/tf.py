@@ -73,7 +73,7 @@ class Dnn(IDnn):
     def train(self, mini_batch):
         target = self.Q.predict(mini_batch[0], batch_size=self.batch_size)
         target[:, mini_batch[1]] = mini_batch[2]
-        self.Q.fit(mini_batch[0], target, nb_epoch=1, batch_size=self.batch_size, verbose=0)
+        self.Q.fit(mini_batch[0], target, nb_epoch=1, batch_size=self.batch_size, verbose=1)
         
     def save(self, fname):
         self.Q.save_weights(fname)

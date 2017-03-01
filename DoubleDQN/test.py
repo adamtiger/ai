@@ -10,7 +10,7 @@ def test_ExperienceReplay_init():
     eReply = setup_rpy()
     assert eReply.capacity() == 5, "the capacity is not set correctly: %r" % eReply.capacity()
 
-    print "successful: test_ExperienceReplay_init"
+    print("successful: test_ExperienceReplay_init")
      
 def test_ExperienceReplay_add():
     eReply = setup_rpy()
@@ -31,7 +31,7 @@ def test_ExperienceReplay_add():
     assert getattr(eReply, 'mem')[1] == e2, "at the second place e2 should be present: %r" % getattr(eReply, 'mem')[1]
     assert getattr(eReply, 'mem')[3] == e4, "at the second place e4 should be present: %r" % getattr(eReply, 'mem')[3]
     
-    print "successful: test_ExperienceReplay_add"
+    print ("successful: test_ExperienceReplay_add")
     
 def test_ExperienceReplay_sample():
     eReply = setup_rpy()
@@ -49,7 +49,7 @@ def test_ExperienceReplay_sample():
     assert len(batch) == 3, "batch should contain 3 elements!"
     assert len(batch[2]) == 3, "tuple should have 3 elements!"
     
-    print "successful: test_ExperienceReplay_sample"
+    print ("successful: test_ExperienceReplay_sample")
 
 def test_ExperienceReplay():
     test_ExperienceReplay_init()
@@ -67,7 +67,7 @@ def test_EpsGreedy_init():
     assert getattr(grdy, 'exp') == 0.6, "the value of exp should be 1.0 instead of: %r" % getattr(grdy, 'exp')
     assert getattr(grdy, 'frame') == 10, "the value of frame should be 10 instead of: %r" % getattr(grdy, 'frame')
     
-    print "successful: test_EpsGreedy_init"
+    print ("successful: test_EpsGreedy_init")
 
 def test_EpsGreedy_action():
     grdy = setup_greedy()
@@ -77,7 +77,7 @@ def test_EpsGreedy_action():
         ls.append(act)
         assert act >= 0 and act < 5, "returned action should be between 0 and 4: %r" % act
     
-    print "successful: test_EpsGreedy_action"
+    print ("successful: test_EpsGreedy_action")
 
 def test_EpsGreedy_anneal():
     grdy = setup_greedy()
@@ -85,7 +85,7 @@ def test_EpsGreedy_anneal():
         grdy.anneal()
     assert getattr(grdy, 'exp') == 0.35, "the value exp should be 0.35 instead of: %r" % getattr(grdy, 'exp')
     
-    print "successful: test_EpsGreedy_anneal"
+    print ("successful: test_EpsGreedy_anneal")
 
 def test_EpsGreedy():
     test_EpsGreedy_init()
@@ -161,7 +161,7 @@ def test_DQN_init():
     assert getattr(eReply, 'mem')[1] == e2, "at the second place e2 should be present: %r" % getattr(eReply, 'mem')[1]
     assert getattr(eReply, 'mem')[3] == e4, "at the second place e4 should be present: %r" % getattr(eReply, 'mem')[3]
     
-    print "successful: test_DQN_init"
+    print ("successful: test_DQN_init")
 
 def test_DQN_train():
     dq = setup_DQN()
@@ -185,19 +185,19 @@ def test_DQN_train():
                 ls.append(3)
 
     assert ls == getattr(dq, '_tf').get_seq(), "different calling sequences!"
-    
+   
     grdy = getattr(dq, 'grdy')
     exp = getattr(grdy, 'exp')
     assert abs(exp - 0.1) < 0.0001, "exp should be 0.1" 
     
-    print "successful: test_DQN_train"
+    print ("successful: test_DQN_train")
 
 def test_DQN_action():
     dq = setup_DQN()
     for i in range(0, 5):
         dq.action(0)
         
-    print "successful: test_DQN_action"
+    print ("successful: test_DQN_action")
 
 def test_DQN():
     test_DQN_init()
@@ -220,14 +220,14 @@ def test_network_init():
     assert getattr(nn, 'batch_size') == 32, "The number of actions should be 32 instead of: %r" % getattr(nn, 'batch_size')
     getattr(nn, 'Q').summary()
     
-    print "successful: test_network_init"
+    print ("successful: test_network_init")
     
 def test_network_get_action():
     nn = setup_network()
     
     assert nn.get_action_number() == 5, "The number of actions should be 5 instead of: %r" % nn.get_action_number()
     
-    print "successful: test_network_get_action"
+    print ("successful: test_network_get_action")
 
 # Only checks whether the sizes are correct and the learning happens.
 # No assertion.
@@ -241,7 +241,7 @@ def test_network_train():
     a = np.random.randint(0, 5, (n))
     y = np.random.rand(n)
     
-    for i in range(1, n/32):
+    for i in range(1, n//32):
         l = (i-1)*32
         h = i*32
         batch = [x[l:h],a[l:h], y[l:h]]
@@ -252,7 +252,7 @@ def test_network_train():
     nn.argmaxQ(x[0:1])
     nn.Q_frozen(x[1:2], 1)
     
-    print "successful: test_network_train"
+    print ("successful: test_network_train")
     
 def test_network():
     test_network_init()
@@ -271,7 +271,7 @@ def test_preprocessing():
     
     assert (1,84,84,4) == ou.shape, "The output shape is wrong."
     
-    print "successful: test_preprocessing"
+    print ("successful: test_preprocessing")
 
 # -----------------------------------------
 
@@ -299,7 +299,7 @@ def run_AllTests():
     test_preprocessing()
     test_logger()
     
-    print "All tests succeeded."
+    print ("All tests succeeded.")
     return True
   
 # RUN THE TESTS  
