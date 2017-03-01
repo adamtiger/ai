@@ -114,11 +114,10 @@ class DQN:
         
     def action_nogreedy(self, obs):
         a = self._tf.argmaxQ(obs)
-        if a == 0:
-            self.no_op += 1
-        if self.no_op % 30 == 0:
-            a = r.randint(1, self._actions-1)
-            no_op = 0
+        rd_nm = r.randint(0,100)
+        if (rd_nm < 5):
+            a = r.randint(0, self._actions-1)        
+
         return a
 
     def end(self):

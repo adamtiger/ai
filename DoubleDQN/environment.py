@@ -18,10 +18,10 @@ import logger
 # Global variables and constants:
 
 state = [] # list to store the most recent frames
-evaluation_freq =1000#1000000
+evaluation_freq =100000#1000000
 evaluation_number = 10
 log = logger.Logger(evaluation_number)
-init_number_in_replay_mem = 1000#50000
+init_number_in_replay_mem = 5000
 evaluation_counter = 0
 
 def map2Y(img):
@@ -97,7 +97,7 @@ def evaluate(os):
   
     env = os.makeEnvironment()
     file_name = 'files/videos-' + str(evaluation_counter)
-    env = wrappers.Monitor(env, file_name)
+    env = wrappers.Monitor(env, file_name,force=True)
     
     episend = False
     obs = env.reset()
@@ -105,10 +105,11 @@ def evaluate(os):
     action = 0
     while action == 0:
         action = env.action_space.sample()
-
+    
+    print("Video was recoded.")
     while(not episend):
         obs, rw, done, inf = env.step(action)
-        log.write(obs, rw, done)
+        #log.write(obs, rw, done)
         fi = preprocessing(obs)
         action = os.nextAction(fi)
         episend = done
@@ -125,10 +126,12 @@ def evaluate(os):
 
         while(not episend):
             obs, rw, done, inf = env.step(action)
-            log.write(obs, rw, done)
+            #log.write(obs, rw, done)
             fi = preprocessing(obs)
             action = os.nextAction(fi)
             episend = done
+
+        print(str(i))
 
 def train(os, fname):
     
@@ -170,7 +173,7 @@ def train(os, fname):
         while(not episend):
             obs, rw, done, inf = env.step(action)
             cntr += 1
-            if cntr % 100 == 0:
+            if cntr % 1000 == 0:
                 print ("Current iteration: %r" % cntr)
             fi = preprocessing(obs)
             action = os.nextActionAndTrain(fi, rw)
