@@ -18,7 +18,7 @@ import logger
 # Global variables and constants:
 
 state = [] # list to store the most recent frames
-evaluation_freq =100#1000000
+evaluation_freq =1000#1000000
 evaluation_number = 10
 log = logger.Logger(evaluation_number)
 init_number_in_replay_mem = 1000#50000
@@ -99,7 +99,23 @@ def evaluate(os):
     file_name = 'files/videos-' + str(evaluation_counter)
     env = wrappers.Monitor(env, file_name)
     
-    for i in range(0,evaluation_number):
+    episend = False
+    obs = env.reset()
+    fi = preprocessing(obs)
+    action = 0
+    while action == 0:
+        action = env.action_space.sample()
+
+    while(not episend):
+        obs, rw, done, inf = env.step(action)
+        log.write(obs, rw, done)
+        fi = preprocessing(obs)
+        action = os.nextAction(fi)
+        episend = done
+    
+    env = os.makeEnvironment()
+    
+    for i in range(1,evaluation_number):
         episend = False
         obs = env.reset()
         fi = preprocessing(obs)
@@ -113,8 +129,6 @@ def evaluate(os):
             fi = preprocessing(obs)
             action = os.nextAction(fi)
             episend = done
-  
-    return 0
 
 def train(os, fname):
     
