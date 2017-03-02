@@ -8,12 +8,12 @@ import BaseAgent as ba
 actions = 6
 batch_size = 32
 alpha = 0.00025
-C = 1000
+C = 5000
 max_iter =5000000#10000000
-mem_size = 10000#1000000
+mem_size = 50000#1000000
 exp_start = 1.0
 exp_end = 0.1
-last_fm = 100000#1000000
+last_fm = 1000000
 gamma = 0.99
 
 tf_f = tf.Dnn(actions, batch_size, alpha)

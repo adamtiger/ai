@@ -18,7 +18,7 @@ import logger
 # Global variables and constants:
 
 state = [] # list to store the most recent frames
-evaluation_freq =100000#1000000
+evaluation_freq =500000
 evaluation_number = 10
 log = logger.Logger(evaluation_number)
 init_number_in_replay_mem = 5000
@@ -94,29 +94,11 @@ def evaluate(os):
     
     global evaluation_counter
     evaluation_counter += 1
-  
-    env = os.makeEnvironment()
-    file_name = 'files/videos-' + str(evaluation_counter)
-    env = wrappers.Monitor(env, file_name,force=True)
-    
-    episend = False
-    obs = env.reset()
-    fi = preprocessing(obs)
-    action = 0
-    while action == 0:
-        action = env.action_space.sample()
-    
-    print("Video was recoded.")
-    while(not episend):
-        obs, rw, done, inf = env.step(action)
-        #log.write(obs, rw, done)
-        fi = preprocessing(obs)
-        action = os.nextAction(fi)
-        episend = done
     
     env = os.makeEnvironment()
-    
-    for i in range(1,evaluation_number):
+    print("Evaluation started.")    
+
+    for i in range(0,evaluation_number):
         episend = False
         obs = env.reset()
         fi = preprocessing(obs)
@@ -126,7 +108,7 @@ def evaluate(os):
 
         while(not episend):
             obs, rw, done, inf = env.step(action)
-            #log.write(obs, rw, done)
+            log.write(obs, rw, done)
             fi = preprocessing(obs)
             action = os.nextAction(fi)
             episend = done
