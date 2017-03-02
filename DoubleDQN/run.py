@@ -1,33 +1,40 @@
 import environment
-import tf
-import dqn
-import agent
+import argparse 
+
 
 # RUN THE ALGORITHM
 
-actions = 6
-batch_size = 32
-alpha = 0.00025
+# Parameter settings
+parser = argparse.ArgumentParser(description='DQN algorithm')
 
-C = 5000
-max_iter =5000000#10000000
-mem_size = 50000#1000000
-exp_start = 1.0
-exp_end = 0.1
-last_fm = 1000000
-gamma = 0.99
+parser.add_argument('--atari-env', default='Breakout-v0', metavar='S',
+        help='the name of the Atari environment (default:Breakout-v0)')
+parser.add_argument('--lr', type=float, default=0.00025, metavar='F',
+        help='the learning rate (default:0.00025)')
+parser.add_argument('--C', type=int, default=5000, metavar='N',
+        help='the update frequency of the neural network (default:5000)')
+parser.add_argument('--max-iter', type=int, default=500000, metavar='N',
+        help='the maximum number of steps (default:500000)')
+parser.add_argument('--mem-size', type=int, default=50000, metavar='N',
+        help='the capacity of the experience replay (default:50000)')
+parser.add_argument('--exp-start', type=float, default=1.0, metavar='F',
+        help='the number of the agents (default:4)')
+parser.add_argument('--exp-end', type=float, default=0.1, metavar='F',
+        help='the number of individual steps (default:10000)')
+parser.add_argument('--last-fm', type=int, default=100000, metavar='N',
+        help='the exploration gradually decreasing, it has exp_end value after last_fm steps (default:100000)')
+parser.add_argument('--gamma', type=float, default=0.99, metavar='F',
+        help='the discounting factor (default:0.99)')
+parser.add_argument('--eval-freq', type=int, default=50000, metavar='N',
+        help='the number of steps between two evaluation of the agent (default:50000)')
+parser.add_argument('--eval-num', type=int, default=10, metavar='N',
+        help='the number of evaluations at once (default:10)')
+parser.add_argument('--init-replay-size', type=int, default=10000, metavar='N',
+        help='the initial number of frames in the experience replay memory (default:10000)')
 
-evaluation_freq =500000
-evaluation_number = 10
-init_number_in_replay_mem = 5000
+args = parser.parse_args()
 
-tf_f = tf.Dnn(actions, batch_size, alpha)
-dqn_f = dqn.DQN()
-dqn_f.set_params(tf_f, C, max_iter, mem_size, exp_start, exp_end, last_fm, gamma)
-ag = agent.Agent(dqn_f)
-
-env = environment.Environment(ag, evaluation_freq, evaluation_number, 
-                              init_number_in_replay_mem)
+env = environment.Environment(args)
 
 fname = "files/agent.hdf5"
 env.train(fname)

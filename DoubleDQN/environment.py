@@ -10,7 +10,9 @@ import math as m
 # This implementation can run all of them.
 
 import logger
- 
+import agent
+import tf
+import dqn
 
 class Preprocessing:
     
@@ -81,13 +83,17 @@ class Preprocessing:
 
 class Environment:
     
-    def __init__(self, agent_, eval_freq, eval_num, init_replay):
-        self.agent = agent_
+    def __init__(self, parser):
+        dqn_f = dqn.DQN()
+        self.agent = agent.Agent(dqn_f, parser.atari_env)
         self.env = self.agent.makeEnvironment()
-        self.evaluation_freq = eval_freq
-        self.evaluation_number = eval_num
-        self.log = logger.Logger(eval_num)
-        self.init_number_in_replay_mem = init_replay
+        
+        tf_f = tf.Dnn(self.env.action_space.n, 32, parser.lr)
+        dqn_f.set_params(tf_f, parser.C, parser.max_iter, parser.mem_size, parser.exp_start, parser.exp_end, parser.last_fm, parser.gamma)
+        self.evaluation_freq = parser.eval_freq
+        self.evaluation_number = parser.eval_num
+        self.log = logger.Logger(parser.eval_num)
+        self.init_number_in_replay_mem = parser.init_replay_size
         
         
     def evaluate(self):

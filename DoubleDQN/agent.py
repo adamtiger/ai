@@ -2,16 +2,15 @@ import gym
 
 class Agent:
 
-  def __init__(self, dqn):
+  def __init__(self, dqn, atari_game_name):
       self.DQN = dqn
       self.action = 0
       self.rw = 0
-      self.atari_name = ""
+      self.atari_name = atari_game_name
       self.obs_old = []
   
-  def makeEnvironment(self, atari_game_name):
-      self.atari_name = atari_game_name
-      env = gym.make(atari_game_name)
+  def makeEnvironment(self):
+      env = gym.make(self.atari_name)
       env.reset()
       return env
 
