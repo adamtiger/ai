@@ -77,6 +77,4 @@ class Dnn(IDnn):
         
     def save(self, fname):
         self.Q.save_weights(fname)
-        
-    def load(self, fname):
-        self.Q.load_weights(fname, by_name = False)
+
