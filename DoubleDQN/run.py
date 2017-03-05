@@ -1,7 +1,7 @@
 import environment
 import tf
 import dqn
-import BaseAgent as ba
+import agent
 
 # RUN THE ALGORITHM
 
@@ -23,7 +23,10 @@ evaluation_number = 10
 tf_f = tf.Dnn(actions, batch_size, alpha)
 dqn_f = dqn.DQN()
 dqn_f.set_params(tf_f, C, max_iter, mem_size, exp_start, exp_end, last_fm, gamma)
-os = ba.BrAgent(dqn_f)
-fname = "files/agent.hdf5"
+ag = agent.Agent(dqn_f)
 
-environment.train(os, fname)
+env = environment.Environment(ag, evaluation_freq, evaluation_number, 
+                              init_number_in_replay_mem)
+
+fname = "files/agent.hdf5"
+env.train(fname)
