@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import a3c
-import nn
+from a3c import *
 
 import argparse 
 import torch
@@ -30,13 +29,14 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     torch.manual_seed(1)
-
-    shared_nn = a3c.shared_nn()
+    
+    T = IterationNum(args.max_it)
+    shared_nn = create_shared_nn(args)
     shared_nn.shared_memory()
 
     processes = []
     for agent in range(args.num_agents):
-        a = mp.Process(target=a3c.a3c, args=(args, shared_nn))
+        a = mp.Process(target=a3c_agent, args=(args, shared_nn, T))
         a.start()
         processes.append(a)
     for p in processes:
