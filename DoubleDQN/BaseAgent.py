@@ -3,16 +3,20 @@ import gym
 # This is the abstract class for al of the agents.
 
 
-class BaseAgent:
+class Agent:
 
   def __init__(self, dqn):
     self.DQN = dqn
     self.action = 0
     self.rw = 0
+    self.atari_name = ""
     self.obs_old = []
   
-  def makeEnvironment(self):
-    raise NotImplementedError()
+  def makeEnvironment(self, atari_game_name):
+    self.atari_name = atari_game_name
+    env = gym.make(atari_game_name)
+    env.reset()
+    return env
 
   def init(self, obs1, action1, rw1, obs2):
     self.DQN.init(obs1, action1, rw1, obs2)
@@ -33,27 +37,3 @@ class BaseAgent:
     
   def saveAgent(self, fname):
     self.DQN.save(fname)
-
-
-# Special environments for testing Double DQN
-   
-class RiverAgent(BaseAgent):
-
-  def makeEnvironment(self):
-    env = gym.make('Riverrider-v0')
-    env.reset()
-    return env
-
-class FrAgent(BaseAgent):
-
-  def makeEnvironment(self):
-    env = gym.make('Freeway-v0')
-    env.reset()
-    return env
-
-class BrAgent(BaseAgent):
-
-  def makeEnvironment(self):
-    env = gym.make('Breakout-v0')
-    env.reset()
-    return env
