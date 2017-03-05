@@ -113,6 +113,7 @@ class Environment:
 
             print(str(i))
 
+
     def train(self, fname):
     
         print ("Start training.")

@@ -1,8 +1,5 @@
 import gym
 
-# This is the abstract class for al of the agents.
-
-
 class Agent:
 
   def __init__(self, dqn):
