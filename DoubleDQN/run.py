@@ -4,21 +4,8 @@ import argparse
 
 # RUN THE ALGORITHM
 
-<<<<<<< HEAD
-actions = 6
-batch_size = 32
-alpha = 0.0005
-C = 5000
-max_iter =200000#10000000
-mem_size = 10000#1000000
-exp_start = 1.0
-exp_end = 0.05
-last_fm = 10000
-gamma = 0.9999
-=======
 # Parameter settings
 parser = argparse.ArgumentParser(description='DQN algorithm')
->>>>>>> 8b91c4f277b11da7fcde04fa3c13456b3ae3d211
 
 parser.add_argument('--atari-env', default='Breakout-v0', metavar='S',
         help='the name of the Atari environment (default:Breakout-v0)')
