@@ -80,7 +80,7 @@ class Preprocessing:
         ou_state[0,:,:,1] = self.state[1][:,:,0]
         ou_state[0,:,:,2] = self.state[2][:,:,0]
         ou_state[0,:,:,3] = self.state[3][:,:,0]
-        return ou_state
+        return np.uint8(ou_state)
 
 class Environment:
     
@@ -117,8 +117,6 @@ class Environment:
                 fi = pre.preprocessing(obs)
                 action = self.agent.nextAction(fi)
                 episend = done
-
-            print(str(i))
 
 
     def train(self, fname):
