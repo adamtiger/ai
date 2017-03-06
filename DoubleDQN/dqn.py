@@ -1,5 +1,6 @@
 import random as r
 import numpy as np
+import math
 
 r.seed(133)
 
@@ -42,6 +43,7 @@ class EpsGreedy:
         self.exp = self.start
         self.actions = actions
         self.no_op = 0
+        self.cntr = 0
 
     def action(self, act):
         explore = (r.random() < self.exp)
@@ -61,7 +63,10 @@ class EpsGreedy:
 
     def anneal(self):
         self.exp = self.exp - (self.start - self.end)/self.frame
-    
+        #self.exp = (self.start - self.end)*math.exp(-self.cntr/self.frame) + self.end
+        #self.cntr += 1
+
+
 # Class for implementing Double deep Q-network.
 class DQN:
 

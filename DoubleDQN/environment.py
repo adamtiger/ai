@@ -18,7 +18,7 @@ import logger
 # Global variables and constants:
 
 state = [] # list to store the most recent frames
-evaluation_freq =500000
+evaluation_freq =2000
 evaluation_number = 10
 log = logger.Logger(evaluation_number)
 init_number_in_replay_mem = 5000
@@ -88,7 +88,7 @@ def preprocessing(img):
     ou_state[0,:,:,1] = state[1][:,:,0]
     ou_state[0,:,:,2] = state[2][:,:,0]
     ou_state[0,:,:,3] = state[3][:,:,0]
-    return ou_state
+    return np.uint8(ou_state)
 
 def evaluate(os):
     
@@ -113,7 +113,6 @@ def evaluate(os):
             action = os.nextAction(fi)
             episend = done
 
-        print(str(i))
 
 def train(os, fname):
     

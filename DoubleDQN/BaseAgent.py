@@ -40,7 +40,7 @@ class BaseAgent:
 class RiverAgent(BaseAgent):
 
   def makeEnvironment(self):
-    env = gym.make('Riverrider-v0')
+    env = gym.make('Riverraid-v0')
     env.reset()
     return env
 
