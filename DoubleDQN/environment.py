@@ -1,7 +1,6 @@
 import numpy as np
 import scipy.misc as sc
 import math as m
-from gym import wrappers
 
 # This file is for running the different Atari
 # environments. 3 of them are examined:
@@ -10,161 +9,167 @@ from gym import wrappers
 #  -> Riverraid (an airplane flies above a river)
 # This implementation can run all of them.
 
-import BaseAgent as ba
 import logger
-
-#import test
-
-# Global variables and constants:
-
-state = [] # list to store the most recent frames
-evaluation_freq =2000
-evaluation_number = 10
-log = logger.Logger(evaluation_number)
-init_number_in_replay_mem = 5000
-evaluation_counter = 0
-
-def map2Y(img):
-    """ Calculates the luminance from the input RGB picture.
-
-    Args:
-      img: a numpy array with shape (height, width, 3)
-    Output:
-      a numpy array with shape (height, width, 1)
-    """
-    np_img = np.array(img)
-    shape = np_img.shape
-    shape_new = (shape[0], shape[1], 1)
-    ou_img = np.zeros(shape_new)
-
-    ou_img[:,:,0] = (2*np_img[:,:,0] + 5*np_img[:,:,1] + np_img[:,:,2])/8.0
-    return ou_img
-    
-def rescale(img):
-    """ Rescale the image for size 84x84.
-
-    Args:
-      img: a numpy array with shape (height, width, 1)
-    Output:
-      a numpy array with shape (84, 84, 1)
-    """
-    shape = img.shape
-    img_ = np.zeros((shape[0], shape[1]))
-    img_[:,:] = img[:,:,0]
-    
-    img_resized = sc.imresize(img_, (84,84), interp='bilinear', mode=None)
-    
-    img_ou = np.zeros((84,84,1))
-    img_ou[:,:,0] = img_resized[:,:]
-    
-    return img_ou
-    
-def init_state(env):
-    """ At the very beginning there was not
-    appeared four consequtive frames yet.
-
-    Gathers the first four frames during no-op.
-    Creates the first state.
-
-    Args:
-      env: the environment of the game
-    Output:
-      nothing
-    """
-    
-    for i in range(0, 4):
-        img, rw, done, inf = env.step(0) # no-op
-        imgY = map2Y(img)
-        obs = rescale(imgY)
-        state.append(obs)
-
-def preprocessing(img):
-    imgY = map2Y(img)
-    obs = rescale(imgY)
-    del state[0]
-    state.append(obs)
-    ou_state = np.zeros((1,84,84,4))
-    ou_state[0,:,:,0] = state[0][:,:,0]
-    ou_state[0,:,:,1] = state[1][:,:,0]
-    ou_state[0,:,:,2] = state[2][:,:,0]
-    ou_state[0,:,:,3] = state[3][:,:,0]
-    return np.uint8(ou_state)
-
-def evaluate(os):
-    
-    global evaluation_counter
-    evaluation_counter += 1
-    
-    env = os.makeEnvironment()
-    print("Evaluation started.")    
-
-    for i in range(0,evaluation_number):
-        episend = False
-        obs = env.reset()
-        fi = preprocessing(obs)
-        action = 0
-        while action == 0:
-            action = env.action_space.sample()
-
-        while(not episend):
-            obs, rw, done, inf = env.step(action)
-            log.write(obs, rw, done)
-            fi = preprocessing(obs)
-            action = os.nextAction(fi)
-            episend = done
+import agent
+import tf
+import dqn
 
 
-def train(os, fname):
+class Preprocessing:
     
-    print ("Start training.")
-    
-    env = os.makeEnvironment()
-    exit = False
-    cntr = 0
-    k_evaluate = 0
-    
-    init_state(env)
-    
-    print ("State was initialized.")
-    
-    # Fill up the experience replay memory with
-    # experiences.
-    action1 = env.action_space.sample()
-    obs1, rw1, done, inf = env.step(action1)
-    fi1 = preprocessing(obs1)
-    for i in range(1,init_number_in_replay_mem):
-        action2 = env.action_space.sample()
-        obs2, rw2, done, inf = env.step(action2)
-        fi2 = preprocessing(obs2)
-        os.init(fi1, action1, rw1, fi2)
-        action1 = action2
-        rw1 = rw2
-        fi1 = fi2
-        if done:
-            env.reset()
-    
-    print ("Experience replay was filled up.")
-    
-    # Start learning.
-    while(not exit):
-        episend = False	
-        obs = env.reset()
-        fi = preprocessing(obs)
-        action = os.nextActionAndTrain(fi, 0.0)
-        while(not episend):
-            obs, rw, done, inf = env.step(action)
-            cntr += 1
-            if cntr % 1000 == 0:
-                print ("Current iteration: %r" % cntr)
-            fi = preprocessing(obs)
-            action = os.nextActionAndTrain(fi, rw)
-            episend = done
-        exit = os.isTrainingFinished()
-        if (m.floor(cntr / evaluation_freq)-k_evaluate) > 0.0001: # evaluate the performance of the agent
-            k_evaluate += 1
-            evaluate(os)
-            print ("An evaluation occured.")
+    def __init__(self, env):
         
-    os.saveAgent(fname)  
+        """ 
+        At the very beginning there was not
+        appeared four consequtive frames yet.
+
+        Gathers the first four frames during no-op.
+        Creates the first state.
+        """
+        self.state = [] # list to store the most recent frames
+        
+        for i in range(0, 4):
+            img, rw, done, inf = env.step(0) # no-op
+            imgY = self.map2Y(img)
+            obs = self.rescale(imgY)
+            self.state.append(obs)
+
+    def map2Y(self, img):
+        """ Calculates the luminance from the input RGB picture.
+
+        Args:
+            img: a numpy array with shape (height, width, 3)
+        Output:
+            a numpy array with shape (height, width, 1)
+        """
+        np_img = np.array(img)
+        shape = np_img.shape
+        shape_new = (shape[0], shape[1], 1)
+        ou_img = np.zeros(shape_new)
+
+        ou_img[:,:,0] = (2*np_img[:,:,0] + 5*np_img[:,:,1] + np_img[:,:,2])/8.0
+        return ou_img
     
-    return 0
+    def rescale(self, img):
+        """ Rescale the image for size 84x84.
+
+        Args:
+            img: a numpy array with shape (height, width, 1)
+        Output:
+            a numpy array with shape (84, 84, 1)
+        """
+        shape = img.shape
+        img_ = np.zeros((shape[0], shape[1]))
+        img_[:,:] = img[:,:,0]
+    
+        img_resized = sc.imresize(img_, (84,84), interp='bilinear', mode=None)
+    
+        img_ou = np.zeros((84,84,1))
+        img_ou[:,:,0] = img_resized[:,:]
+    
+        return img_ou
+
+    def preprocessing(self, img):
+        
+        imgY = self.map2Y(img)
+        obs = self.rescale(imgY)
+        del self.state[0]
+        self.state.append(obs)
+        ou_state = np.zeros((1,84,84,4))
+        ou_state[0,:,:,0] = self.state[0][:,:,0]
+        ou_state[0,:,:,1] = self.state[1][:,:,0]
+        ou_state[0,:,:,2] = self.state[2][:,:,0]
+        ou_state[0,:,:,3] = self.state[3][:,:,0]
+        return ou_state
+
+class Environment:
+    
+    def __init__(self, parser):
+        dqn_f = dqn.DQN()
+        self.agent = agent.Agent(dqn_f, parser.atari_env)
+        self.env = self.agent.makeEnvironment()
+        
+        tf_f = tf.Dnn(self.env.action_space.n, 32, parser.lr)
+        dqn_f.set_params(tf_f, parser.C, parser.max_iter, parser.mem_size, parser.exp_start, parser.exp_end, parser.last_fm, parser.gamma)
+        self.evaluation_freq = parser.eval_freq
+        self.evaluation_number = parser.eval_num
+        self.log = logger.Logger(parser.eval_num)
+        self.init_number_in_replay_mem = parser.init_replay_size
+        
+        
+    def evaluate(self):
+    
+        self.env.reset()
+        pre = Preprocessing(self.env)
+        print("Evaluation started.")
+
+        for i in range(0, self.evaluation_number):
+            episend = False
+            obs = self.env.reset()
+            fi = pre.preprocessing(obs)
+            action = 0
+            while action == 0:
+                action = self.env.action_space.sample()
+
+            while(not episend):
+                obs, rw, done, inf = self.env.step(action)
+                self.log.write(obs, rw, done)
+                fi = pre.preprocessing(obs)
+                action = self.agent.nextAction(fi)
+                episend = done
+
+            print(str(i))
+
+
+    def train(self, fname):
+    
+        print ("Start training.")
+    
+        self.env.reset()
+        exit_ = False
+        cntr = 0
+        k_evaluate = 0
+    
+        pre = Preprocessing(self.env)
+    
+        print ("State was initialized.")
+    
+        # Fill up the experience replay memory with
+        # experiences.
+        action1 = self.env.action_space.sample()
+        obs1, rw1, done, inf = self.env.step(action1)
+        fi1 = pre.preprocessing(obs1)
+        for i in range(1, self.init_number_in_replay_mem):
+            action2 = self.env.action_space.sample()
+            obs2, rw2, done, inf = self.env.step(action2)
+            fi2 = pre.preprocessing(obs2)
+            self.agent.init(fi1, action1, rw1, fi2)
+            action1 = action2
+            rw1 = rw2
+            fi1 = fi2
+            if done:
+                self.env.reset()
+    
+        print ("Experience replay was filled up.")
+    
+        # Start learning.
+        while(not exit_):
+            episend = False	
+            obs = self.env.reset()
+            fi = pre.preprocessing(obs)
+            action = self.agent.nextActionAndTrain(fi, 0.0)
+            while(not episend):
+                obs, rw, done, inf = self.env.step(action)
+                cntr += 1
+                if cntr % 1000 == 0:
+                    print ("Current iteration: %r" % cntr)
+                fi = pre.preprocessing(obs)
+                action = self.agent.nextActionAndTrain(fi, rw)
+                episend = done
+            exit_ = self.agent.isTrainingFinished()
+            if (m.floor(cntr / self.evaluation_freq)-k_evaluate) > 0.0001: # evaluate the performance of the agent
+               k_evaluate += 1
+               self.evaluate()
+               print ("An evaluation occured.")
+        
+        self.agent.saveAgent(fname)  

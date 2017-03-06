@@ -34,7 +34,4 @@ class Logger:
                 json.dump(self.ret, f)
             self.cntr = 0
             self.ret = []
-    
-        
-    
-    
+

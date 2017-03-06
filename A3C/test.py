@@ -18,7 +18,7 @@ def test_preprocessing():
     o,r,d,i = env.step(1)
     state = p.preprocessing(o)
 
-    print "test_preprocessing: successful"
+    print ("test_preprocessing: successful")
 
 
 def test_preproc():
@@ -38,8 +38,7 @@ def test_preproc():
 def run_all():
     
     test_preproc()
-
-    print "All tests were SUCCESSFUL."
+    print( "All tests were SUCCESSFUL.")
 
 
 # RUN TESTS

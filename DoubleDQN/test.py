@@ -11,7 +11,7 @@ def test_ExperienceReplay_init():
     assert eReply.capacity() == 5, "the capacity is not set correctly: %r" % eReply.capacity()
 
     print("successful: test_ExperienceReplay_init")
-     
+
 def test_ExperienceReplay_add():
     eReply = setup_rpy()
     e1 = (10, 6, 8)
@@ -30,9 +30,9 @@ def test_ExperienceReplay_add():
     assert getattr(eReply, 'mem')[0] == e6, "at the first place e6 should be present: %r" % getattr(eReply, 'mem')[0]
     assert getattr(eReply, 'mem')[1] == e2, "at the second place e2 should be present: %r" % getattr(eReply, 'mem')[1]
     assert getattr(eReply, 'mem')[3] == e4, "at the second place e4 should be present: %r" % getattr(eReply, 'mem')[3]
-    
+
     print ("successful: test_ExperienceReplay_add")
-    
+
 def test_ExperienceReplay_sample():
     eReply = setup_rpy()
     e1 = (10, 6, 8)
@@ -48,7 +48,7 @@ def test_ExperienceReplay_sample():
     batch = eReply.sample()
     assert len(batch) == 3, "batch should contain 3 elements!"
     assert len(batch[2]) == 3, "tuple should have 3 elements!"
-    
+
     print ("successful: test_ExperienceReplay_sample")
 
 def test_ExperienceReplay():
@@ -266,8 +266,8 @@ def test_network():
 def test_preprocessing():
     env = gym.make('Breakout-v0')
     img = env.reset()
-    environment.init_state(env)
-    ou = environment.preprocessing(img)
+    pre = environment.Preprocessing(env)
+    ou = pre.preprocessing(img)
     
     assert (1,84,84,4) == ou.shape, "The output shape is wrong."
     
