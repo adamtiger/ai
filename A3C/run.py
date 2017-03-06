@@ -29,10 +29,10 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     torch.manual_seed(1)
-    
+
     T = IterationNum(args.max_it)
     shared_nn = create_shared_nn(args)
-    shared_nn.shared_memory()
+    shared_nn.share_memory()
 
     processes = []
     for agent in range(args.num_agents):

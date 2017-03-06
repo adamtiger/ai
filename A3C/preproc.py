@@ -61,4 +61,4 @@ class PreProcessing:
         ou_state[0,:,:,1] = self.state[1][:,:,0]
         ou_state[0,:,:,2] = self.state[2][:,:,0]
         ou_state[0,:,:,3] = self.state[3][:,:,0]
-        return ou_state
+        return np.uint8(ou_state)
