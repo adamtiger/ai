@@ -1,0 +1,9 @@
+# This file containes all of the test cases which was experimented.
+The first line is the meaning of the variables, this is a sample
+
+---------------------------------------------------------------------------------------------------
+# Default settings.
+
+python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 5000 --max-iter 500000 --mem-size 50000 --exp-start 1.0 --exp-end 0.1 --last-fm 100000 --gamma 0.99 --eval-freq 50000 --eval-num 10 --init-replay-size 10000 
+
+## Experiences:
