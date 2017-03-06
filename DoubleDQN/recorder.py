@@ -51,16 +51,16 @@ class DQN_:
     
     
 
-def recording(atari_name, target_dir):
+def recording(atari_name, fname, target_dir):
     
     nn = Dnn_(6)
     dqn = DQN_(nn)
     ag = agent.Agent(dqn)
+    ag.loadAgent(fname)
     
     env = gym.make(atari_name)
     p_obj = p.Preprocessing(env)
     state = env.reset()
-    ag = agent.Agent()
     
     env = wrappers.Monitor(env, target_dir)
     
