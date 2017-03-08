@@ -43,7 +43,7 @@ class Dnn(IDnn):
       model.add(Activation('relu'))
       model.add(Dense(actions))
       
-      rmsprop = RMSprop(lr=alpha)
+      rmsprop = RMSprop(lr=alpha, epsilon=0.01, clipnorm=1.0)
       model.compile(optimizer=rmsprop, loss='mse')
       
       return model

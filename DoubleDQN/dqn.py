@@ -1,8 +1,12 @@
 import random as r
 import numpy as np
-import math
+
 
 r.seed(133)
+
+def normalize_img(img):
+    return np.float(img)/255.0 - 0.5
+
 
 # This is the concrete implementation of Double DQN.
 
@@ -30,7 +34,7 @@ class ExpReplay:
         batch = [()]*self.mxbtch
         for i in range(0, self.mxbtch):
             k = r.randint(0, self.length-1)
-            batch[i] = self.mem[k]
+            batch[i] = normalize_img(self.mem[k])
         return batch
 
 # A class implements the epsilon greedy policy.
@@ -89,7 +93,6 @@ class DQN:
     def init(self, obs, action, rw, obs_nx):
         tp_exp = (obs, action, rw, obs_nx)
         self.erply.add(tp_exp)
-        self.no_op = 0
 
     def train(self, obs, action, rw, obs_nx):
         self._cntr += 1
@@ -113,12 +116,14 @@ class DQN:
             self.grdy.anneal()
 
     def action(self, obs):
-        a = self._tf.argmaxQ(obs)
+        state = normalize_img(obs)
+        a = self._tf.argmaxQ(state)
         a = self.grdy.action(a)
         return a
         
     def action_nogreedy(self, obs):
-        a = self._tf.argmaxQ(obs)
+        state = normalize_img(obs)
+        a = self._tf.argmaxQ(state)
         rd_nm = r.randint(0,100)
         if (rd_nm < 5):
             a = r.randint(0, self._actions-1)        
