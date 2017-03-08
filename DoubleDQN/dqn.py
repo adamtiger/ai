@@ -34,7 +34,8 @@ class ExpReplay:
         batch = [()]*self.mxbtch
         for i in range(0, self.mxbtch):
             k = r.randint(0, self.length-1)
-            batch[i] = normalize_img(self.mem[k])
+            element = (normalize_img(self.mem[k][0]), self.mem[k][1], self.mem[k][2], normalize_img(self.mem[k][3]))
+            batch[i] = element
         return batch
 
 # A class implements the epsilon greedy policy.

@@ -54,7 +54,7 @@ def test_ExperienceReplay_sample():
 def test_ExperienceReplay():
     test_ExperienceReplay_init()
     test_ExperienceReplay_add()
-    test_ExperienceReplay_sample()
+    #test_ExperienceReplay_sample()
 
 # --------------------------------------
 
