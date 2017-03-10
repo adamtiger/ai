@@ -5,7 +5,7 @@ import numpy as np
 r.seed(133)
 
 def normalize_img(img):
-    return np.float(img)/255.0 - 0.5
+    return img/255.0 - 0.5
 
 
 # This is the concrete implementation of Double DQN.
