@@ -8,7 +8,7 @@ Nowadays, we hear about AI on a regular base due to its fast development. A huge
 
 For instance Isaac Asimov's *I, robot* story showcases the failure the well-founded (it seems) three rules. 
 
-![irobot](/ai/images/irobot.jpg "I robot")
+![irobot](https://drive.google.com/uc?export=download&id=0B97L9zqg-lnwbXFIX3RWNWZGWHc "I robot")
 
 Lots of other films, books, novels were written in connection with AI and all of them ask some important questions to consider regarding the possible failures.  
 
@@ -60,6 +60,6 @@ It is true that some of the jobs which currently exist will disappear as AI is g
 
 In the long run the benefits of AI are clearer. It can solve problems which are due to the large population; it can protect the Earth from external dangers coming from the space.
 
-![colonize](/ai/images/coloniseSpace.jpg "Colonizing the space")
+![colonize](https://drive.google.com/uc?export=download&id=0B97L9zqg-lnwZnJpb1hJVTMtRzg "Colonizing the space")
 
 Our time is limited in the Earth because the sun will not keep shining forever. Therefore it is vital in the far future to colonize the space which requires extremely advanced technology. May be it is impossible within a human body and we will transform into a strange creature which is half human and half machine to fuse the advantages both of them.

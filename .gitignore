@@ -4,9 +4,7 @@ Gemfile.lock
 .DS_Store
 *.svg
 _site/
-Qlearning/
-NArmedBandit/
+BasicExamples/
 WindyGridWorld/
-MountainCar/
 DoubleDQN/
 NNSharp/
