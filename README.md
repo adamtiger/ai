@@ -1,4 +1,4 @@
-[![cover](https://drive.google.com/file/d/0B97L9zqg-lnwOGlsVmxVSEp0RE0/view?usp=sharing)](https://adamtiger.github.io/ai/)
+[![cover](https://drive.google.com/uc?export=download&id=0B97L9zqg-lnwOGlsVmxVSEp0RE0)](https://adamtiger.github.io/ai/)
 
 # Looking deeper, understanding the world better
 
