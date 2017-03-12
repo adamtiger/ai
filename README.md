@@ -10,6 +10,20 @@ In this project the aim is to implement the A3C algorithm. A3C stands for Asynch
 
 The project is in-progress.
 
+## BasicExamples
+
+### MountainCar
+
+In this project the classical control problem Mountain Car was examined and solved in C++. There is no third party library in the project. The applied reinforcement learning algorithm was: Sarsa with coarse coding.
+
+### NArmedBandit
+
+The classical N armed bandit was solved with a TD like algorithm. The solution was tested in both stationary and non-stationary environments.
+
+### Q-learning
+
+In this project the Q-learning algorithm was tested in the classical Windy Gridworld.
+
 ## CV4RLframework
 
 This project strongly connects to the [cv4sensorhub](http://bmeaut.github.io/cv4sensorhub/) framework. Some of the UI tools use reinforcement learning to enhance its performance. cv4sensorhub is a C# based software which can be easily integrated into business intelligence systems. Unfortunately, the training is difficult under C#. This framework provides an environment for this purpose. For details see the [documentation](/CV4RLframework/docs/overview.md).
@@ -24,21 +38,9 @@ In this project the break-through result on using machine learning to play Atari
 
 In this case three games are examined: Breakout, Freeway and Riverraid. The environment is given by OpenAi gym, the neural network was built with Keras. The code was tested on only CPU but in the near future it will be tested on GPU as well.
 
-## MountainCar
-
-In this project the classical control problem Mountain Car was examined and solved in C++. There is no third party library in the project. The applied reinforcement learning algorithm was: Sarsa with coarse coding. 
-
-## NArmedBandit
-
-The classical N armed bandit was solved with a TD like algorithm. The solution was tested in both stationary and non-stationary environments.
-
 ## NNSharp
 
 This project aims for creating a library for running deep neural networks on C#. Only few alternatives are available and most of them are experimental. The project will incorporate other available solutions as well.
-
-## Q-learning
-
-In this project the Q-learning algorithm was tested in the classical Windy Gridworld.
 
 ## WindyGridWorld
 
