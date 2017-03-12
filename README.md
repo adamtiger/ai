@@ -14,7 +14,7 @@ The project is in-progress.
 
 ### MountainCar
 
-In this project the classical control problem Mountain Car was examined and solved in C++. There is no third party library in the project. The applied reinforcement learning algorithm was: Sarsa with coarse coding.
+In this subproject the classical control problem Mountain Car was examined and solved in C++. There is no third party library in the project. The applied reinforcement learning algorithm was: Sarsa with coarse coding.
 
 ### NArmedBandit
 
@@ -22,7 +22,7 @@ The classical N armed bandit was solved with a TD like algorithm. The solution w
 
 ### Q-learning
 
-In this project the Q-learning algorithm was tested in the classical Windy Gridworld.
+In this subproject the Q-learning algorithm was tested in the classical Windy Gridworld.
 
 ## CV4RLframework
 
