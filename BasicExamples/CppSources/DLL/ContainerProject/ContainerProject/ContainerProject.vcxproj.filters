@@ -19,6 +19,9 @@
     <Filter Include="NArmedBandit">
       <UniqueIdentifier>{837551a7-c0fb-4144-a0f2-5291661b04e1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="MountainCar">
+      <UniqueIdentifier>{75d82136-4923-43b3-bb00-a187b59514d2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -33,6 +36,42 @@
     <ClInclude Include="ContainerProject.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="NonStationary.h">
+      <Filter>NArmedBandit</Filter>
+    </ClInclude>
+    <ClInclude Include="Stationary.h">
+      <Filter>NArmedBandit</Filter>
+    </ClInclude>
+    <ClInclude Include="Environment.h">
+      <Filter>NArmedBandit</Filter>
+    </ClInclude>
+    <ClInclude Include="Agent.h">
+      <Filter>MountainCar</Filter>
+    </ClInclude>
+    <ClInclude Include="CoarseCoding.h">
+      <Filter>MountainCar</Filter>
+    </ClInclude>
+    <ClInclude Include="LearningCoordinator.h">
+      <Filter>MountainCar</Filter>
+    </ClInclude>
+    <ClInclude Include="Logger.h">
+      <Filter>MountainCar</Filter>
+    </ClInclude>
+    <ClInclude Include="PhysicsEngine.h">
+      <Filter>MountainCar</Filter>
+    </ClInclude>
+    <ClInclude Include="Tester.h">
+      <Filter>MountainCar</Filter>
+    </ClInclude>
+    <ClInclude Include="rl_q.h">
+      <Filter>Qlearning</Filter>
+    </ClInclude>
+    <ClInclude Include="rl_q_utils.h">
+      <Filter>Qlearning</Filter>
+    </ClInclude>
+    <ClInclude Include="WindyGridWorld.h">
+      <Filter>Qlearning</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -43,6 +82,33 @@
     </ClCompile>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="NonStationary.cpp">
+      <Filter>NArmedBandit</Filter>
+    </ClCompile>
+    <ClCompile Include="Stationary.cpp">
+      <Filter>NArmedBandit</Filter>
+    </ClCompile>
+    <ClCompile Include="Environment.cpp">
+      <Filter>NArmedBandit</Filter>
+    </ClCompile>
+    <ClCompile Include="Agent.cpp">
+      <Filter>MountainCar</Filter>
+    </ClCompile>
+    <ClCompile Include="CoarseCoding.cpp">
+      <Filter>MountainCar</Filter>
+    </ClCompile>
+    <ClCompile Include="LearningCoordinator.cpp">
+      <Filter>MountainCar</Filter>
+    </ClCompile>
+    <ClCompile Include="Logger.cpp">
+      <Filter>MountainCar</Filter>
+    </ClCompile>
+    <ClCompile Include="PhysicsEngine.cpp">
+      <Filter>MountainCar</Filter>
+    </ClCompile>
+    <ClCompile Include="Tester.cpp">
+      <Filter>MountainCar</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

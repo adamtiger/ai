@@ -23,9 +23,15 @@ BasicExamples/CppSources/VS2015/MountainCar/Debug/*
 BasicExamples/CppSources/VS2015/MountainCar/ipch/*
 BasicExamples/CppSources/VS2015/MountainCar/MountainCar/Debug/*
 
+BasicExamples/CppSources/DLL/ContainerProject/x64/*
+BasicExamples/CppSources/DLL/ContainerProject/ipch/*
+BasicExamples/CppSources/DLL/ContainerProject/ContainerProject/x64/*
 BasicExamples/CppSources/DLL/ContainerProject/Debug/*
 BasicExamples/CppSources/DLL/ContainerProject/ipch/*
 BasicExamples/CppSources/DLL/ContainerProject/ContainerProject/Debug/*
+
+BasicExamples/PySources/.ipynb_checkpoints/*
+*.dll
 
 # Visual C# Projects
 
