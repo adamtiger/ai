@@ -13,11 +13,10 @@ This website gathers a lot of information about ai in general and puts special e
 
 ## [Github Pages][pages]
 
-This blog was created by using Github Pages which provides an easy way to create sites like this one. A sample site were downloaded from [JekyllThemes][themes] and refined.
+This blog was created by using Github Pages which provides an easy way to create sites like this one. A sample site were downloaded from [JekyllThemes](http://themes.jekyllrc.org/autm-rb) and refined.
 
 ## References
 
 [pages]: http://pages.github.com
 [fork]: https://github.com/adamtiger/ai/fork
 [Fork][fork]
-[themes]: http://themes.jekyllrc.org/autm-rb/
