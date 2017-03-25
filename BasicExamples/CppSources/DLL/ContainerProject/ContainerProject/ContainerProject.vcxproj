@@ -162,7 +162,6 @@
     <ClInclude Include="Stationary.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
-    <ClInclude Include="Tester.h" />
     <ClInclude Include="WindyGridWorld.h" />
   </ItemGroup>
   <ItemGroup>
@@ -190,7 +189,6 @@
     <ClCompile Include="PhysicsEngine.cpp" />
     <ClCompile Include="Stationary.cpp" />
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Tester.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

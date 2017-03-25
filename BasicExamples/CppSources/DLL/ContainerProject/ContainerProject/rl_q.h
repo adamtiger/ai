@@ -22,7 +22,7 @@ namespace rl {
 
 			void UpdateActionStateValue(float reward, tAction act, tState current, tState next) {
 
-				_acv(current, act) = _acv(current, act) + _alpha * (reward + _gamma * max(next) - _acv(current, act));
+				_acv(current, act) = _acv(current, act) + _alpha * (reward + _gamma * maxx(next) - _acv(current, act));
 			}
 
 			tAction ObserveAction(tState current) {
@@ -44,7 +44,7 @@ namespace rl {
 
 			// Functions.
 
-			float& max(tState next) const{
+			float& maxx(tState next) const{
 
 				float max_val = 0.0f;
 				for (auto it : _acv(next)) {

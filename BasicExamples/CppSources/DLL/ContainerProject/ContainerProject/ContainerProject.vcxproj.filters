@@ -60,9 +60,6 @@
     <ClInclude Include="PhysicsEngine.h">
       <Filter>MountainCar</Filter>
     </ClInclude>
-    <ClInclude Include="Tester.h">
-      <Filter>MountainCar</Filter>
-    </ClInclude>
     <ClInclude Include="rl_q.h">
       <Filter>Qlearning</Filter>
     </ClInclude>
@@ -105,9 +102,6 @@
       <Filter>MountainCar</Filter>
     </ClCompile>
     <ClCompile Include="PhysicsEngine.cpp">
-      <Filter>MountainCar</Filter>
-    </ClCompile>
-    <ClCompile Include="Tester.cpp">
       <Filter>MountainCar</Filter>
     </ClCompile>
   </ItemGroup>
