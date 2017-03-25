@@ -8,6 +8,7 @@ paginate_path: /ml/page:num #makes pagination working
 #contacts
 git: "https://github.com/adamtiger"  #your github url here.
 twitter: "https://twitter.com/railsr7"  #Add your twitter url here.
+linkedin: "https://hu.linkedin.com/in/adambudai"
 
 #disqus comment
 disqus:
