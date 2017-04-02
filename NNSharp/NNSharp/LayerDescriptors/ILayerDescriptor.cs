@@ -8,5 +8,6 @@ namespace NNSharp.LayerDescriptors
 {
     public interface ILayerDescriptor
     {
+
     }
 }

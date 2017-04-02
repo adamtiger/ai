@@ -43,12 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Compilers\AbstractCompiler.cs" />
+    <Compile Include="Executors\AbstractExecutor.cs" />
     <Compile Include="LayerDescriptors\ILayerDescriptor.cs" />
-    <Compile Include="Layers\Data.cs" />
+    <Compile Include="Layers\Data2D.cs" />
     <Compile Include="Layers\IAbstractLayerFactory.cs" />
+    <Compile Include="Layers\IData.cs" />
     <Compile Include="Layers\ILayer.cs" />
     <Compile Include="Models\IModel.cs" />
+    <Compile Include="Models\SequentialModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

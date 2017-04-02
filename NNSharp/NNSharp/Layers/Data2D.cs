@@ -63,9 +63,14 @@ namespace NNSharp.Layers
             this.ApplyToAll(p => { return 0.0; });
         }
 
+        public Dimension GetDimension()
+        {
+            return D;
+        }
+
         private double[,,,] tensor;
 
-        private struct Dimension
+        public struct Dimension
         {
             public Dimension(int h, int w, int c, int b)
             {

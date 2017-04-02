@@ -17,6 +17,8 @@ namespace NNSharp.Compilers
 
         public abstract void Compile(List<ILayerDescriptor> descriptors);
 
+        public abstract IData Execute(IData input);
+
         protected ILayer CreateLayer(ILayerDescriptor descriptor)
         {
             return factory.CreateProduct(descriptor);
