@@ -1,0 +1,34 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using NNSharp.Compilers;
+using NNSharp.LayerDescriptors;
+using NNSharp.Layers;
+
+namespace NNSharp.Models
+{
+    public class SequentialModel : IModel
+    {
+        public SequentialModel()
+        {
+            descriptors = new List<ILayerDescriptor>();
+        }
+
+        public void Add(ILayerDescriptor descriptor)
+        {
+            descriptors.Add(descriptor);
+        }
+
+        public void Compile(AbstractCompiler compiler)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        private List<ILayerDescriptor> descriptors;
+        private List<ILayer> layers;
+
+    }
+}
