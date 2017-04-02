@@ -52,6 +52,8 @@ WindyGridWorld/UnitTestForWPF/obj/*
 
 NNSharp/NNSharp/bin/*
 NNSharp/NNSharp/obj/*
+NNSharp/TestResults/*
+NNSharp/TestResults/*
 NNSharp/UnitTests/bin/*
 NNSharp/UnitTests/obj/*
 NNSharp/Debug/*

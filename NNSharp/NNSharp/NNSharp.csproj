@@ -44,8 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Executors\AbstractExecutor.cs" />
+    <Compile Include="Executors\DefaultExecutor.cs" />
     <Compile Include="LayerDescriptors\ILayerDescriptor.cs" />
+    <Compile Include="LayerDescriptors\ReLu.cs" />
     <Compile Include="Layers\Data2D.cs" />
+    <Compile Include="Layers\DefaultLayers\ReLuLayer.cs" />
+    <Compile Include="Layers\DefaultLayers\ReLuLayerFactory.cs" />
     <Compile Include="Layers\IAbstractLayerFactory.cs" />
     <Compile Include="Layers\IData.cs" />
     <Compile Include="Layers\ILayer.cs" />
@@ -57,9 +61,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Layers\DefaultLayers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

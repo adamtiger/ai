@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NNSharp.Compilers
+namespace NNSharp.Executors
 {
     public abstract class AbstractExecutor
     {
