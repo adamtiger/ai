@@ -8,11 +8,11 @@ namespace NNSharp.Layers
 {
     public interface ILayer
     {
-        void Execute(Data input, out Data output);
+        void Execute(IData input, out IData output);
 
-        void Execute(Data input, out Data output1, out Data output2);
+        void Execute(IData input, out IData output1, out IData output2);
 
-        void Execute(Data input1, Data input2, out Data output);
+        void Execute(IData input1, IData input2, out IData output);
 
         bool IsInplace();
     }

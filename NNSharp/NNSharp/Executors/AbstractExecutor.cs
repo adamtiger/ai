@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace NNSharp.Compilers
 {
-    public abstract class AbstractCompiler
+    public abstract class AbstractExecutor
     {
-        public AbstractCompiler(IAbstractLayerFactory factory)
+        public AbstractExecutor(IAbstractLayerFactory factory)
         {
             this.factory = factory;
         }
 
-        public abstract void Compile();
+        public abstract void Compile(List<ILayerDescriptor> descriptors);
 
         protected ILayer CreateLayer(ILayerDescriptor descriptor)
         {

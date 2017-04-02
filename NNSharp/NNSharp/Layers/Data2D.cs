@@ -8,12 +8,10 @@ using System.Threading.Tasks;
 namespace NNSharp.Layers
 {
 
-    public delegate double Operation(double current);
-
-    public class Data : IEnumerable<double>
+    public class Data2D : IData, IEnumerable<double>
     {
 
-        public Data(int height, int width, int channels = 3, int batchSize = 1)
+        public Data2D(int height, int width, int channels = 3, int batchSize = 1)
         {
             tensor = new double[height, width, channels, batchSize];
             D = new Dimension(height, width, channels, batchSize);

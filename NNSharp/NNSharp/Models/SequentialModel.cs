@@ -21,14 +21,20 @@ namespace NNSharp.Models
             descriptors.Add(descriptor);
         }
 
-        public void Compile(AbstractCompiler compiler)
+        public void Compile(AbstractExecutor compiler)
         {
-            throw new NotImplementedException();
+            compiler.Compile(descriptors);
+            compiled = compiler;
+        }
+
+        public IData ExecuteNetwork(IData input)
+        {
+            return compiled.Execute(input);
         }
 
 
         private List<ILayerDescriptor> descriptors;
-        private List<ILayer> layers;
+        private AbstractExecutor compiled;
 
     }
 }

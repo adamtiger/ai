@@ -1,5 +1,6 @@
 ﻿using NNSharp.Compilers;
 using NNSharp.LayerDescriptors;
+using NNSharp.Layers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,9 @@ namespace NNSharp.Models
     {
         void Add(ILayerDescriptor descriptor);
 
-        void Compile(AbstractCompiler compiler);
+        void Compile(AbstractExecutor compiler);
+
+        IData ExecuteNetwork(IData input);
 
         // Further functions for get the description of the neural network.
     }
