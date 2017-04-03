@@ -31,7 +31,8 @@ class Preprocessing:
         for i in range(0, 4):
             img, rw, done, inf = env.step(0) # no-op
             imgY = self.map2Y(img)
-            obs = self.rescale(imgY)
+            img_crop = self.crop(imgY)
+            obs = self.rescale(img_crop)
             self.state.append(obs)
 
     def map2Y(self, img):
@@ -49,6 +50,11 @@ class Preprocessing:
 
         ou_img[:,:,0] = (2*np_img[:,:,0] + 5*np_img[:,:,1] + np_img[:,:,2])/8.0
         return ou_img
+        
+    def crop(self, img):
+      img_cropped = np.zeros((185, 160, 1))
+      img_cropped[:,:,0] = img[16:201,:,0]
+      return img_cropped 
     
     def rescale(self, img):
         """ Rescale the image for size 84x84.
@@ -72,7 +78,8 @@ class Preprocessing:
     def preprocessing(self, img):
         
         imgY = self.map2Y(img)
-        obs = self.rescale(imgY)
+        img_crop = self.crop(imgY)
+        obs = self.rescale(img_crop)
         del self.state[0]
         self.state.append(obs)
         ou_state = np.zeros((1,84,84,4))
