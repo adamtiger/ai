@@ -16,6 +16,7 @@ class Logger:
         self.runs_evaluation = runs_evaluation
         self.runs_in_eval = 0
         self.num_evals = 1
+        self.max_rw_sofar = 0
 
     def write(self, obs, rw, done):
         self.cntr += 1
@@ -23,13 +24,16 @@ class Logger:
         self.sum_ret += rw 
         if done:
             print (self.sum_ret)
-            self.runs_in_eval +=1
+            if self.sum_ret > self.max_rw_sofar:
+                self.max_rw_sofar = self.sum_ret
+            self.runs_in_eval += 1
             self.ret.append(self.sum_ret)
             self.sum_ret = 0.0
             rw_file_name = "files/rewards/reward" + str(self.num_evals) + "_" + str(self.runs_in_eval) + ".json"
             if self.runs_in_eval == self.runs_evaluation:
                 self.runs_in_eval = 0
                 self.num_evals += 1
+                print("Max reward sofar: " + str(self.max_rw_sofar))
             with open(rw_file_name, 'w') as f:
                 json.dump(self.ret, f)
             self.cntr = 0
