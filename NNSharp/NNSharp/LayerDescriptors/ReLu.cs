@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace NNSharp.LayerDescriptors
 {
-    public class ReLu
+    public class ReLu : ILayerDescriptor
     {
+
     }
 }

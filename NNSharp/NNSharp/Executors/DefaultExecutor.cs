@@ -12,6 +12,7 @@ namespace NNSharp.Executors
     {
         public DefaultExecutor(IAbstractLayerFactory factory) : base(factory)
         {
+
         }
 
         public override void Compile(List<ILayerDescriptor> descriptors)

@@ -161,3 +161,19 @@ class BaseEnvironment:
 
     def get_correct(self):
         return self.correct_path
+    
+    def get_start_coord(self):
+        return self.start
+    
+    def get_target_coord(self):
+        return self.target
+    
+    def crop(self, height, width, x, y):
+        cropped = np.ndarray((height, width))
+        for i in range(0, height):
+            for j in range(0, width):
+                cropped[i,j] = self.image.get_pixel_base(x - height/2 + i, y - width/2 + j)
+        return cropped
+    
+    def get_image(self):
+        return self.image

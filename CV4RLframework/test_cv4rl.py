@@ -20,7 +20,7 @@ def test_cv4pool_add():
     assert getattr(img_pool, 'images')[3] == 98, 'images should be contain 98 at position 0 instead of %r' % getattr(img_pool, 'images')[3]
     assert getattr(img_pool, 'images')[4] == 99, 'images should be contain 99 at position 0 instead of %r' % getattr(img_pool, 'images')[4]
     
-    print "The test_c4pool_add was successful!"
+    print ("The test_c4pool_add was successful!")
     
 def test_cv4pool_get_pixel_base():
     img_pool = __init_pool_tests()
@@ -28,7 +28,7 @@ def test_cv4pool_get_pixel_base():
     
     assert img.get_pixel_base(1,1).size == 3, 'Base picture is not an RGB format.'
     
-    print "The test_c4pool_get_pixel_base was successful!"
+    print ("The test_c4pool_get_pixel_base was successful!")
     
 def test_cv4pool():
     test_cv4pool_add()
@@ -68,14 +68,14 @@ def test_environment():
     misc.imsave('path.png', path)
     assert __check_generated_curve(sgm_img, pth) == True, 'Wrong generated path.'
     
-    print "The test_environment was successful!"
+    print ("The test_environment was successful!")
 
 def run_all_tests():
     
     test_cv4pool()
     test_environment()
     
-    print "All tests were successful."
+    print ("All tests were successful.")
     
 # RUN THE TESTS
 

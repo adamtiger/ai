@@ -13,7 +13,7 @@ class Image:
       1) the original image which was segmented (base_img)
       2) a gray-scale image which shows the segmenting curves (sgm_img)
       
-      The size of the two images are the same.
+      The sizes of the two images are the same.
       
       Functions:
         __gen_segm_vec(): gathers the white pixels from the segmented picture

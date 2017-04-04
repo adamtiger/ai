@@ -135,12 +135,12 @@ class DQN:
     def __init__(self):
         self._cntr = 0
 
-    def set_params(self, tf, C, max_iter, mem_size, exp_start, exp_end, last_fm, gamma):
-        self._actions = tf.get_action_number()
-        self._tf = tf
+    def set_params(self, actions, alpha, C, max_iter, mem_size, exp_start, exp_end, last_fm, gamma):
+        self._actions = actions
+        self._tf = Dnn(actions, 32, alpha)
         self.C = C
         self.max_iter = max_iter
-        self.batch_size = tf.get_batch_size()
+        self.batch_size = self._tf.get_batch_size()
         self.last_fm = last_fm
         self.erply = ExpReplay(mem_size, self.batch_size)
         self.grdy = EpsGreedy(exp_start, exp_end, last_fm, self._actions)
