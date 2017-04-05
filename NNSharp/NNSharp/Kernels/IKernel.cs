@@ -9,7 +9,5 @@ namespace NNSharp.Kernels
     public interface IKernel
     {
         void Execute();
-
-        bool IsInplace();
     }
 }

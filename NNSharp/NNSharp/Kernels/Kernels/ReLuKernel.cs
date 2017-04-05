@@ -14,11 +14,6 @@ namespace NNSharp.Kernels.Kernels
             output = input;
         }
 
-        public bool IsInplace()
-        {
-            return true;
-        }
-
         protected IData input;
         protected IData output;
     }
