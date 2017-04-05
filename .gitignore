@@ -67,4 +67,5 @@ NNSharp/Release/*
 *.jpg
 *.jpeg
 *.png
+*.log
 *.tar.gz
