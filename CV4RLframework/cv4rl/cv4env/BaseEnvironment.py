@@ -50,6 +50,7 @@ class BaseEnvironment:
         # Init the variables for the class.
         self.pool = p.ImagePool(pool_size, refresh_freq, folder)
         self.image = self.pool.next_image()
+        self.framed_image = self.__create_framed_img()
         self.correct_path = []
         self.max_rect_size = max_rect_size
         self.min_rect_size = min_rect_size
@@ -158,6 +159,7 @@ class BaseEnvironment:
        
     def update_base_image(self):
         self.image = self.pool.next_image()
+        self.framed_image = self.__create_framed_img()
 
     def get_correct(self):
         return self.correct_path
@@ -169,11 +171,27 @@ class BaseEnvironment:
         return self.target
     
     def crop(self, height, width, x, y):
-        cropped = np.ndarray((height, width))
+        cropped = np.ndarray((height, width, 3))
         for i in range(0, height):
             for j in range(0, width):
-                cropped[i,j] = self.image.get_pixel_base(x - height/2 + i, y - width/2 + j)
+                cropped[i,j, :] = self.framed_image[x - int(height/2) + i, y - int(width/2) + j]
         return cropped
+        
+    def map2Y(self, img):
+        np_img = np.array(img)
+        shape = np_img.shape
+        shape_new = (shape[0], shape[1], 1)
+        ou_img = np.zeros(shape_new)
+
+        ou_img[:,:,0] = (2*np_img[:,:,0] + 5*np_img[:,:,1] + np_img[:,:,2])/8.0
+        return ou_img
     
     def get_image(self):
         return self.image
+        
+    def __create_framed_img(self):
+        shp = (self.image.shape()[0]+86, self.image.shape()[1]+86, 3)
+        fr_img = np.zeros(shp) + 255
+        fr_img[43:-43,43:-43,:] = getattr(self.image, 'base_img')[:,:,:]
+        return fr_img
+        

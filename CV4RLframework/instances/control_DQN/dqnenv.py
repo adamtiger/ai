@@ -1,3 +1,4 @@
+import numpy as np
 from cv4rl.cv4env import BaseEnvironment as benv
 from cv4rl.cv4alg import dqn
 import logging
@@ -19,7 +20,7 @@ class Environment:
     
     def __init__(self, args):
         d = dqn.DQN()
-        d.set_params(args.actions, args.alpha, args.C, args.max_iter,
+        d.set_params(args.actions, args.lr, args.C, args.max_iter,
                      args.mem_size, args.exp_start, args.exp_end, 
                      args.last_fm, args.gamma)
         self.dqn = dqn.DqnAgent(d)
@@ -30,6 +31,8 @@ class Environment:
         self.rf_freq = args.refresh_freq_image
         self.eval_freq = args.eval_freq
         
+        self.state = [] # list to store the most recent frames
+        
     def train(self):
         
         cntr = 0
@@ -37,7 +40,7 @@ class Environment:
         
         while not self.dqn.is_training_finished():
             
-            logging.info('Current: ' + str(iteration))
+            logging.info('Current itr.: ' + str(iteration))
             
             if iteration % self.eval_freq == 0:
                 self.evaluate()
@@ -49,11 +52,16 @@ class Environment:
             reward = 0.0
             correct = self.base_env.get_correct()
             
+            for i in range(0, 4):
+                img = self.base_env.crop(84, 84, current_coord[0], current_coord[1])
+                obs = self.base_env.map2Y(img)
+                self.state.append(obs)
+            
             
             for idx in range(0, len(correct)-1):
                 
                 # crop picture around the current position (84x84)
-                obs = self.base_env.crop(84, 84, current_coord[0], current_coord[1])
+                obs = self.__get_new_state(current_coord)
                 
                 # feed it into the dqn agent
                 action = self.dqn.next_action_train(obs, reward)
@@ -70,40 +78,70 @@ class Environment:
             
             # update the image pool when necessary
             cntr += 1
+            iteration += 1
             if cntr > self.rf_freq:
                 self.base_env.update_base_image()
                 cntr = 0
         
         self.dqn.save_agent("saved_agent.hdf5")
     
+    def __get_new_state(self, current_coord):
+        
+        img = self.base_env.crop(84, 84, current_coord[0], current_coord[1])
+        obs = self.base_env.map2Y(img)
+        
+        del self.state[0]
+        self.state.append(obs)
+        ou_state = np.zeros((1,84,84,4))
+        ou_state[0,:,:,0] = self.state[0][:,:,0]
+        ou_state[0,:,:,1] = self.state[1][:,:,0]
+        ou_state[0,:,:,2] = self.state[2][:,:,0]
+        ou_state[0,:,:,3] = self.state[3][:,:,0]
+        return np.uint8(ou_state)
+    
     def __execute_action(self, current_coord, action):
+    
+        x = 0
+        y = 0
         
         if action == 0:
-            current_coord[0] = current_coord[0] - 1
-            current_coord[1] = current_coord[1] - 1
+            x = current_coord[0] - 1
+            y = current_coord[1] - 1
         elif action == 1:
-            current_coord[0] = current_coord[0] - 1
-            current_coord[1] = current_coord[1] - 0
+            x = current_coord[0] - 1
+            y = current_coord[1] - 0
         elif action == 2:
-            current_coord[0] = current_coord[0] - 1
-            current_coord[1] = current_coord[1] + 1
+            x = current_coord[0] - 1
+            y = current_coord[1] + 1
         elif action == 3:
-            current_coord[0] = current_coord[0] - 0
-            current_coord[1] = current_coord[1] - 1
+            x = current_coord[0] - 0
+            y = current_coord[1] - 1
         elif action == 4:
-            current_coord[0] = current_coord[0] - 0
-            current_coord[1] = current_coord[1] + 1
+            x = current_coord[0] - 0
+            y = current_coord[1] + 1
         elif action == 5:
-            current_coord[0] = current_coord[0] + 1
-            current_coord[1] = current_coord[1] - 1
+            x = current_coord[0] + 1
+            y = current_coord[1] - 1
         elif action == 6:
-            current_coord[0] = current_coord[0] + 1
-            current_coord[1] = current_coord[1] + 0
+            x = current_coord[0] + 1
+            y = current_coord[1] + 0
         elif action == 7:
-            current_coord[0] = current_coord[0] + 1
-            current_coord[1] = current_coord[1] + 1
+            x = current_coord[0] + 1
+            y = current_coord[1] + 1
         else:
             raise ValueError('Unknown action!')
+        
+        if x < 0:
+            x = 0
+        elif x > (self.base_env.get_image().shape())[1]:
+            x = (self.base_env.get_image().shape())[1]
+        
+        if y < 0:
+            y = 0
+        elif y > (self.base_env.get_image().shape())[0]:
+            y = (self.base_env.get_image().shape())[0]
+        
+        current_coord = (x, y)
     
     def __calculate_reward(self, correct, idx, recom):
         
@@ -158,11 +196,15 @@ class Environment:
             reward = 0.0
             correct = self.base_env.get_correct()
             
+            for i in range(0, 4):
+                img = self.base_env.crop(84, 84, current_coord[0], current_coord[1])
+                obs = self.base_env.map2Y(img)
+                self.state.append(obs)
             
             for idx in range(0, len(correct)-1):
                 
                 # crop picture around the current position (84x84)
-                obs = self.base_env.crop(84, 84, current_coord[0], current_coord[1])
+                obs = self.__get_new_state(current_coord)
                 
                 # feed it into the dqn agent
                 action = self.dqn.next_action(obs)

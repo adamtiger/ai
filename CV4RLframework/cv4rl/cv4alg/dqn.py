@@ -7,7 +7,7 @@ Created on Tue Feb 21 23:22:19 2017
 
 import random as r
 import numpy as np
-from BaseAlg import BaseAlgorithm
+#from cv4rl.cv4Alg import BaseAlg
 
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Convolution2D, Flatten
@@ -151,7 +151,6 @@ class DQN:
     def init(self, obs, action, rw, obs_nx):
         tp_exp = (obs, action, rw, obs_nx)
         self.erply.add(tp_exp)
-        self.no_op = 0
 
     def train(self, obs, action, rw, obs_nx):
         self._cntr += 1
@@ -181,10 +180,6 @@ class DQN:
         
     def action_nogreedy(self, obs):
         a = self._tf.argmaxQ(obs)
-        if a == 0:
-            self.no_op += 1
-        if self.no_op % 30 == 0:
-            a = r.randint(1, self._actions-1)
         return a
 
     def end(self):
@@ -193,7 +188,7 @@ class DQN:
     def save(self, fname):
         self._tf.save(fname)
         
-class DqnAgent(BaseAlgorithm):
+class DqnAgent:
 
   def __init__(self, dqn):
     self.DQN = dqn

@@ -3,10 +3,12 @@ from cv4rl.cv4env import BaseEnvironment as benv
 from scipy import misc
 import numpy as np
 
+folder_name = "IMAGES"
+
 # Testing the ImagePool.
 
 def __init_pool_tests():
-    return pool.ImagePool(5, 6, "vTestImages")
+    return pool.ImagePool(5, 6, folder_name)
     
 def test_cv4pool_add():
     img_pool = __init_pool_tests()
@@ -37,7 +39,7 @@ def test_cv4pool():
 # Testing the Environment.
 
 def __init_env_tests():
-    return benv.BaseEnvironment(2, 5, 100, 200, "vTestImages") 
+    return benv.BaseEnvironment(2, 5, 100, 200, folder_name) 
 
 def __map2img(path, pth):
     for i in range(0, len(pth)):
