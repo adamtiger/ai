@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using NNSharp.Layers;
+using NNSharp.Kernels;
 
 namespace UnitTests
 {

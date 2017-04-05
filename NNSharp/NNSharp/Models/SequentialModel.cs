@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NNSharp.Executors;
+using NNSharp.SequentialExecutors;
 using NNSharp.LayerDescriptors;
-using NNSharp.Layers;
+using NNSharp.Kernels;
 
 namespace NNSharp.Models
 {
-    public class SequentialModel : IModel
+    public class SequentialModel
     {
         public SequentialModel()
         {
@@ -21,7 +21,7 @@ namespace NNSharp.Models
             descriptors.Add(descriptor);
         }
 
-        public void Compile(AbstractExecutor compiler)
+        public void Compile(ISequentialExecutor compiler)
         {
             compiler.Compile(descriptors);
             compiled = compiler;
@@ -34,7 +34,7 @@ namespace NNSharp.Models
 
 
         private List<ILayerDescriptor> descriptors;
-        private AbstractExecutor compiled;
+        private ISequentialExecutor compiled;
 
     }
 }

@@ -43,25 +43,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Executors\AbstractExecutor.cs" />
-    <Compile Include="Executors\DefaultExecutor.cs" />
+    <Compile Include="Kernels\Kernels\ReLuKernel.cs" />
+    <Compile Include="Kernels\SequentialLayers\ILayer.cs" />
+    <Compile Include="Models\GraphModel.cs" />
+    <Compile Include="SequentialExecutors\DefaultExecutor.cs" />
     <Compile Include="LayerDescriptors\ILayerDescriptor.cs" />
     <Compile Include="LayerDescriptors\ReLu.cs" />
-    <Compile Include="Layers\Data2D.cs" />
-    <Compile Include="Layers\DefaultLayers\ReLuLayer.cs" />
-    <Compile Include="Layers\DefaultLayers\ReLuLayerFactory.cs" />
-    <Compile Include="Layers\IAbstractLayerFactory.cs" />
-    <Compile Include="Layers\IData.cs" />
-    <Compile Include="Layers\ILayer.cs" />
-    <Compile Include="Models\IModel.cs" />
+    <Compile Include="Kernels\Data2D.cs" />
+    <Compile Include="Kernels\SequentialLayers\ReLuLayer.cs" />
+    <Compile Include="Kernels\SequentialLayers\ReLuLayerFactory.cs" />
+    <Compile Include="Kernels\SequentialLayers\IAbstractLayerFactory.cs" />
+    <Compile Include="Kernels\IData.cs" />
+    <Compile Include="Kernels\IKernel.cs" />
     <Compile Include="Models\SequentialModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SequentialExecutors\ISequentialExecutor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="GraphExecutors\" />
+    <Folder Include="Kernels\GraphNodes\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

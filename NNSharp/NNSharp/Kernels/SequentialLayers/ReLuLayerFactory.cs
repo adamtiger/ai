@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using NNSharp.LayerDescriptors;
 
-namespace NNSharp.Layers.DefaultLayers
+namespace NNSharp.Kernels.SequentialLayers
 {
     public class ReLuLayerFactory : IAbstractLayerFactory
     {

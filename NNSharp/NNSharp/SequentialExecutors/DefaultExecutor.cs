@@ -4,23 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NNSharp.LayerDescriptors;
-using NNSharp.Layers;
+using NNSharp.Kernels;
+using NNSharp.Kernels.SequentialLayers;
 
-namespace NNSharp.Executors
+namespace NNSharp.SequentialExecutors
 {
-    public class DefaultExecutor : AbstractExecutor
+    public class DefaultExecutor : ISequentialExecutor
     {
-        public DefaultExecutor(IAbstractLayerFactory factory) : base(factory)
+        public DefaultExecutor(IAbstractLayerFactory factory)
         {
 
         }
 
-        public override void Compile(List<ILayerDescriptor> descriptors)
+        public void Compile(List<ILayerDescriptor> descriptors)
         {
             throw new NotImplementedException();
         }
 
-        public override IData Execute(IData input)
+        public IData Execute(IData input)
         {
             throw new NotImplementedException();
         }

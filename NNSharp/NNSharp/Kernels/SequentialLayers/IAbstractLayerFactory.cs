@@ -1,11 +1,12 @@
-﻿using NNSharp.LayerDescriptors;
+﻿using NNSharp.Kernels.SequentialLayers;
+using NNSharp.LayerDescriptors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NNSharp.Layers
+namespace NNSharp.Kernels.SequentialLayers
 {
     public interface IAbstractLayerFactory
     {

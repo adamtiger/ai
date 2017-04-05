@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NNSharp.Layers
+namespace NNSharp.Kernels
 {
 
     public class Data2D : IData, IEnumerable<double>
