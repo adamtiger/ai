@@ -185,7 +185,6 @@ class DQN:
             self.no_op += 1
         if self.no_op % 30 == 0:
             a = r.randint(1, self._actions-1)
-            no_op = 0
         return a
 
     def end(self):

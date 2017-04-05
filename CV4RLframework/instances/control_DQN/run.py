@@ -25,17 +25,19 @@ parser.add_argument('--lr', type=float, default=0.00025, metavar='F',
         help='the learning rate (default:0.00025)')
 parser.add_argument('--C', type=int, default=5000, metavar='N',
         help='the update frequency of the neural network (default:5000)')
-parser.add_argument('--max-iter', type=int, default=10000, metavar='N',
+parser.add_argument('--max-iter', type=int, default=100, metavar='N',
         help='the number of iterations during training')
 parser.add_argument('--mem-size', type=int, default=10000, metavar='N',
         help='the number of experiences in experience replay')
+parser.add_argument('--eval-freq', type=int, default=1000, metavar='N',
+        help='the number of steps between two evaluation of the agent (default:1000)')
 
 parser.add_argument('--exp-start', type=float, default=1.0, metavar='F',
-        help='the number of the agents (default:4)')
+        help='the exploration at the very beginning (default:1.0)')
 parser.add_argument('--exp-end', type=float, default=0.1, metavar='F',
-        help='the number of individual steps (default:10000)')
-parser.add_argument('--last-fm', type=int, default=100000, metavar='N',
-        help='the exploration gradually decreasing, it has exp_end value after last_fm steps (default:100000)')
+        help='the exploration at the end (default:0.1)')
+parser.add_argument('--last-fm', type=int, default=1000, metavar='N',
+        help='the exploration gradually decreasing, it has exp_end value after last_fm steps (default:1000)')
 parser.add_argument('--gamma', type=float, default=0.99, metavar='F',
         help='the discounting factor (default:0.99)')
 
