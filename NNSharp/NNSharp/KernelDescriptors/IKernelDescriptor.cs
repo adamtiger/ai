@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NNSharp.LayerDescriptors
+namespace NNSharp.KernelDescriptors
 {
-    public interface ILayerDescriptor
+    public interface IKernelDescriptor
     {
 
     }

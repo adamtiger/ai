@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NNSharp.LayerDescriptors;
+using NNSharp.KernelDescriptors;
 
-namespace NNSharp.Kernels.SequentialLayers
+namespace NNSharp.SequentialBased.SequentialLayers
 {
-    public class ReLuLayerFactory : IAbstractLayerFactory
+    public class ReLuLayerFactory : ILayerFactory
     {
-        public ILayer CreateProduct(ILayerDescriptor descriptor)
+        public ILayer CreateProduct(IKernelDescriptor descriptor)
         {
             if (descriptor is ReLu)
                 return new ReLuLayer();

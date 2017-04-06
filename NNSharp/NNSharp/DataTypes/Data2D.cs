@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NNSharp.Kernels
+namespace NNSharp.DataTypes
 {
 
     public class Data2D : IData, IEnumerable<double>

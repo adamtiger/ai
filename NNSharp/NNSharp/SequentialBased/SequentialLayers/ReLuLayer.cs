@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NNSharp.Kernels.Kernels;
+using NNSharp.Kernels.CPUKernels;
+using NNSharp.DataTypes;
 
-namespace NNSharp.Kernels.SequentialLayers
+namespace NNSharp.SequentialBased.SequentialLayers
 {
     public class ReLuLayer : ReLuKernel, ILayer
     {
-        
+
         public IData GetOutput()
         {
             return output;

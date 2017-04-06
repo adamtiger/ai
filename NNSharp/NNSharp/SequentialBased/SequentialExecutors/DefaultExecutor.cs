@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NNSharp.LayerDescriptors;
-using NNSharp.Kernels;
-using NNSharp.Kernels.SequentialLayers;
+using NNSharp.KernelDescriptors;
+using NNSharp.SequentialBased.SequentialLayers;
+using NNSharp.DataTypes;
 
-namespace NNSharp.SequentialExecutors
+namespace NNSharp.SequentialBased.SequentialExecutors
 {
     public class DefaultExecutor : ISequentialExecutor
     {
@@ -17,7 +17,7 @@ namespace NNSharp.SequentialExecutors
             layers = new List<ILayer>();
         }
 
-        public void Compile(List<ILayerDescriptor> descriptors)
+        public void Compile(List<IKernelDescriptor> descriptors)
         {
             // The first descriptor shows the size of the input.
             IData initInput = factory.CreateProduct(descriptors[0]).GetOutput();

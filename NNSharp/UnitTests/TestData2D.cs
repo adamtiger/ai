@@ -1,6 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NNSharp.Kernels;
+using NNSharp.DataTypes;
 
 namespace UnitTests
 {

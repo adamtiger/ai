@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NNSharp.LayerDescriptors
+namespace NNSharp.KernelDescriptors
 {
-    public class ReLu : ILayerDescriptor
+    public class ReLu : IKernelDescriptor
     {
 
     }

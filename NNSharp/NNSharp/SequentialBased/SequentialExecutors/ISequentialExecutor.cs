@@ -1,16 +1,17 @@
 ﻿using NNSharp.Kernels;
-using NNSharp.LayerDescriptors;
+using NNSharp.KernelDescriptors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NNSharp.DataTypes;
 
-namespace NNSharp.SequentialExecutors
+namespace NNSharp.SequentialBased.SequentialExecutors
 {
     public interface ISequentialExecutor
     {
-        void Compile(List<ILayerDescriptor> descriptors);
+        void Compile(List<IKernelDescriptor> descriptors);
         IData Execute(IData input);
     }
 }
