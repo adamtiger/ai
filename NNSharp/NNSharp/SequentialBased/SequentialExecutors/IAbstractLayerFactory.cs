@@ -1,4 +1,5 @@
-﻿using NNSharp.KernelDescriptors;
+﻿using NNSharp.DataTypes;
+using NNSharp.KernelDescriptors;
 using NNSharp.SequentialBased.SequentialLayers;
 using System;
 using System.Collections.Generic;
@@ -11,5 +12,7 @@ namespace NNSharp.SequentialBased.SequentialExecutors
     public interface IAbstractLayerFactory
     {
         ILayer CreateProduct(IKernelDescriptor descriptor);
+
+        Dictionary<IKernelDescriptor, IData> Weights { get; set; }
     }
 }

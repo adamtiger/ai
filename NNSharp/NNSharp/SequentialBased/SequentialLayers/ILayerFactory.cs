@@ -1,4 +1,5 @@
-﻿using NNSharp.KernelDescriptors;
+﻿using NNSharp.DataTypes;
+using NNSharp.KernelDescriptors;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,6 @@ namespace NNSharp.SequentialBased.SequentialLayers
 {
     public interface ILayerFactory
     {
-        ILayer CreateProduct(IKernelDescriptor descriptor);
+        ILayer CreateProduct(IKernelDescriptor descriptor, IData weights);
     }
 }

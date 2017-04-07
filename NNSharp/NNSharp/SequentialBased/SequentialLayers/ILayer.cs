@@ -10,7 +10,7 @@ namespace NNSharp.SequentialBased.SequentialLayers
 {
     public interface ILayer : IKernel
     {
-        void SetInput(IData intput);
+        void SetInput(IData input);
         IData GetOutput();
     }
 }

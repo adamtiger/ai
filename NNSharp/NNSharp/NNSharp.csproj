@@ -50,9 +50,10 @@
     <Compile Include="KernelDescriptors\IKernelDescriptor.cs" />
     <Compile Include="KernelDescriptors\ReLu.cs" />
     <Compile Include="DataTypes\Data2D.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\ILayerFactory.cs" />
     <Compile Include="SequentialBased\SequentialLayers\ReLuLayer.cs" />
     <Compile Include="SequentialBased\SequentialLayers\ReLuLayerFactory.cs" />
-    <Compile Include="SequentialBased\SequentialLayers\IAbstractLayerFactory.cs" />
+    <Compile Include="SequentialBased\SequentialExecutors\IAbstractLayerFactory.cs" />
     <Compile Include="DataTypes\IData.cs" />
     <Compile Include="Kernels\IKernel.cs" />
     <Compile Include="Models\SequentialModel.cs" />

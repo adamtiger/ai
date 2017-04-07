@@ -4,12 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using NNSharp.KernelDescriptors;
+using NNSharp.DataTypes;
 
 namespace NNSharp.SequentialBased.SequentialLayers
 {
     public class ReLuLayerFactory : ILayerFactory
     {
-        public ILayer CreateProduct(IKernelDescriptor descriptor)
+        public ILayer CreateProduct(IKernelDescriptor descriptor, IData weights)
         {
             if (descriptor is ReLu)
                 return new ReLuLayer();

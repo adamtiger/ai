@@ -11,9 +11,9 @@ namespace NNSharp.SequentialBased.SequentialExecutors
 {
     public class DefaultExecutor : ISequentialExecutor
     {
-        public DefaultExecutor(IAbstractLayerFactory factory)
+        public DefaultExecutor()
         {
-            this.factory = factory;
+            //this.factory = new ....;
             layers = new List<ILayer>();
         }
 
