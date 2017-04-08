@@ -43,7 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KernelDescriptors\Convolution2D.cs" />
+    <Compile Include="KernelDescriptors\Input2D.cs" />
+    <Compile Include="Kernels\CPUKernels\Conv2DKernel.cs" />
     <Compile Include="Kernels\CPUKernels\ReLuKernel.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\Conv2DLayer.cs" />
     <Compile Include="SequentialBased\SequentialLayers\ILayer.cs" />
     <Compile Include="Models\GraphModel.cs" />
     <Compile Include="SequentialBased\SequentialExecutors\DefaultExecutor.cs" />
@@ -51,6 +55,8 @@
     <Compile Include="KernelDescriptors\ReLu.cs" />
     <Compile Include="DataTypes\Data2D.cs" />
     <Compile Include="SequentialBased\SequentialLayers\ILayerFactory.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\Input2DLayerFactory.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\Input2DLayer.cs" />
     <Compile Include="SequentialBased\SequentialLayers\ReLuLayer.cs" />
     <Compile Include="SequentialBased\SequentialLayers\ReLuLayerFactory.cs" />
     <Compile Include="SequentialBased\SequentialExecutors\IAbstractLayerFactory.cs" />
