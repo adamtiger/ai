@@ -13,7 +13,7 @@ namespace NNSharp.SequentialBased.SequentialExecutors
     {
         public DefaultExecutor()
         {
-            //this.factory = new ....;
+            this.factory = new DeafultAbstractLayerFactory();
             layers = new List<ILayer>();
         }
 
