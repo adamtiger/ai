@@ -22,16 +22,15 @@ namespace NNSharp.SequentialBased.SequentialExecutors
             factories.Add(new Input2DLayerFactory());
             factories.Add(new MaxPool2DLayerFactory());
             factories.Add(new ReLuLayerFactory());
+            factories.Add(new SoftmaxLayerFactory());
         }
 
-        public Dictionary<IKernelDescriptor, IData> Weights{ get; set; }
-
-        public ILayer CreateProduct(IKernelDescriptor descriptor)
+        public ILayer CreateProduct(IKernelDescriptor descriptor, IData weights)
         {
             ILayer layer = null;
             foreach(var fac in factories)
             {
-                layer = fac.CreateProduct(descriptor, Weights[descriptor]);
+                layer = fac.CreateProduct(descriptor, weights);
 
                 if (layer != null)
                     return layer;
