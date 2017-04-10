@@ -13,6 +13,7 @@ namespace NNSharp.DataTypes
         public DataArray(int length)
         {
             this.length = length;
+            array = new double[length];
             ToZeros();
         }
 

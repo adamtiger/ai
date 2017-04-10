@@ -11,7 +11,7 @@ namespace UnitTests
         [TestInitialize]
         public void SetUp()
         {
-            data = new Data2D(5, 4);
+            data = new Data2D(5, 4, 3, 1);
         }
 
         [TestMethod]

@@ -43,14 +43,27 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataTypes\DataArray.cs" />
+    <Compile Include="IO\ReaderKerasWeights.cs" />
+    <Compile Include="KernelDescriptors\Bias2D.cs" />
     <Compile Include="KernelDescriptors\Convolution2D.cs" />
+    <Compile Include="KernelDescriptors\Dense2D.cs" />
     <Compile Include="KernelDescriptors\Input2D.cs" />
     <Compile Include="KernelDescriptors\MaxPooling2D.cs" />
+    <Compile Include="KernelDescriptors\Softmax.cs" />
+    <Compile Include="Kernels\CPUKernels\Bias2DKernel.cs" />
     <Compile Include="Kernels\CPUKernels\Conv2DKernel.cs" />
+    <Compile Include="Kernels\CPUKernels\Dense2DKernel.cs" />
     <Compile Include="Kernels\CPUKernels\MaxPool2DKernel.cs" />
     <Compile Include="Kernels\CPUKernels\ReLuKernel.cs" />
+    <Compile Include="Kernels\CPUKernels\SoftmaxKernel.cs" />
+    <Compile Include="SequentialBased\SequentialExecutors\DeafultAbstractLayerFactory.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\Bias2DLayer.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\Bias2DLayerFactory.cs" />
     <Compile Include="SequentialBased\SequentialLayers\Conv2DLayer.cs" />
     <Compile Include="SequentialBased\SequentialLayers\Conv2DLayerFactory.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\Dense2DLayer.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\Dense2DLayerFactory.cs" />
     <Compile Include="SequentialBased\SequentialLayers\ILayer.cs" />
     <Compile Include="Models\GraphModel.cs" />
     <Compile Include="SequentialBased\SequentialExecutors\DefaultExecutor.cs" />
@@ -71,6 +84,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SequentialBased\SequentialExecutors\ISequentialExecutor.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\SoftmaxLayerFactory.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\SoftmaxLayer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
