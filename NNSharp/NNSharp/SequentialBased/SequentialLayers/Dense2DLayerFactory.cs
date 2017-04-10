@@ -17,16 +17,18 @@ namespace NNSharp.SequentialBased.SequentialLayers
                 Dense2D dens = descriptor as Dense2D;
 
                 if (weights == null)
-                    throw new Exception("Convolution: missing weights!");
+                    throw new Exception("Dense: missing weights!");
 
                 if (weights is Data2D)
                 {
                     if ((weights as Data2D).GetDimension().c != dens.Units)
                     {
-                        throw new Exception("Dense: kernel has wrong size," + 
+                        throw new Exception("Dense: kernel has wrong size," +
                             "the number of output units should math with the batch of the kernel!");
                     }
                 }
+                else
+                    throw new Exception("Data type is not Data2D.");
 
                 ILayer layer = new Dense2DLayer(weights);
 

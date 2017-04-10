@@ -18,7 +18,7 @@ namespace NNSharp.DataTypes
             this.paddingValue = 0;
         }
 
-        public Data2D(int height, int width, int channels, int batchSize, int paddingValue = 0)
+        public Data2D(int height, int width, int channels, int batchSize, int paddingValue)
         {
             tensor = new double[height, width, channels, batchSize];
             D = new Dimension(height, width, channels, batchSize);

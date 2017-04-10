@@ -29,6 +29,8 @@ namespace NNSharp.SequentialBased.SequentialLayers
                         throw new Exception("Convolution: kernel has wrong size!");
                     }
                 }
+                else
+                    throw new Exception("Data type is not Data2D.");
 
                 ILayer layer = new Conv2DLayer(conv.PaddingVertical, conv.PaddingHorizontal,
                                                conv.StrideVertical, conv.StrideHorizontal, weights);

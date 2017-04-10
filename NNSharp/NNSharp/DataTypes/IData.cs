@@ -11,5 +11,7 @@ namespace NNSharp.DataTypes
     public interface IData
     {
         void ApplyToAll(Operation operation);
+
+        void ToZeros();
     }
 }
