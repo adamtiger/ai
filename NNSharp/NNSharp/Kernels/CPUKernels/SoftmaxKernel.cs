@@ -12,7 +12,7 @@ namespace NNSharp.Kernels.CPUKernels
         public void Execute()
         {
             double sum = 0.0;
-            foreach (var x in data)
+            foreach (double x in data)
             {
                 sum += Math.Exp(x);
             }

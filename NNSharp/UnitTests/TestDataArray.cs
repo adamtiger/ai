@@ -40,6 +40,27 @@ namespace UnitTests
             Assert.AreEqual(data[5], 1.0, 0.00000001);
         }
 
+        [TestMethod]
+        public void TestMethod_Foreach()
+        {
+            double sum = 0.0;
+            data.ToZeros();
+
+            for (int i = 0; i < 10; ++i)
+            {
+                data[i] = i + 1;
+                sum += i + 1;
+            }
+
+            double sumCounted = 0.0;
+            foreach(double x in data)
+            {
+                sumCounted += x;
+            }
+
+            Assert.AreEqual(sum, sumCounted, 0.00000001);
+        }
+
         private DataArray data;
     }
 }

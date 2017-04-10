@@ -38,17 +38,19 @@ namespace NNSharp.DataTypes
 
         public IEnumerator<double> GetEnumerator()
         {
-            return array.GetEnumerator() as IEnumerator<double>;
+            var ret = ((IEnumerable<double>)array).GetEnumerator();
+            return ret;
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return array.GetEnumerator(); 
+            var ret = (IEnumerator)array.GetEnumerator();
+            return ret;
         }
 
         public int GetLength()
         {
-            return array.GetLength(0);
+            return length;
         }
 
         private double[] array;

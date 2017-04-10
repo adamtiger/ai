@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NNSharp.DataTypes
 {
 
-    public class Data2D : IData, IEnumerable<double>
+    public class Data2D : IData
     {
 
         public Data2D(int height, int width, int channels, int batchSize)
@@ -49,16 +49,6 @@ namespace NNSharp.DataTypes
             {
                 tensor[h, w, c, b] = value;
             }
-        }
-
-        public IEnumerator<double> GetEnumerator()
-        {
-            return (IEnumerator<double>)tensor.GetEnumerator();
-        }
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return tensor.GetEnumerator();
         }
 
         public void ApplyToAll(Operation operation)
