@@ -10,7 +10,7 @@ namespace UnitTests
     public class TestMaxPool2D
     {
         [TestMethod]
-        public void Test_Conv2D_Execute()
+        public void Test_MaxPool2D_Execute()
         {
             // Initialize data.
             Data2D data = new Data2D(3, 3, 2, 1);
