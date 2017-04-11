@@ -14,6 +14,11 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
         public Dense2DLayer(IData weights)
         {
+            if (weights == null)
+                throw new Exception("Dense2DLayer: weights is null.");
+            else if (!(weights is Data2D))
+                throw new Exception("Dense2DLayer: weights is not Data2D.");
+
             this.weights = weights as Data2D;
         }
 
@@ -24,6 +29,11 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
         public void SetInput(IData input)
         {
+            if (input == null)
+                throw new Exception("Dense2DLayer: input is null.");
+            else if (!(input is Data2D))
+                throw new Exception("Dense2DLayer: input is not Data2D.");
+
             this.input = input as Data2D;
 
             Dimension dimI = this.input.GetDimension();
@@ -41,13 +51,7 @@ namespace NNSharp.SequentialBased.SequentialLayers
                 throw new Exception("Wrong kernel and input sizes: sizes of widths should match." +
                    " Now: dimI: " + dimI.w + " != dimK: " + dimK.w);
 
-
-            int outputH = 1;
-            int outputW = 1;
-            int outputC = dimK.b;
-            int outputB = dimI.b;
-
-            output = new Data2D(outputH, outputW, outputC, outputB);
+            output = new Data2D(1, 1, dimK.b, dimI.b);
         }
     }
 }

@@ -11,15 +11,21 @@ namespace NNSharp.Kernels.CPUKernels
     {
         public void Execute()
         {
-            double sum = 0.0;
-            foreach (double x in data)
+            for (int b = 0; b < data.GetDimension().b; ++b)
             {
-                sum += Math.Exp(x);
-            }
+                double sum = 0.0;
+                for (int i = 0; i < data.GetDimension().c; ++i)
+                {
+                    sum += Math.Exp(data[0, 0, i, b]);
+                }
 
-            data.ApplyToAll(x => { return Math.Exp(x) / sum; });      
+                for (int i = 0; i < data.GetDimension().c; ++i)
+                {
+                    data[0, 0, i, b] = Math.Exp(data[0, 0, i, b]) / sum;
+                }
+            }
         }
 
-        protected DataArray data;
+        protected Data2D data;
     }
 }
