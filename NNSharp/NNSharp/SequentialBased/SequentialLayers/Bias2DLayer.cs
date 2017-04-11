@@ -13,6 +13,11 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
         public Bias2DLayer(IData biases)
         {
+            if (biases == null)
+                throw new Exception("Bias2DLayer: biases is null.");
+            else if (!(biases is DataArray))
+                throw new Exception("Bias2DLayer: biases is not DataArray.");
+
             this.biases = biases as DataArray;
         }
  
@@ -23,11 +28,16 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
         public void SetInput(IData input)
         {
-            this.input = input as Data2D;
+            if (input == null)
+                throw new Exception("Bias2DLayer: input is null.");
+            else if (!(input is Data2D))
+                throw new Exception("Bias2DLayer: input is not Data2D.");
+
+            this.input = input as Data2D; // Set the input value.
 
             int a, b;
-            if ((a = this.input.GetDimension().b) == (b =this.biases.GetLength()))
-                throw new Exception("Bias: the number of biases is not suitable -> "+ a + " != " + b);
+            if ((a = this.input.GetDimension().b) != (b =this.biases.GetLength()))
+                throw new Exception("Bias2DLayer: the number of biases is not suitable -> "+ a + " != " + b);
         }
     }
 }

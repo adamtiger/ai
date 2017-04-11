@@ -10,7 +10,7 @@ namespace UnitTests
     {
 
         [TestMethod]
-        public void TestMethod_ReLu_Execute()
+        public void Test_ReLu_Execute()
         {
             relu = new ReLuLayer();
 
