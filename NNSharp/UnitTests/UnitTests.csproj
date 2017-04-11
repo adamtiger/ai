@@ -59,6 +59,7 @@
     <Compile Include="TestSoftmax.cs" />
     <Compile Include="TestBias2D.cs" />
     <Compile Include="TestInput2D.cs" />
+    <Compile Include="TestConv2D.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\NNSharp\NNSharp.csproj">

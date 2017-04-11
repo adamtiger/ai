@@ -14,6 +14,11 @@ namespace NNSharp.SequentialBased.SequentialLayers
         public Conv2DLayer(int paddingVertical, int paddingHorizontal, 
                            int strideVertical, int strideHorizontal, IData weights)
         {
+            if (weights == null)
+                throw new Exception("Conv2DLayer: weights is null.");
+            else if (!(weights is Data2D))
+                throw new Exception("Conv2DLayer: weights is not Data2D.");
+
             this.weights = weights as Data2D;
             this.paddingVertical = paddingVertical;
             this.paddingHorizontal = paddingHorizontal;
@@ -28,6 +33,11 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
         public void SetInput(IData input)
         {
+            if (input == null)
+                throw new Exception("Conv2DLayer: input is null.");
+            else if (!(input is Data2D))
+                throw new Exception("Conv2DLayer: input is not Data2D.");
+
             this.input = input as Data2D;
 
             Dimension dimI = this.input.GetDimension();

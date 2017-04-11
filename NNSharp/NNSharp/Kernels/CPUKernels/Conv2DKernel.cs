@@ -37,7 +37,7 @@ namespace NNSharp.Kernels.CPUKernels
                                      for (int idxC = 0; idxC < dimK.c; ++idxC)
                                      {
                                         output[h, w, channel, batch] += input[idxV, idxH, idxC, channel] *
-                                                                            weights[idxV - stV, idxH - stV, idxC, batch];
+                                                                            weights[idxV - stV, idxH - stH, idxC, batch];
                                      }
                                  }
                             }
