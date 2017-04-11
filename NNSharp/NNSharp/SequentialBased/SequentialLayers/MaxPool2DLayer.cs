@@ -34,6 +34,11 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
         public void SetInput(IData input)
         {
+            if (input == null)
+                throw new Exception("MaxPool2DLayer: input is null.");
+            else if (!(input is Data2D))
+                throw new Exception("MaxPool2DLayer: input is not Data2D.");
+
             this.input = input as Data2D;
 
             Dimension dimI = this.input.GetDimension();
