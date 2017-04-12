@@ -16,12 +16,8 @@ namespace NNSharp.SequentialBased.SequentialLayers
             {
                 Convolution2D conv = descriptor as Convolution2D;
 
-                Data2D weights = new Data2D(conv.KernelHeight, conv.KernelWidth,
-                                            conv.KernelChannel, conv.KernelNum);
-                weights.ToZeros();
-
                 ILayer layer = new Conv2DLayer(conv.PaddingVertical, conv.PaddingHorizontal,
-                                               conv.StrideVertical, conv.StrideHorizontal, weights);
+                                               conv.StrideVertical, conv.StrideHorizontal);
 
                 return layer;
             }

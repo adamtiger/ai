@@ -11,8 +11,7 @@ namespace NNSharp.KernelDescriptors
     {
         public Convolution2D(int paddingVertical, int paddingHorizontal,
                              int strideVertical, int strideHorizontal,
-                             int kernelHeight, int kernelWidth, 
-                             int kernelChannel, int kernelNum)
+                             int kernelHeight, int kernelWidth, int kernelNum)
         {
             this.paddingVertical = paddingVertical;
             this.paddingHorizontal = paddingHorizontal;
@@ -21,7 +20,6 @@ namespace NNSharp.KernelDescriptors
 
             this.kernelHeight = kernelHeight;
             this.kernelWidth = kernelWidth;
-            this.kernelChannel = kernelChannel;
             this.kernelNum = kernelNum;
 
         }
@@ -33,7 +31,6 @@ namespace NNSharp.KernelDescriptors
 
         public int KernelHeight { get { return kernelHeight; } }
         public int KernelWidth { get { return kernelWidth; } }
-        public int KernelChannel { get { return kernelChannel; } }
         public int KernelNum { get { return kernelNum; } }
 
 
@@ -44,7 +41,6 @@ namespace NNSharp.KernelDescriptors
 
         private int kernelHeight;
         private int kernelWidth;
-        private int kernelChannel;
         private int kernelNum;
     }
 }

@@ -14,12 +14,7 @@ namespace NNSharp.SequentialBased.SequentialLayers
         {
             if (descriptor is Bias2D)
             {
-                Bias2D bias = descriptor as Bias2D;
-
-                DataArray biases = new DataArray(bias.Units);
-                biases.ToZeros();
-
-                ILayer layer = new Bias2DLayer(biases);
+                ILayer layer = new Bias2DLayer();
 
                 return layer;
             }

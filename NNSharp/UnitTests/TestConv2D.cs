@@ -55,7 +55,8 @@ namespace UnitTests
             weights[0, 1, 1, 0] = 1;
             weights[1, 1, 1, 0] = 3;
 
-            Conv2DLayer conv = new Conv2DLayer(0, 0, 1, 1, weights);
+            Conv2DLayer conv = new Conv2DLayer(0, 0, 1, 1);
+            conv.SetWeights(weights);
             conv.SetInput(data);
             conv.Execute();
             Data2D output = conv.GetOutput() as Data2D;
@@ -80,7 +81,8 @@ namespace UnitTests
         {
             Data2D data = null;
             Data2D weights = new Data2D(3, 3, 3, 3);
-            Conv2DLayer conv = new Conv2DLayer(1,1,1,1, weights);
+            Conv2DLayer conv = new Conv2DLayer(1,1,1,1);
+            conv.SetWeights(weights);
             conv.SetInput(data);
         }
 
@@ -89,7 +91,8 @@ namespace UnitTests
         public void Test_NullConv_Weights()
         {
             Data2D weights = null;
-            Conv2DLayer conv = new Conv2DLayer(1, 1, 1, 1, weights);
+            Conv2DLayer conv = new Conv2DLayer(1, 1, 1, 1);
+            conv.SetWeights(weights);
         }
 
         [TestMethod]
@@ -98,7 +101,8 @@ namespace UnitTests
         {
             DataArray data = new DataArray(5);
             Data2D weights = new Data2D(3, 3, 3, 3);
-            Conv2DLayer conv = new Conv2DLayer(1, 1, 1, 1, weights);
+            Conv2DLayer conv = new Conv2DLayer(1, 1, 1, 1);
+            conv.SetWeights(weights);
             conv.SetInput(data);
         }
 
@@ -107,7 +111,8 @@ namespace UnitTests
         public void Test_DifferentData_Weights()
         {
             DataArray weights = new DataArray(5);
-            Conv2DLayer conv = new Conv2DLayer(1, 1, 1, 1, weights);
+            Conv2DLayer conv = new Conv2DLayer(1, 1, 1, 1);
+            conv.SetWeights(weights);
         }
     }
 }

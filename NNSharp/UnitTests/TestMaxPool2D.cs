@@ -39,7 +39,7 @@ namespace UnitTests
             data[1, 2, 1, 0] = -1;
             data[2, 2, 1, 0] = 0;
 
-            MaxPool2DLayer pool = new MaxPool2DLayer(0, 0, 1, 1, 2, 2, 2, 1);
+            MaxPool2DLayer pool = new MaxPool2DLayer(0, 0, 1, 1, 2, 2);
             pool.SetInput(data);
             pool.Execute();
             Data2D output = pool.GetOutput() as Data2D;
@@ -63,7 +63,7 @@ namespace UnitTests
         public void Test_NullMaxPool_Input()
         {
             Data2D data = null;
-            MaxPool2DLayer pool = new MaxPool2DLayer(1, 1, 1, 1, 2,2,2,2);
+            MaxPool2DLayer pool = new MaxPool2DLayer(1, 1, 1, 1, 2,2);
             pool.SetInput(data);
         }
 
@@ -72,7 +72,7 @@ namespace UnitTests
         public void Test_DifferentData_Input()
         {
             DataArray data = new DataArray(5);
-            MaxPool2DLayer pool = new MaxPool2DLayer(1, 1, 1, 1, 2,2,2,2);
+            MaxPool2DLayer pool = new MaxPool2DLayer(1, 1, 1, 1, 2,2);
             pool.SetInput(data);
         }
     }

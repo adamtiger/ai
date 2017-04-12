@@ -18,8 +18,7 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
                 ILayer layer = new MaxPool2DLayer(conv.PaddingVertical, conv.PaddingHorizontal,
                                                conv.StrideVertical, conv.StrideHorizontal, 
-                                               conv.KernelHeight, conv.KernelWidth,
-                                               conv.KernelChannel, conv.KernelNum);
+                                               conv.KernelHeight, conv.KernelWidth);
 
                 return layer;
             }

@@ -9,9 +9,8 @@ namespace NNSharp.KernelDescriptors
     public class MaxPooling2D : IKernelDescriptor
     {
         public MaxPooling2D(int paddingVertical, int paddingHorizontal,
-                                  int strideVertical, int strideHorizontal,
-                                  int kernelHeight, int kernelWidth,
-                                  int kernelChannel, int kernelNum)
+                            int strideVertical, int strideHorizontal,
+                            int kernelHeight, int kernelWidth)
         {
             this.paddingVertical = paddingVertical;
             this.paddingHorizontal = paddingHorizontal;
@@ -20,9 +19,6 @@ namespace NNSharp.KernelDescriptors
 
             this.kernelHeight = kernelHeight;
             this.kernelWidth = kernelWidth;
-            this.kernelChannel = kernelChannel;
-            this.kernelNum = kernelNum;
-
         }
 
         public int PaddingVertical { get { return paddingVertical; } }
@@ -32,8 +28,6 @@ namespace NNSharp.KernelDescriptors
 
         public int KernelHeight { get { return kernelHeight; } }
         public int KernelWidth { get { return kernelWidth; } }
-        public int KernelChannel { get { return kernelChannel; } }
-        public int KernelNum { get { return kernelNum; } }
 
 
         private int paddingVertical;
@@ -43,7 +37,5 @@ namespace NNSharp.KernelDescriptors
 
         private int kernelHeight;
         private int kernelWidth;
-        private int kernelChannel;
-        private int kernelNum;
     }
 }

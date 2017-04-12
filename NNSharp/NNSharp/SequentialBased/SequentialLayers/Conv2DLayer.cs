@@ -12,13 +12,8 @@ namespace NNSharp.SequentialBased.SequentialLayers
     public class Conv2DLayer : Conv2DKernel, ILayer
     {
         public Conv2DLayer(int paddingVertical, int paddingHorizontal, 
-                           int strideVertical, int strideHorizontal, IData weights)
+                           int strideVertical, int strideHorizontal)
         {
-            if (weights == null)
-                throw new Exception("Conv2DLayer: weights is null.");
-            else if (!(weights is Data2D))
-                throw new Exception("Conv2DLayer: weights is not Data2D.");
-
             this.weights = weights as Data2D;
             this.paddingVertical = paddingVertical;
             this.paddingHorizontal = paddingHorizontal;

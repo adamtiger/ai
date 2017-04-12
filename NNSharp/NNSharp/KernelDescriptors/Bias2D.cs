@@ -8,13 +8,6 @@ namespace NNSharp.KernelDescriptors
 {
     public class Bias2D : IKernelDescriptor
     {
-        public Bias2D(int units)
-        {
-            this.units = units;
-        }
-
-        public int Units { get { return units; } }
-
-        private int units;
+       
     }
 }

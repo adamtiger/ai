@@ -11,14 +11,8 @@ namespace NNSharp.SequentialBased.SequentialLayers
     public class Bias2DLayer : Bias2DKernel, ILayer
     {
 
-        public Bias2DLayer(IData biases)
+        public Bias2DLayer()
         {
-            if (biases == null)
-                throw new Exception("Bias2DLayer: biases is null.");
-            else if (!(biases is DataArray))
-                throw new Exception("Bias2DLayer: biases is not DataArray.");
-
-            this.biases = biases as DataArray;
         }
  
         public IData GetOutput()

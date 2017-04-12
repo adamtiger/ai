@@ -14,8 +14,7 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
         public MaxPool2DLayer(int paddingVertical, int paddingHorizontal,
                               int strideVertical, int strideHorizontal, 
-                              int kernelHeight, int kernelWidth,
-                              int kernelChannel, int kernelNum)
+                              int kernelHeight, int kernelWidth)
         {
             this.paddingVertical = paddingVertical;
             this.paddingHorizontal = paddingHorizontal;
@@ -23,8 +22,6 @@ namespace NNSharp.SequentialBased.SequentialLayers
             this.strideHorizontal = strideHorizontal;
             this.kernelDim.h = kernelHeight;
             this.kernelDim.w = kernelWidth;
-            this.kernelDim.c = kernelChannel;
-            this.kernelDim.b = kernelNum;
         }
 
         public IData GetOutput()
@@ -43,9 +40,8 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
             Dimension dimI = this.input.GetDimension();
 
-            if (dimI.c != kernelDim.c)
-                throw new Exception("Wrong kernel and input sizes: sizes of channels should match." +
-                   " Now: dimI: " + dimI.c + " != dimK: " + kernelDim.c);
+            kernelDim.c = dimI.c;
+            kernelDim.b = 1;
 
             int outputH = CalculateOutputSize1D(dimI.h, paddingVertical, strideVertical, kernelDim.h);
             int outputW = CalculateOutputSize1D(dimI.w, paddingHorizontal, strideHorizontal, kernelDim.w);

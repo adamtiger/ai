@@ -30,7 +30,8 @@ namespace UnitTests
             biases[0] = 1.5;
             biases[1] = 2.0;
 
-            Bias2DLayer bias = new Bias2DLayer(biases);
+            Bias2DLayer bias = new Bias2DLayer();
+            bias.SetWeights(biases);
             bias.SetInput(data);
             bias.Execute();
             Data2D output = bias.GetOutput() as Data2D;
@@ -60,7 +61,8 @@ namespace UnitTests
             biases[0] = 1.5;
             biases[1] = 2.0;
 
-            Bias2DLayer bias = new Bias2DLayer(biases);
+            Bias2DLayer bias = new Bias2DLayer();
+            bias.SetWeights(biases);
             bias.SetInput(data);
         }
 
@@ -69,7 +71,8 @@ namespace UnitTests
         public void Test_NullBias()
         {
             DataArray biases = null;
-            Bias2DLayer bias = new Bias2DLayer(biases);
+            Bias2DLayer bias = new Bias2DLayer();
+            bias.SetWeights(biases);
         }
 
         [TestMethod]
@@ -77,7 +80,8 @@ namespace UnitTests
         public void Test_DifferentData_Bias()
         {
             Data2D biases = null;
-            Bias2DLayer bias = new Bias2DLayer(biases);
+            Bias2DLayer bias = new Bias2DLayer();
+            bias.SetWeights(biases);
         }
 
         [TestMethod]
@@ -90,7 +94,8 @@ namespace UnitTests
             biases[0] = 1.5;
             biases[1] = 2.0;
 
-            Bias2DLayer bias = new Bias2DLayer(biases);
+            Bias2DLayer bias = new Bias2DLayer();
+            bias.SetWeights(biases);
             bias.SetInput(data);
         }
 
@@ -104,7 +109,8 @@ namespace UnitTests
             biases[0] = 1.5;
             biases[1] = 2.0;
 
-            Bias2DLayer bias = new Bias2DLayer(biases);
+            Bias2DLayer bias = new Bias2DLayer();
+            bias.SetWeights(biases);
             bias.SetInput(data);
         }
     }
