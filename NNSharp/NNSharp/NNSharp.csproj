@@ -44,7 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataTypes\DataArray.cs" />
-    <Compile Include="IO\ReaderKerasWeights.cs" />
+    <Compile Include="IO\ReaderKerasModel.cs" />
     <Compile Include="KernelDescriptors\Bias2D.cs" />
     <Compile Include="KernelDescriptors\Convolution2D.cs" />
     <Compile Include="KernelDescriptors\Dense2D.cs" />

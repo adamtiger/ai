@@ -30,7 +30,7 @@ namespace NNSharp.SequentialBased.SequentialExecutors
             ILayer layer = null;
             foreach(var fac in factories)
             {
-                layer = fac.CreateProduct(descriptor, weights);
+                layer = fac.CreateProduct(descriptor);
 
                 if (layer != null)
                     return layer;

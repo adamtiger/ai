@@ -1,4 +1,5 @@
 ﻿using NNSharp.DataTypes;
+using NNSharp.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,16 +8,16 @@ using System.Threading.Tasks;
 
 namespace NNSharp.IO
 {
-    public class ReaderKerasWeights
+    public class ReaderKerasModel
     {
-        public ReaderKerasWeights(string fname)
+        public ReaderKerasModel(string fname)
         {
 
         }
 
-        public IData GetWeightsFor(int idx)
+        public SequentialModel GetSequentialExecutor()
         {
-            return weights[idx];
+            return null;
         }
 
         private List<IData> weights;
