@@ -12,9 +12,8 @@ namespace NNSharp.SequentialBased.SequentialExecutors
 {
     public class DefaultExecutor : ISequentialExecutor
     {
-        public DefaultExecutor(string fname)
+        public DefaultExecutor()
         {
-            reader = new ReaderKerasWeights(fname);
             this.factory = new DeafultAbstractLayerFactory();
             layers = new List<ILayer>();
         }
@@ -22,12 +21,12 @@ namespace NNSharp.SequentialBased.SequentialExecutors
         public void Compile(List<IKernelDescriptor> descriptors)
         {
             // The first descriptor shows the size of the input.
-            IData initInput = factory.CreateProduct(descriptors[0], reader.GetWeightsFor(0)).GetOutput();
+            IData initInput = factory.CreateProduct(descriptors[0]).GetOutput();
 
             // Instantiate the kernels.
             for (int idx = 1; idx < descriptors.Count; ++idx)
             {
-                ILayer layer = factory.CreateProduct(descriptors[idx], reader.GetWeightsFor(idx));
+                ILayer layer = factory.CreateProduct(descriptors[idx]);
                 layers.Add(layer);
             }
 
@@ -48,8 +47,20 @@ namespace NNSharp.SequentialBased.SequentialExecutors
             return layers.Last().GetOutput();
         }
 
+        public void SetWeights(List<IData> weights)
+        {
+            if (layers.Count == weights.Count)
+            {
+                for (int idx = 0; idx < layers.Count; ++idx)
+                {
+                    layers[idx].SetWeights(weights[idx]);
+                }
+            }
+            else
+                throw new Exception("Different number of weights than layers!");
+        }
+
         private List<ILayer> layers;
-        private ReaderKerasWeights reader;
         private IAbstractLayerFactory factory;
     }
 }

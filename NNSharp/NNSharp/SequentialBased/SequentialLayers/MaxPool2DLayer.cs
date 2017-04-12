@@ -55,6 +55,11 @@ namespace NNSharp.SequentialBased.SequentialLayers
             output = new Data2D(outputH, outputW, outputC, outputB);
         }
 
+        public void SetWeights(IData weights)
+        {
+            // No weights.
+        }
+
         private int CalculateOutputSize1D(int inpSize, int padding, int stride, int kernel)
         {
             return 1 + (inpSize + 2 * padding - kernel) / stride;

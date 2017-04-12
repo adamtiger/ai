@@ -31,5 +31,10 @@ namespace NNSharp.SequentialBased.SequentialLayers
             if (!(dim.h == 1 && dim.w == 1))
                 throw new Exception("SoftmaxLayer: wrong intput size.");
         }
+
+        public void SetWeights(IData weights)
+        {
+            // No weights.
+        }
     }
 }

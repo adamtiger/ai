@@ -11,6 +11,6 @@ namespace NNSharp.SequentialBased.SequentialExecutors
 {
     public interface IAbstractLayerFactory
     {
-        ILayer CreateProduct(IKernelDescriptor descriptor, IData weights);
+        ILayer CreateProduct(IKernelDescriptor descriptor);
     }
 }

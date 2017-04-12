@@ -53,5 +53,15 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
             output = new Data2D(1, 1, dimK.b, dimI.b);
         }
+
+        public void SetWeights(IData weights)
+        {
+            if (weights == null)
+                throw new Exception("Dense2DLayer: weights is null.");
+            else if (!(weights is Data2D))
+                throw new Exception("Dense2DLayer: weights is not Data2D.");
+
+            this.weights = weights as Data2D;
+        }
     }
 }

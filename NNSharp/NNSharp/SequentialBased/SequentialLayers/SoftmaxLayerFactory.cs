@@ -10,7 +10,7 @@ namespace NNSharp.SequentialBased.SequentialLayers
 {
     public class SoftmaxLayerFactory : ILayerFactory
     {
-        public ILayer CreateProduct(IKernelDescriptor descriptor, IData weights = null)
+        public ILayer CreateProduct(IKernelDescriptor descriptor)
         {
             if (descriptor is SoftmaxLayer)
                 return new SoftmaxLayer();

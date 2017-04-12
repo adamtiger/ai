@@ -25,7 +25,7 @@ namespace NNSharp.SequentialBased.SequentialExecutors
             factories.Add(new SoftmaxLayerFactory());
         }
 
-        public ILayer CreateProduct(IKernelDescriptor descriptor, IData weights)
+        public ILayer CreateProduct(IKernelDescriptor descriptor)
         {
             ILayer layer = null;
             foreach(var fac in factories)

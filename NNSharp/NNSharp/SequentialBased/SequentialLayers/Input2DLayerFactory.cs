@@ -10,7 +10,7 @@ namespace NNSharp.SequentialBased.SequentialLayers
 {
     public class Input2DLayerFactory : ILayerFactory
     {
-        public ILayer CreateProduct(IKernelDescriptor descriptor, IData weights)
+        public ILayer CreateProduct(IKernelDescriptor descriptor)
         {
             if (descriptor is Input2D)
             {

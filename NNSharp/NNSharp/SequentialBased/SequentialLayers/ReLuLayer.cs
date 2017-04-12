@@ -20,5 +20,10 @@ namespace NNSharp.SequentialBased.SequentialLayers
         {
             this.input = input; 
         }
+
+        public void SetWeights(IData weights)
+        {
+            // No weights.
+        }
     }
 }

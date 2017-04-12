@@ -12,5 +12,6 @@ namespace NNSharp.SequentialBased.SequentialLayers
     {
         void SetInput(IData input);
         IData GetOutput();
+        void SetWeights(IData weights);
     }
 }

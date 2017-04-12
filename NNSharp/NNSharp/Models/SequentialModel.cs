@@ -22,6 +22,11 @@ namespace NNSharp.Models
             descriptors.Add(descriptor);
         }
 
+        public void SetWeights(List<IData> weights)
+        {
+            compiled.SetWeights(weights);
+        }
+
         public void Compile(ISequentialExecutor compiler)
         {
             compiler.Compile(descriptors);

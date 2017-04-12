@@ -10,6 +10,6 @@ namespace NNSharp.SequentialBased.SequentialLayers
 {
     public interface ILayerFactory
     {
-        ILayer CreateProduct(IKernelDescriptor descriptor, IData weights = null);
+        ILayer CreateProduct(IKernelDescriptor descriptor);
     }
 }

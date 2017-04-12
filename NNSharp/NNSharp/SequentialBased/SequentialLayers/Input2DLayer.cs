@@ -41,6 +41,11 @@ namespace NNSharp.SequentialBased.SequentialLayers
             zerosInput = input as Data2D;
         }
 
+        public void SetWeights(IData weights)
+        {
+            // No weights.
+        }
+
         private Data2D zerosInput;
     }
 }
