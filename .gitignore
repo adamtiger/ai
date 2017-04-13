@@ -58,6 +58,7 @@ NNSharp/UnitTests/bin/*
 NNSharp/UnitTests/obj/*
 NNSharp/Debug/*
 NNSharp/Release/*
+NNSharp/packages/*
 
 # Python projects:
 *.pyc
