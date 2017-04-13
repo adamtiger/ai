@@ -11,7 +11,7 @@ namespace UnitTests
         [TestMethod]
         public void Test_Bias2D_Execute()
         {
-            Data2D data = new Data2D(2, 3, 1, 2);
+            Data2D data = new Data2D(2, 3, 2, 1);
             data[0, 0, 0, 0] = 4;
             data[0, 1, 0, 0] = 5;
             data[0, 2, 0, 0] = -2;
@@ -19,12 +19,12 @@ namespace UnitTests
             data[1, 1, 0, 0] = -1;
             data[1, 2, 0, 0] = -3;
 
-            data[0, 0, 0, 1] = 1;
-            data[0, 1, 0, 1] = 2;
-            data[0, 2, 0, 1] = 3;
-            data[1, 0, 0, 1] = 0;
-            data[1, 1, 0, 1] = 9;
-            data[1, 2, 0, 1] = -3;
+            data[0, 0, 1, 0] = 1;
+            data[0, 1, 1, 0] = 2;
+            data[0, 2, 1, 0] = 3;
+            data[1, 0, 1, 0] = 0;
+            data[1, 1, 1, 0] = 9;
+            data[1, 2, 1, 0] = -3;
 
             DataArray biases = new DataArray(2);
             biases[0] = 1.5;
@@ -43,12 +43,12 @@ namespace UnitTests
             Assert.AreEqual(output[1, 1, 0, 0], 0.5, 0.00000001);
             Assert.AreEqual(output[1, 2, 0, 0], -1.5, 0.00000001);
 
-            Assert.AreEqual(output[0, 0, 0, 1], 3.0, 0.00000001);
-            Assert.AreEqual(output[0, 1, 0, 1], 4.0, 0.00000001);
-            Assert.AreEqual(output[0, 2, 0, 1], 5.0, 0.00000001);
-            Assert.AreEqual(output[1, 0, 0, 1], 2.0, 0.00000001);
-            Assert.AreEqual(output[1, 1, 0, 1], 11.0, 0.00000001);
-            Assert.AreEqual(output[1, 2, 0, 1], -1.0, 0.00000001);
+            Assert.AreEqual(output[0, 0, 1, 0], 3.0, 0.00000001);
+            Assert.AreEqual(output[0, 1, 1, 0], 4.0, 0.00000001);
+            Assert.AreEqual(output[0, 2, 1, 0], 5.0, 0.00000001);
+            Assert.AreEqual(output[1, 0, 1, 0], 2.0, 0.00000001);
+            Assert.AreEqual(output[1, 1, 1, 0], 11.0, 0.00000001);
+            Assert.AreEqual(output[1, 2, 1, 0], -1.0, 0.00000001);
         }
 
         [TestMethod]

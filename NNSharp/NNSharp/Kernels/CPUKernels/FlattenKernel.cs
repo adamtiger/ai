@@ -8,28 +8,30 @@ using static NNSharp.DataTypes.Data2D;
 
 namespace NNSharp.Kernels.CPUKernels
 {
-    public class Bias2DKernel : IKernel
+    public class FlattenKernel : IKernel
     {
         public void Execute()
         {
+            int idx = 0;
             Dimension dim = input.GetDimension();
 
-            for (int b = 0; b < dim.b; ++b)
+            for (int col = 0; col < dim.w; ++col)
             {
-                for (int c = 0; c < dim.c; ++c)
+                for (int row = 0; row < dim.h; ++row)
                 {
-                    for (int h = 0; h < dim.h; ++h)
+                    for (int chnl = 0; chnl < dim.c; ++chnl)
                     {
-                        for (int w = 0; w < dim.w; ++w)
+                        for (int batch = 0; batch < dim.b; ++batch)
                         {
-                            input[h, w, c, b] += biases[c]; 
+                            output[0, 0, idx, batch] = input[row, col, chnl, batch];
                         }
+                        idx += 1;
                     }
                 }
             }
         }
 
         protected Data2D input;
-        protected DataArray biases;
+        protected Data2D output;
     }
 }

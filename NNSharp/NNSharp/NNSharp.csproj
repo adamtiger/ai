@@ -52,12 +52,14 @@
     <Compile Include="KernelDescriptors\Bias2D.cs" />
     <Compile Include="KernelDescriptors\Convolution2D.cs" />
     <Compile Include="KernelDescriptors\Dense2D.cs" />
+    <Compile Include="KernelDescriptors\Flatten.cs" />
     <Compile Include="KernelDescriptors\Input2D.cs" />
     <Compile Include="KernelDescriptors\MaxPooling2D.cs" />
     <Compile Include="KernelDescriptors\Softmax.cs" />
     <Compile Include="Kernels\CPUKernels\Bias2DKernel.cs" />
     <Compile Include="Kernels\CPUKernels\Conv2DKernel.cs" />
     <Compile Include="Kernels\CPUKernels\Dense2DKernel.cs" />
+    <Compile Include="Kernels\CPUKernels\FlattenKernel.cs" />
     <Compile Include="Kernels\CPUKernels\MaxPool2DKernel.cs" />
     <Compile Include="Kernels\CPUKernels\ReLuKernel.cs" />
     <Compile Include="Kernels\CPUKernels\SoftmaxKernel.cs" />
@@ -68,6 +70,8 @@
     <Compile Include="SequentialBased\SequentialLayers\Conv2DLayerFactory.cs" />
     <Compile Include="SequentialBased\SequentialLayers\Dense2DLayer.cs" />
     <Compile Include="SequentialBased\SequentialLayers\Dense2DLayerFactory.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\FlattenLayer.cs" />
+    <Compile Include="SequentialBased\SequentialLayers\FlattenLayerFactory.cs" />
     <Compile Include="SequentialBased\SequentialLayers\ILayer.cs" />
     <Compile Include="Models\GraphModel.cs" />
     <Compile Include="SequentialBased\SequentialExecutors\DefaultExecutor.cs" />

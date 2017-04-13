@@ -30,7 +30,7 @@ namespace NNSharp.SequentialBased.SequentialLayers
             this.input = input as Data2D; // Set the input value.
 
             int a, b;
-            if ((a = this.input.GetDimension().b) != (b =this.biases.GetLength()))
+            if ((a = this.input.GetDimension().c) != (b =this.biases.GetLength()))
                 throw new Exception("Bias2DLayer: the number of biases is not suitable -> "+ a + " != " + b);
         }
 
