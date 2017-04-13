@@ -37,7 +37,7 @@ namespace NNSharp.SequentialBased.SequentialExecutors
                     return layer;
             }
 
-            throw new Exception("No layer was created!");
+            throw new Exception("Layer type does not exist!");
         }
 
         private List<ILayerFactory> factories;
