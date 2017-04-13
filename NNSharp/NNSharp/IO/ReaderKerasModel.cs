@@ -164,7 +164,6 @@ namespace NNSharp.IO
             return weights;
         }
 
-        private List<IData> weights;
         private SequentialModel sequential;
     }
 }

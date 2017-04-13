@@ -22,13 +22,7 @@ namespace NNSharp.Kernels.CPUKernels
                     output[0, 0, kernel, b] = 0;
                     for (int c = 0; c < dimI.c; ++c)
                     {
-                        for (int h = 0; h < dimI.h; ++h)
-                        {
-                            for(int w = 0; w < dimI.w; ++w)
-                            {
-                                output[0, 0, kernel, b] += input[h, w, c, b] * weights[h, w, c, kernel];
-                            }
-                        }
+                         output[0, 0, kernel, b] += input[0, 0, c, b] * weights[0, 0, c, kernel];  
                     }
                 }
             }

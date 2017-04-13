@@ -13,85 +13,85 @@ namespace UnitTests
         public void Test_Dense2D_Execute()
         {
             // Initialize data.
-            Data2D data = new Data2D(3, 3, 2, 1);
+            Data2D data = new Data2D(1, 1, 18, 1);
             data[0, 0, 0, 0] = 1;
-            data[1, 0, 0, 0] = 2;
-            data[2, 0, 0, 0] = 0;
+            data[0, 0, 1, 0] = 2;
+            data[0, 0, 2, 0] = 0;
 
-            data[0, 1, 0, 0] = 3;
-            data[1, 1, 0, 0] = 4;
-            data[2, 1, 0, 0] = 0;
+            data[0, 0, 3, 0] = 3;
+            data[0, 0, 4, 0] = 4;
+            data[0, 0, 5, 0] = 0;
 
-            data[0, 2, 0, 0] = 2;
-            data[1, 2, 0, 0] = 2;
-            data[2, 2, 0, 0] = 0;
+            data[0, 0, 6, 0] = 2;
+            data[0, 0, 7, 0] = 2;
+            data[0, 0, 8, 0] = 0;
 
 
-            data[0, 0, 1, 0] = 0;
-            data[1, 0, 1, 0] = 3;
-            data[2, 0, 1, 0] = 1;
+            data[0, 0, 9, 0] = 0;
+            data[0, 0, 10, 0] = 3;
+            data[0, 0, 11, 0] = 1;
 
-            data[0, 1, 1, 0] = 1;
-            data[1, 1, 1, 0] = 1;
-            data[2, 1, 1, 0] = 1;
+            data[0, 0, 12, 0] = 1;
+            data[0, 0, 13, 0] = 1;
+            data[0, 0, 14, 0] = 1;
 
-            data[0, 2, 1, 0] = 3;
-            data[1, 2, 1, 0] = 1;
-            data[2, 2, 1, 0] = 0;
+            data[0, 0, 15, 0] = 3;
+            data[0, 0, 16, 0] = 1;
+            data[0, 0, 17, 0] = 0;
 
             // Initialize weights.
-            Data2D weights = new Data2D(3, 3, 2, 2);
+            Data2D weights = new Data2D(1, 1, 18, 2);
             weights[0, 0, 0, 0] = 1;
-            weights[1, 0, 0, 0] = 2;
-            weights[2, 0, 0, 0] = 2;
+            weights[0, 0, 1, 0] = 2;
+            weights[0, 0, 2, 0] = 2;
 
-            weights[0, 1, 0, 0] = 3;
-            weights[1, 1, 0, 0] = 1;
-            weights[2, 1, 0, 0] = 1;
+            weights[0, 0, 3, 0] = 3;
+            weights[0, 0, 4, 0] = 1;
+            weights[0, 0, 5, 0] = 1;
 
-            weights[0, 2, 0, 0] = 1;
-            weights[1, 2, 0, 0] = 3;
-            weights[2, 2, 0, 0] = 2;
+            weights[0, 0, 6, 0] = 1;
+            weights[0, 0, 7, 0] = 3;
+            weights[0, 0, 8, 0] = 2;
 
 
-            weights[0, 0, 1, 0] = 0;
-            weights[1, 0, 1, 0] = 1;
-            weights[2, 0, 1, 0] = 1;
+            weights[0, 0, 9, 0] = 0;
+            weights[0, 0, 10, 0] = 1;
+            weights[0, 0, 11, 0] = 1;
+        
+            weights[0, 0, 12, 0] = 2;
+            weights[0, 0, 13, 0] = 3;
+            weights[0, 0, 14, 0] = 0;
 
-            weights[0, 1, 1, 0] = 2;
-            weights[1, 1, 1, 0] = 3;
-            weights[2, 1, 1, 0] = 0;
-
-            weights[0, 2, 1, 0] = 2;
-            weights[1, 2, 1, 0] = 3;
-            weights[2, 2, 1, 0] = 2;
+            weights[0, 0, 15, 0] = 2;
+            weights[0, 0, 16, 0] = 3;
+            weights[0, 0, 17, 0] = 2;
 
 
 
             weights[0, 0, 0, 1] = 5;
-            weights[1, 0, 0, 1] = 2;
-            weights[2, 0, 0, 1] = 1;
+            weights[0, 0, 1, 1] = 2;
+            weights[0, 0, 2, 1] = 1;
 
-            weights[0, 1, 0, 1] = 3;
-            weights[1, 1, 0, 1] = 8;
-            weights[2, 1, 0, 1] = 1;
+            weights[0, 0, 3, 1] = 3;
+            weights[0, 0, 4, 1] = 8;
+            weights[0, 0, 5, 1] = 1;
 
-            weights[0, 2, 0, 1] = 1;
-            weights[1, 2, 0, 1] = 0;
-            weights[2, 2, 0, 1] = 2;
+            weights[0, 0, 6, 1] = 1;
+            weights[0, 0, 7, 1] = 0;
+            weights[0, 0, 8, 1] = 2;
 
 
-            weights[0, 0, 1, 1] = 0;
-            weights[1, 0, 1, 1] = 1;
-            weights[2, 0, 1, 1] = 0;
+            weights[0, 0, 9, 1] = 0;
+            weights[0, 0, 10, 1] = 1;
+            weights[0, 0, 11, 1] = 0;
 
-            weights[0, 1, 1, 1] = 2;
-            weights[1, 1, 1, 1] = 4;
-            weights[2, 1, 1, 1] = 0;
+            weights[0, 0, 12, 1] = 2;
+            weights[0, 0, 13, 1] = 4;
+            weights[0, 0, 14, 1] = 0;
 
-            weights[0, 2, 1, 1] = 2;
-            weights[1, 2, 1, 1] = 3;
-            weights[2, 2, 1, 1] = 2;
+            weights[0, 0, 15, 1] = 2;
+            weights[0, 0, 16, 1] = 3;
+            weights[0, 0, 17, 1] = 2;
 
             Dense2DLayer dens = new Dense2DLayer(weights);
             dens.SetInput(data);
