@@ -47,7 +47,7 @@ namespace UnitTests
             // Checking sizes
             Dimension dim = output.GetDimension();
             Assert.AreEqual(dim.b, 1);
-            Assert.AreEqual(dim.c, 1);
+            Assert.AreEqual(dim.c, 2);
             Assert.AreEqual(dim.h, 2);
             Assert.AreEqual(dim.w, 2);
 
@@ -56,6 +56,11 @@ namespace UnitTests
             Assert.AreEqual(output[1, 0, 0, 0], 4.0, 0.0000001);
             Assert.AreEqual(output[0, 1, 0, 0], 4.0, 0.0000001);
             Assert.AreEqual(output[1, 1, 0, 0], 4.0, 0.0000001);
+
+            Assert.AreEqual(output[0, 0, 1, 0], 3.0, 0.0000001);
+            Assert.AreEqual(output[1, 0, 1, 0], 3.0, 0.0000001);
+            Assert.AreEqual(output[0, 1, 1, 0], 1.0, 0.0000001);
+            Assert.AreEqual(output[1, 1, 1, 0], 1.0, 0.0000001);
         }
 
         [TestMethod]

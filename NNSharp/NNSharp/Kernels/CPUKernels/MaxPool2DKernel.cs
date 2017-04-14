@@ -33,11 +33,8 @@ namespace NNSharp.Kernels.CPUKernels
                             {
                                 for (int idxV = stV; idxV < stV + kernelDim.h; ++idxV)
                                 {
-                                    for (int idxC = 0; idxC < kernelDim.c; ++idxC)
-                                    {
-                                        output[h, w, channel, batch] = Math.Max(input[idxV, idxH, idxC, channel],
-                                                                            output[h, w, channel, batch]);
-                                    }
+                                     output[h, w, channel, batch] = Math.Max(input[idxV, idxH, channel, batch],
+                                                                         output[h, w, channel, batch]);
                                 }
                             }
 

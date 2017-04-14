@@ -40,12 +40,12 @@ namespace NNSharp.SequentialBased.SequentialLayers
 
             Dimension dimI = this.input.GetDimension();
 
-            kernelDim.c = dimI.c;
+            kernelDim.c = 1;
             kernelDim.b = 1;
 
             int outputH = CalculateOutputSize1D(dimI.h, paddingVertical, strideVertical, kernelDim.h);
             int outputW = CalculateOutputSize1D(dimI.w, paddingHorizontal, strideHorizontal, kernelDim.w);
-            int outputC = dimI.b;
+            int outputC = dimI.c;
             int outputB = kernelDim.b;
 
             output = new Data2D(outputH, outputW, outputC, outputB);
