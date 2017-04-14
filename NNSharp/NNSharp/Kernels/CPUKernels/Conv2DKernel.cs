@@ -20,7 +20,7 @@ namespace NNSharp.Kernels.CPUKernels
 
             for (int batch = 0; batch < dimO.b; ++batch)
             {
-                for (int channel = 0; channel < dimO.c; ++channel)
+                for (int filter = 0; filter < dimO.c; ++filter)
                 {
                     for (int w = 0; w < dimO.w; ++w)
                     {
@@ -28,7 +28,7 @@ namespace NNSharp.Kernels.CPUKernels
                         {
                             stH = w * strideHorizontal - paddingHorizontal;
                             stV = h * strideVertical - paddingVertical;
-                            output[h, w, channel, batch] = 0.0;
+                            output[h, w, filter, batch] = 0.0;
 
                             for (int idxH = stH; idxH < stH + dimK.w; ++idxH)
                             {
@@ -36,8 +36,8 @@ namespace NNSharp.Kernels.CPUKernels
                                  {
                                      for (int idxC = 0; idxC < dimK.c; ++idxC)
                                      {
-                                        output[h, w, channel, batch] += input[idxV, idxH, idxC, channel] *
-                                                                            weights[idxV - stV, idxH - stH, idxC, batch];
+                                        output[h, w, filter, batch] += input[idxV, idxH, idxC, batch] *
+                                                                            weights[idxV - stV, idxH - stH, idxC, filter];
                                      }
                                  }
                             }

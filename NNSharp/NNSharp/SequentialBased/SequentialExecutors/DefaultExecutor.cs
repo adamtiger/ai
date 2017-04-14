@@ -33,9 +33,15 @@ namespace NNSharp.SequentialBased.SequentialExecutors
 
         public IData Execute(IData input)
         {
-            layers[0].SetInput(input);
-            layers.ForEach(l => { l.Execute(); });
-            return layers.Last().GetOutput();
+            IData data = input;
+            foreach (var l in layers)
+            {
+                l.SetInput(data);
+                l.Execute();
+                data = l.GetOutput();
+            }
+
+            return data;
         }
 
         public void SetWeights(List<IData> weights)

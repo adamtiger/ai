@@ -15,9 +15,9 @@ namespace NNSharp.Kernels.CPUKernels
             int idx = 0;
             Dimension dim = input.GetDimension();
 
-            for (int col = 0; col < dim.w; ++col)
+            for (int row = 0; row < dim.h; ++row)
             {
-                for (int row = 0; row < dim.h; ++row)
+                for (int col = 0; col < dim.w; ++col)
                 {
                     for (int chnl = 0; chnl < dim.c; ++chnl)
                     {

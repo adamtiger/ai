@@ -58,13 +58,13 @@ namespace NNSharp.IO
                     case "MaxPooling2D":
                         descriptor = new MaxPooling2D((int)layer.SelectToken("padding_vl"), (int)layer.SelectToken("padding_hz"),
                             (int)layer.SelectToken("stride_vl"), (int)layer.SelectToken("stride_hz"),
-                            (int)layer.SelectToken("kernel_height"), (int)layer.SelectToken("kernel_height"));
+                            (int)layer.SelectToken("kernel_height"), (int)layer.SelectToken("kernel_width"));
                         break;
 
                     case "Convolution2D":
                         descriptor = new Convolution2D((int)layer.SelectToken("padding_vl"), (int)layer.SelectToken("padding_hz"),
                             (int)layer.SelectToken("stride_vl"), (int)layer.SelectToken("stride_hz"),
-                            (int)layer.SelectToken("kernel_height"), (int)layer.SelectToken("kernel_height"),
+                            (int)layer.SelectToken("kernel_height"), (int)layer.SelectToken("kernel_width"),
                             (int)layer.SelectToken("kernel_num"));
                         break;
                     case "Dense2D":
@@ -100,8 +100,8 @@ namespace NNSharp.IO
         {
             List<List<List<List<List<double>>>>> weightsList = model.SelectToken("weights").Select(
                     d => d.Select(
-                            col => col.Select(
-                                    row => row.Select(
+                            row => row.Select(
+                                    col => col.Select(
                                             channel => channel.Select(
                                                     batch => (double)batch
                                                 ).ToList()
@@ -117,8 +117,8 @@ namespace NNSharp.IO
             {
                 if ((dscps[i] is Convolution2D) || (dscps[i] is Dense2D))
                 {
-                    int colNum = weightsList[idx].Count;
-                    int rowNum = weightsList[idx][0].Count;
+                    int rowNum = weightsList[idx].Count;
+                    int colNum = weightsList[idx][0].Count;
                     int chNum = weightsList[idx][0][0].Count;
                     int batchNum = weightsList[idx][0][0][0].Count;
 
@@ -132,7 +132,7 @@ namespace NNSharp.IO
                             {
                                 for (int batch = 0; batch < batchNum; ++batch)
                                 {
-                                    data[row, col, chnl, batch] = weightsList[idx][col][row][chnl][batch];
+                                    data[row, col, chnl, batch] = weightsList[idx][row][col][chnl][batch];
                                 }
                             }
                         }
