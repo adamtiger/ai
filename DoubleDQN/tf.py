@@ -32,11 +32,11 @@ class Dnn(IDnn):
 
     def __create_model(self, actions, alpha):
       model = Sequential()
-      model.add(Conv2D(32, (8, 8), border_mode='valid', input_shape=(84, 84, 4), strides=(4, 4)))
+      model.add(Conv2D(32, (8, 8), padding='valid', input_shape=(84, 84, 4), strides=(4, 4)))
       model.add(Activation('relu'))
-      model.add(Conv2D(64, (4, 4), border_mode='valid', strides=(2, 2)))
+      model.add(Conv2D(64, (4, 4), padding='valid', strides=(2, 2)))
       model.add(Activation('relu'))
-      model.add(Conv2D(64, (3, 3), border_mode='valid', strides=(1, 1)))
+      model.add(Conv2D(64, (3, 3), padding='valid', strides=(1, 1)))
       model.add(Activation('relu'))
       model.add(Flatten())
       model.add(Dense(512))
@@ -74,7 +74,7 @@ class Dnn(IDnn):
         target = self.Q.predict(mini_batch[0], batch_size=self.batch_size)
         for i in range(0, self.batch_size):
             target[i, mini_batch[1][i]] = mini_batch[2][i]
-        self.Q.fit(mini_batch[0], target, nb_epoch=1, batch_size=self.batch_size, verbose=0)
+        self.Q.fit(mini_batch[0], target, epochs=1, batch_size=self.batch_size, verbose=0)
         
     def save(self, fname):
         self.Q.save_weights(fname)
