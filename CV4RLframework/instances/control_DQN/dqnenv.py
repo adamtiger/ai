@@ -1,5 +1,5 @@
 import numpy as np
-from cv4rl.cv4env import BaseEnvironment as benv
+from cv4rl.cv4env import ControlBaseEnvironment as benv
 from cv4rl.cv4alg import dqn
 import logging
 
@@ -160,26 +160,26 @@ class Environment:
         
         if x_dist2 + y_dist2 == 1:
             if summa == 0:
-                rw = 2.0
+                rw = 5.0
             elif summa == 1:
                 rw = 1.0
             elif x_dist1 == 1 and y_dist1 == 1:
-                rw = -1.0
-            elif summa == 3:
-                rw = -2.0
-            else:
                 rw = -3.0
+            elif summa == 3:
+                rw = 1.0
+            else:
+                rw = 5.0
         else:
             if summa == 0:
-                rw = 2.0
+                rw = 5.0
             elif summa == 1:
                 rw = 1.0
             elif summa == 2:
-                rw = -1.0
-            elif summa == 3:
-                rw = -2.0
-            else:
                 rw = -3.0
+            elif summa == 3:
+                rw = 1.0
+            else:
+                rw = 5.0
         
         return rw
     

@@ -29,7 +29,7 @@ class Rect:
         return self.width
 
 
-class BaseEnvironment:
+class ControlBaseEnvironment:
     
     """
     All the environments used by the RL agents should inherit

@@ -1,5 +1,5 @@
 from cv4rl.cv4pool import pool
-from cv4rl.cv4env import BaseEnvironment as benv
+from cv4rl.cv4env import ControlBaseEnvironment as benv
 from scipy import misc
 import numpy as np
 
