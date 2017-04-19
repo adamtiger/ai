@@ -10,7 +10,7 @@ import numpy as np
 #from cv4rl.cv4Alg import BaseAlg
 
 from keras.models import Sequential
-from keras.layers import Dense, Activation, Convolution2D, Flatten
+from keras.layers import Dense, Activation, Conv2D, Flatten
 from keras.optimizers import RMSprop
 
 r.seed(133)
@@ -79,11 +79,11 @@ class Dnn:
 
     def __create_model(self, actions, alpha):
       model = Sequential()
-      model.add(Convolution2D(32, 8, 8, border_mode='valid', input_shape=(84, 84, 4), subsample=(4, 4)))
+      model.add(Conv2D(32, (8, 8), border_mode='valid', input_shape=(84, 84, 4), strides=(4, 4)))
       model.add(Activation('relu'))
-      model.add(Convolution2D(64, 4, 4, border_mode='valid', subsample=(2, 2)))
+      model.add(Conv2D(64, (4, 4), border_mode='valid', strides=(2, 2)))
       model.add(Activation('relu'))
-      model.add(Convolution2D(64, 3, 3, border_mode='valid', subsample=(1, 1)))
+      model.add(Conv2D(64, (3, 3), border_mode='valid', strides=(1, 1)))
       model.add(Activation('relu'))
       model.add(Flatten())
       model.add(Dense(512))
@@ -119,7 +119,8 @@ class Dnn:
         
     def train(self, mini_batch):
         target = self.Q.predict(mini_batch[0], batch_size=self.batch_size)
-        target[:, mini_batch[1]] = mini_batch[2]
+        for i in range(0, self.batch_size):
+            target[i, mini_batch[1][i]] = mini_batch[2][i]
         self.Q.fit(mini_batch[0], target, nb_epoch=1, batch_size=self.batch_size, verbose=0)
         
     def save(self, fname):
