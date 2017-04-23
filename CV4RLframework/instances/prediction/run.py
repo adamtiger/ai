@@ -20,6 +20,8 @@ parser.add_argument('--batch-size', type=int, default=32, metavar='N',
         help='batch size during training')
 parser.add_argument('--num-iter', type=int, default=1000, metavar='N',
         help='the number of iteration until the end of training')
+parser.add_argument('--alpha', type=float, default=0.001, metavar='F',
+        help='learning rate')
 
 
 args = parser.parse_args()

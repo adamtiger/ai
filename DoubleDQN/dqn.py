@@ -55,7 +55,7 @@ class EpsGreedy:
         c_act = act
         if act == 0:
             self.no_op += 1
-        if explore and self.no_op < 40:
+        if explore and self.no_op < 20:
             k = r.randint(0, self.actions-2)
             if k >= act:
               c_act = k + 1

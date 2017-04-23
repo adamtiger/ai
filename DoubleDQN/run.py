@@ -18,9 +18,9 @@ parser.add_argument('--max-iter', type=int, default=500000, metavar='N',
 parser.add_argument('--mem-size', type=int, default=50000, metavar='N',
         help='the capacity of the experience replay (default:50000)')
 parser.add_argument('--exp-start', type=float, default=1.0, metavar='F',
-        help='the number of the agents (default:4)')
+        help='the exploration probablity at the beginning (default:1.0)')
 parser.add_argument('--exp-end', type=float, default=0.1, metavar='F',
-        help='the number of individual steps (default:10000)')
+        help='the exploration probablity at the end (default:0.1)')
 parser.add_argument('--last-fm', type=int, default=100000, metavar='N',
         help='the exploration gradually decreasing, it has exp_end value after last_fm steps (default:100000)')
 parser.add_argument('--gamma', type=float, default=0.99, metavar='F',

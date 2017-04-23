@@ -22,7 +22,7 @@ class Environment:
         self.C = args.C
         self.dnn = Dnn(args.batch_size, args.alpha)
         
-        
+    # creating gray scale image
     def __map2Y(self, img):
         np_img = np.array(img)
         shape = np_img.shape
@@ -32,6 +32,7 @@ class Environment:
         ou_img[:,:,0] = (2*np_img[:,:,0] + 5*np_img[:,:,1] + np_img[:,:,2])/8.0
         return ou_img
     
+    # crop a rectanguler shaped sub-image from the base-image around the x,y point
     def __crop(self, height, width, x, y):
         cropped = np.ndarray((height, width, 3))
         for i in range(0, height):
@@ -39,6 +40,9 @@ class Environment:
                 cropped[i,j, :] = self.framed_image[x - int(height/2) + i, y - int(width/2) + j]
         return cropped
     
+    # At the edge and corner of the original image cropping a rectangular
+    # is difficult due to indicies out of boundaries. This function creates a frame
+    # around the original image.
     def __create_framed_img(self):
         shp = (self.image.shape()[0]+86, self.image.shape()[1]+86, 3)
         fr_img = np.zeros(shp) + 255
@@ -50,12 +54,19 @@ class Environment:
         self.framed_image = self.__create_framed_img()
         
     def train(self):
+        
+        # outer cycle (training iteration)
+        #   generating a batch of cropped pictures
+        #   the pictures are sampled in a balanced way:
+        #       around points which are on the segmenting line (white)
+        #       around points which are on the neutral are (black) 
+        
         for cntr in range(0, self.num_iter):
-            
             y = np.zeros((self.batch_size))
             w_l = self.pool.get_white_vec_length()
             b_l = self.pool.get_black_vec_length()
             states = np.zeros((self.batch_size, 84,84,1))
+            
             for i in range(0, self.batch_size):
                 current = (0,0) # defining current
                 if (i % 2) == 0:    
@@ -80,7 +91,7 @@ class Environment:
         
         self.dnn.model_to_json('saved.json')
         
-    # create one color image 
+    # create one channel image 
     def __get_new_state(self, current_coord):
         img = self.__crop(84, 84, current_coord[0], current_coord[1])
         obs = self.__map2Y(img)
@@ -122,11 +133,11 @@ class Dnn:
 
     def __create_model(self, alpha):
       model = Sequential()
-      model.add(Conv2D(32, (8, 8), border_mode='valid', input_shape=(84, 84, 1), strides=(4, 4)))
+      model.add(Conv2D(32, (8, 8), padding='valid', input_shape=(84, 84, 1), strides=(4, 4)))
       model.add(Activation('relu'))
-      model.add(Conv2D(64, (4, 4), border_mode='valid', strides=(2, 2)))
+      model.add(Conv2D(64, (4, 4), padding='valid', strides=(2, 2)))
       model.add(Activation('relu'))
-      model.add(Conv2D(64, (3, 3), border_mode='valid', sstrides=(1, 1)))
+      model.add(Conv2D(64, (3, 3), padding='valid', strides=(1, 1)))
       model.add(Activation('relu'))
       model.add(Flatten())
       model.add(Dense(512))
@@ -147,7 +158,7 @@ class Dnn:
         return self.batch_size
         
     def train(self, mini_batch):
-        self.Weight.fit(mini_batch[0], mini_batch[1], nb_epoch=1, batch_size=self.batch_size, verbose=0)
+        self.Weight.fit(mini_batch[0], mini_batch[1], epochs=1, batch_size=self.batch_size, verbose=0)
     
     def predict(self, state):
         return self.Weight.predict(state, batch_size=1)
