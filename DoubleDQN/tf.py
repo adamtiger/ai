@@ -62,7 +62,7 @@ class Dnn(IDnn):
         return self.batch_size
 
     def argmaxQ(self, state):
-        return self.Q.predict(state, batch_size=1).argmax()
+        return self.Q_.predict(state, batch_size=1).argmax() # This should be Q but try this out.
         
     def Q_frozen(self, state, action):
         return self.Q_.predict(state, batch_size=1)[0, action]
@@ -74,7 +74,7 @@ class Dnn(IDnn):
         target = self.Q.predict(mini_batch[0], batch_size=self.batch_size)
         for i in range(0, self.batch_size):
             target[i, mini_batch[1][i]] = mini_batch[2][i]
-        self.Q.fit(mini_batch[0], target, epochs=1, batch_size=self.batch_size, verbose=0)
+        self.Q.train_on_batch(mini_batch[0], target)
         
     def save(self, fname):
         self.Q.save_weights(fname)

@@ -154,19 +154,21 @@ class Environment:
             fi1 = fi2
             if done:
                 self.env.reset()
+                pre = Preprocessing(self.env)
     
         print ("Experience replay was filled up.")
     
         # Start learning.
         while(not exit_):
             episend = False	
+            pre = Preprocessing(self.env)
             obs = self.env.reset()
             fi = pre.preprocessing(obs)
             action = self.agent.nextActionAndTrain(fi, 0.0)
             while(not episend):
                 obs, rw, done, inf = self.env.step(action)
                 cntr += 1
-                if cntr % 1000 == 0:
+                if cntr % 5000 == 0:
                     print ("Current iteration: %r" % cntr)
                 fi = pre.preprocessing(obs)
                 action = self.agent.nextActionAndTrain(fi, rw)
