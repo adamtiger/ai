@@ -16,6 +16,10 @@ class Agent:
 
   def init(self, obs1, action1, rw1, obs2):
       self.DQN.init(obs1, action1, rw1, obs2)
+      
+  def reset(self):
+      self.obs_old = []
+      self.action = 0
     
   def nextActionAndTrain(self, obs, rw):
       if len(self.obs_old) != 0: 
