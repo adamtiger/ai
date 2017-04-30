@@ -62,7 +62,7 @@ class EpsGreedy:
             else:
               c_act = k
         elif explore:
-            c_act = r.randint(1, self.actions-2) # do not generate no_op (act = 0)
+            c_act = r.randint(1, self.actions-1) # do not generate no_op (act = 0)
             self.no_op = 0
         return c_act
 
