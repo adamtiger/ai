@@ -26,7 +26,7 @@ class IDnn:
 
 from keras.models import Sequential
 from keras.layers import Dense, Activation, Conv2D, Flatten
-from keras.optimizers import RMSprop
+from keras.optimizers import RMSprop, Adam
     
 class Dnn(IDnn):
 
@@ -43,8 +43,9 @@ class Dnn(IDnn):
       model.add(Activation('relu'))
       model.add(Dense(actions))
       
-      rmsprop = RMSprop(lr=alpha, epsilon=0.01, clipvalue=1.0, decay=0.01)
-      model.compile(optimizer=rmsprop, loss='mse')
+      # rmsprop = RMSprop(lr=alpha, epsilon=0.01, clipvalue=1.0, decay=0.01)
+      adam = Adam(lr=alpha)
+      model.compile(optimizer=adam, loss='mse')
       
       return model
 
