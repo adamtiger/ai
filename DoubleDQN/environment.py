@@ -155,6 +155,7 @@ class Environment:
             if done:
                 self.env.reset()
                 pre = Preprocessing(self.env)
+                self.agent.reset()
     
         print ("Experience replay was filled up.")
     
@@ -164,6 +165,7 @@ class Environment:
             pre = Preprocessing(self.env)
             obs = self.env.reset()
             fi = pre.preprocessing(obs)
+            self.agent.reset()
             action = self.agent.nextActionAndTrain(fi, 0.0)
             while(not episend):
                 obs, rw, done, inf = self.env.step(action)
