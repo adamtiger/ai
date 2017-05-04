@@ -63,7 +63,7 @@ class Dnn(IDnn):
         return self.batch_size
 
     def argmaxQ(self, state):
-        return self.Q_.predict(state, batch_size=1).argmax() # This should be Q but try this out.
+        return self.Q.predict(state, batch_size=1).argmax() # This should be Q but try this out.
         
     def Q_frozen(self, state, action):
         return self.Q_.predict(state, batch_size=1)[0, action]

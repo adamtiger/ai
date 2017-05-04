@@ -9,6 +9,9 @@ python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 5000 --max-iter 500000 
 ## Experiences:
 It does not work. I have to try other parameter settings to tackle this problem.
 
+# Test setting:
+python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 10 --max-iter 1000 --mem-size 100 --exp-start 1.0 --exp-end 0.1 --last-fm 10 --gamma 0.99 --eval-freq 100 --eval-num 5 --init-replay-size 100
+
 ---------------------------------------------------------------------------------------------------
 # Settings 1 ()
 python run.py --atari-env 'Breakout-v0' --lr 0.0005 --C 2000 --max-iter 500000 --mem-size 70000 --exp-start 1.0 --exp-end 0.1 --last-fm 10000 --gamma 0.99 --eval-freq 25000 --eval-num 10 --init-replay-size 50000
@@ -29,4 +32,7 @@ python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 2000 --max-iter 2000000
 Max reward: 16.0 !!!
 It seems started to learn!
 
+# Settings 5 ()
+python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 10000 --max-iter 10000000 --mem-size 120000 --exp-start 1.0 --exp-end 0.1 --last-fm 1000000 --gamma 0.99 --eval-freq 100000 --eval-num 30 --init-replay-size 120000
 
+## Experience:
