@@ -43,3 +43,10 @@ python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 10000 --max-iter 100000
 
 ## Experience:
 
+---------------------------------------------------------------------------------------------------
+
+# Settings 6 ()
+python run.py --atari-env 'Breakout-v0' --lr 0.0005 --C 10000 --max-iter 10000000 --mem-size 250000 --exp-start 1.0 --exp-end 0.1 --last-fm 1000000 --gamma 0.99 --eval-freq 100000 --eval-num 30 --init-replay-size 100000
+
+## Experience:
+
