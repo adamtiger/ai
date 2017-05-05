@@ -17,13 +17,18 @@ python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 10 --max-iter 1000 --me
 python run.py --atari-env 'Breakout-v0' --lr 0.0005 --C 2000 --max-iter 500000 --mem-size 70000 --exp-start 1.0 --exp-end 0.1 --last-fm 10000 --gamma 0.99 --eval-freq 25000 --eval-num 10 --init-replay-size 50000
 
 ## Experiences:
-
+Nothing
 ---------------------------------------------------------------------------------------------------
+
 # Settings 2 ()
 python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 5000 --max-iter 5000000 --mem-size 200000 --exp-start 1.0 --exp-end 0.1 --last-fm 1000000 --gamma 0.99 --eval-freq 50000 --eval-num 30 --init-replay-size 200000
 
+---------------------------------------------------------------------------------------------------
+
 # Settings 3 ()
 python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 5000 --max-iter 7000000 --mem-size 250000 --exp-start 1.0 --exp-end 0.1 --last-fm 1000000 --gamma 0.99 --eval-freq 100000 --eval-num 30 --init-replay-size 250000
+
+---------------------------------------------------------------------------------------------------
 
 # Settings 4 ()
 python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 2000 --max-iter 2000000 --mem-size 50000 --exp-start 1.0 --exp-end 0.1 --last-fm 500000 --gamma 0.99 --eval-freq 20000 --eval-num 30 --init-replay-size 50000
@@ -31,8 +36,10 @@ python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 2000 --max-iter 2000000
 ## Experience:
 Max reward: 16.0 !!!
 It seems started to learn!
+---------------------------------------------------------------------------------------------------
 
 # Settings 5 ()
 python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 10000 --max-iter 10000000 --mem-size 120000 --exp-start 1.0 --exp-end 0.1 --last-fm 1000000 --gamma 0.99 --eval-freq 100000 --eval-num 30 --init-replay-size 120000
 
 ## Experience:
+
