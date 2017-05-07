@@ -42,11 +42,20 @@ It seems started to learn!
 python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 10000 --max-iter 10000000 --mem-size 120000 --exp-start 1.0 --exp-end 0.1 --last-fm 1000000 --gamma 0.99 --eval-freq 100000 --eval-num 30 --init-replay-size 120000
 
 ## Experience:
-
+Max reward: 181 !!!
+it learnt much more than ever.
 ---------------------------------------------------------------------------------------------------
 
 # Settings 6 ()
 python run.py --atari-env 'Breakout-v0' --lr 0.0005 --C 10000 --max-iter 10000000 --mem-size 250000 --exp-start 1.0 --exp-end 0.1 --last-fm 1000000 --gamma 0.99 --eval-freq 100000 --eval-num 30 --init-replay-size 100000
 
 ## Experience:
+Learns NOTHING!
+---------------------------------------------------------------------------------------------------
+
+# Settings 7 ()
+python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 10000 --max-iter 15000000 --mem-size 150000 --exp-start 1.0 --exp-end 0.1 --last-fm 1000000 --gamma 0.99 --eval-freq 100000 --eval-num 30 --init-replay-size 150000
+
+## Experience:
+
 
