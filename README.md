@@ -36,7 +36,7 @@ In this project the break-through result on using machine learning to play Atari
 
 [Deep Reinforcement Learning with Double Q-learning](https://arxiv.org/abs/1509.06461)
 
-In this case three games are examined: Breakout, Freeway and Riverraid. The environment is given by OpenAi gym, the neural network was built with Keras. The code was tested on only CPU but in the near future it will be tested on GPU as well.
+In this case three games are examined: Breakout, Freeway and Riverraid. The environment is given by OpenAi gym, the neural network was built with Keras. The code was tested on GPU and the currently achieved maximal reward in a game was 181. The parameter tuning is still in-progress.
 
 ## NNSharp
 
