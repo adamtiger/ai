@@ -43,7 +43,7 @@ python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 10000 --max-iter 100000
 
 ## Experience:
 Max reward: 181 !!!
-it learnt much more than ever.
+it learnt much more than ever. (0508_181max)
 ---------------------------------------------------------------------------------------------------
 
 # Settings 6 ()
@@ -58,4 +58,14 @@ python run.py --atari-env 'Breakout-v0' --lr 0.00025 --C 10000 --max-iter 150000
 
 ## Experience:
 
+
+---------------------------------------------------------------------------------------------------
+
+# Settings 8 ()
+python run.py --atari-env 'Breakout-v0' --lr 0.0002 --C 10000 --max-iter 15000000 --mem-size 100000 --exp-start 1.0 --exp-end 0.1 --last-fm 1000000 --gamma 0.99 --eval-freq 100000 --eval-num 30 --init-replay-size 100000
+
+## Experience:
+
+
+---------------------------------------------------------------------------------------------------
 

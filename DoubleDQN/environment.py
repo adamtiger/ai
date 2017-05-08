@@ -111,9 +111,11 @@ class Environment:
         print("Evaluation started.")
 
         for i in range(0, self.evaluation_number):
+            pre = Preprocessing(self.env)
             episend = False
             obs = self.env.reset()
             fi = pre.preprocessing(obs)
+            
             action = 0
             while action == 0:
                 action = self.env.action_space.sample()
