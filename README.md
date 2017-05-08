@@ -38,10 +38,6 @@ In this project the break-through result on using machine learning to play Atari
 
 In this case three games are examined: Breakout, Freeway and Riverraid. The environment is given by OpenAi gym, the neural network was built with Keras. The code was tested on GPU and the currently achieved maximal reward in a game was 181. The parameter tuning is still in-progress.
 
-## NNSharp
-
-This project aims for creating a library for running deep neural networks on C#. Only few alternatives are available and most of them are experimental. The project will incorporate other available solutions as well.
-
 ## WindyGridWorld
 
 In this project the several algorithms (Sarsa, Q, Q_lambda, Sarsa_lambda) were tested in the classical Windy Gridworld.
