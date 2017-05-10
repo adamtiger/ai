@@ -111,9 +111,11 @@ class Environment:
         print("Evaluation started.")
 
         for i in range(0, self.evaluation_number):
+            pre = Preprocessing(self.env)
             episend = False
             obs = self.env.reset()
             fi = pre.preprocessing(obs)
+            
             action = 0
             while action == 0:
                 action = self.env.action_space.sample()
@@ -155,6 +157,7 @@ class Environment:
             if done:
                 self.env.reset()
                 pre = Preprocessing(self.env)
+                self.agent.reset()
     
         print ("Experience replay was filled up.")
     
@@ -164,6 +167,7 @@ class Environment:
             pre = Preprocessing(self.env)
             obs = self.env.reset()
             fi = pre.preprocessing(obs)
+            self.agent.reset()
             action = self.agent.nextActionAndTrain(fi, 0.0)
             while(not episend):
                 obs, rw, done, inf = self.env.step(action)

@@ -62,7 +62,7 @@ class EpsGreedy:
             else:
               c_act = k
         elif explore:
-            c_act = r.randint(1, self.actions-2) # do not generate no_op (act = 0)
+            c_act = r.randint(1, self.actions-1) # do not generate no_op (act = 0)
             self.no_op = 0
         return c_act
 
@@ -92,12 +92,12 @@ class DQN:
     # Functions to interact with the environment.
 
     def init(self, obs, action, rw, obs_nx):
-        tp_exp = (obs, action, rw, obs_nx)
+        tp_exp = (obs, action, self.__reward_clipping(rw), obs_nx)
         self.erply.add(tp_exp)
 
     def train(self, obs, action, rw, obs_nx):
         self._cntr += 1
-        self.erply.add((obs, action, rw, obs_nx))
+        self.erply.add((obs, action, self.__reward_clipping(rw), obs_nx))
         if self._cntr % 4 == 0:
             batch = self.erply.sample()
             y = np.zeros((self.batch_size))
@@ -138,4 +138,12 @@ class DQN:
         self._tf.save(fname)
 
 
-
+    def __reward_clipping(self, reward):
+        
+        rw = 0.0
+        if reward > 0.0:
+            rw = 1.0
+        else:
+            rw = 0.0
+        
+        return rw
