@@ -17,6 +17,13 @@ The outline of this overview is:
 
 ## Requirements
 
+In order to run the algorithm you should create a [python environment](http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/) and then install the required packages by typing **pip install -r requirements.txt**. You can find the txt file among the source files. This will use Tensorflow with GPU.
+
+If you have already had all the requierements just run the run.py file. The start.txt shows examples how to set the parameters. In order to *record videos* at the end, the recorder.py script can do it. It uses the saved file from the files folder with the extension *hdf5*. It imports the environemnt.py, agent.py and tf.py scripts as well. *Learning curves* can be plotted by statistics.py scrtipt. The easiest way to run it if you put it inside the files folder and start it there. It takes three arguments:(1) evaluation frequency during training, (2) the total number of evaluations during training and (3) the number of episodes per evaluation. Example usage:
+
+```bash
+python statistics.py --eval-freq 100000 --eval-num 100 --episode-num 30.
+```
 
 ## Results
 
