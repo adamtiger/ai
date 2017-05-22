@@ -1,4 +1,4 @@
-
+![dqnavg](https://drive.google.com/uc?export=download&id=0B97L9zqg-lnweC1uYkI2eWtyUnM  "Link to my blog")
 
 # Looking deeper, understanding the world better
 
