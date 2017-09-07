@@ -10,11 +10,11 @@ parser.add_argument('--file-name', metavar='S', default='performance.txt')
 
 args = parser.parse_args()
 
-input_CONV_84x84 = c.input_variable(dtype = np.float32, shape=(None, 84, 84, 16))
-input_CONV_168x168 = c.input_variable(dtype = np.float32, shape=(None, 168, 168, 16))
-input_CONV_336x336 = c.input_variable(dtype = np.float32, shape=(None, 336, 336, 16))
-input_CONV_772x772 = c.input_variable(dtype = np.float32, shape=(None, 772, 772, 16))
-input_CONV_1544x1544 = c.input_variable(dtype = np.float32, shape=(None, 1544, 1544, 16))
+input_CONV_84x84 = c.input_variable(dtype = np.float32, shape=(16, 84, 84))
+input_CONV_168x168 = c.input_variable(dtype = np.float32, shape=(16, 168, 168))
+input_CONV_336x336 = c.input_variable(dtype = np.float32, shape=(16, 336, 336))
+input_CONV_772x772 = c.input_variable(dtype = np.float32, shape=(16, 772, 772))
+input_CONV_1544x1544 = c.input_variable(dtype = np.float32, shape=(16, 1544, 1544))
 
 
 def create_CONV_model_CNTK():
@@ -48,17 +48,17 @@ def create_CONV_model_CNTK():
 
 @profile
 def execute_model_CNTK(model, input_data):
-    model.predict(input_data, batch_size=1)
+    model.eval(input_data)
 
 
 # Execute a test
 
 model = create_CONV_model_CNTK()
-data_creator_84x84 = generate_data_CNTK(input_CONV_84x84, [1, 84, 84, 16])
-data_creator_168x168 = generate_data_CNTK(input_CONV_168x168, [1, 168, 168, 16])
-data_creator_336x336 = generate_data_CNTK(input_CONV_336x336, [1, 336, 336, 16])
-data_creator_772x772 = generate_data_CNTK(input_CONV_772x772, [1, 772, 772, 16])
-data_creator_1544x1544 = generate_data_CNTK(input_CONV_1544x1544, [1, 1544, 1544, 16])
+data_creator_84x84 = generate_data_CNTK(input_CONV_84x84, [16, 84, 84])
+data_creator_168x168 = generate_data_CNTK(input_CONV_168x168, [16, 168, 168])
+data_creator_336x336 = generate_data_CNTK(input_CONV_336x336, [16, 336, 336])
+data_creator_772x772 = generate_data_CNTK(input_CONV_772x772, [16, 772, 772])
+data_creator_1544x1544 = generate_data_CNTK(input_CONV_1544x1544, [16, 1544, 1544])
 
 for i in range(args.num_runs):
     if i % 100 == 0:

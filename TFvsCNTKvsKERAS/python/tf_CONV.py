@@ -39,10 +39,12 @@ def create_CONV_model_TF():
     
     return [model84x84, model168x168, model336x336, model772x772, model1544x1544]
 
+sess = tf.Session()
+
 
 @profile
 def execute_model_TF(model, input_data):
-    model.predict(input_data, batch_size=1)
+    sess.run(model, input_data)
 
 
 # Execute a test
@@ -53,6 +55,7 @@ data_creator_168x168 = generate_data_TF(input_CONV_168x168, [1, 168, 168, 16])
 data_creator_336x336 = generate_data_TF(input_CONV_336x336, [1, 336, 336, 16])
 data_creator_772x772 = generate_data_TF(input_CONV_772x772, [1, 772, 772, 16])
 data_creator_1544x1544 = generate_data_TF(input_CONV_1544x1544, [1, 1544, 1544, 16])
+sess.run(tf.global_variables_initializer())
 
 for i in range(args.num_runs):
     if i % 100 == 0:
