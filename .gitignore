@@ -70,3 +70,4 @@ NNSharp/packages/*
 *.png
 *.log
 *.tar.gz
+.idea/

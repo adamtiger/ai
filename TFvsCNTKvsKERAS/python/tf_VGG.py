@@ -1,6 +1,5 @@
 from utils import *
 import argparse
-import numpy as np
 import tensorflow as tf
 
 parser = argparse.ArgumentParser(description='TF VGG')
