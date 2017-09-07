@@ -20,28 +20,33 @@ input_CONV_1544x1544 = c.input_variable(dtype = np.float32, shape=(16, 1544, 154
 def create_CONV_model_CNTK():
     filter = np.float32(np.random.random((128, 16, 8, 8)))
     kernel1 = c.constant(value=filter)
+    bias1 = c.constant(value=np.float32(np.random.random((128, 1, 1))))
     model84x84 = (
-    c.relu(c.layers.convolution(kernel1, input_CONV_84x84, strides=(1, 1), auto_padding=[False, False, False])))
+    c.relu(c.layers.convolution(kernel1, input_CONV_84x84, strides=(1, 1), auto_padding=[False, False, False])) + bias1)
 
     filter = np.float32(np.random.random((128, 16, 8, 8)))
     kernel2 = c.constant(value=filter)
+    bias2 = c.constant(value=np.float32(np.random.random((128, 1, 1))))
     model168x168 = (
-        c.relu(c.layers.convolution(kernel2, input_CONV_168x168, strides=(1, 1), auto_padding=[False, False, False])))
+        c.relu(c.layers.convolution(kernel2, input_CONV_168x168, strides=(1, 1), auto_padding=[False, False, False])) + bias2)
 
     filter = np.float32(np.random.random((128, 16, 8, 8)))
     kernel3 = c.constant(value=filter)
+    bias3 = c.constant(value=np.float32(np.random.random((128, 1, 1))))
     model336x336 = (
-        c.relu(c.layers.convolution(kernel3, input_CONV_336x336, strides=(1, 1), auto_padding=[False, False, False])))
+        c.relu(c.layers.convolution(kernel3, input_CONV_336x336, strides=(1, 1), auto_padding=[False, False, False])) + bias3)
 
     filter = np.float32(np.random.random((128, 16, 8, 8)))
     kernel4 = c.constant(value=filter)
+    bias4 = c.constant(value=np.float32(np.random.random((128, 1, 1))))
     model772x772 = (
-        c.relu(c.layers.convolution(kernel4, input_CONV_772x772, strides=(1, 1), auto_padding=[False, False, False])))
+        c.relu(c.layers.convolution(kernel4, input_CONV_772x772, strides=(1, 1), auto_padding=[False, False, False])) + bias4)
 
     filter = np.float32(np.random.random((128, 16, 8, 8)))
     kernel5 = c.constant(value=filter)
+    bias5 = c.constant(value=np.float32(np.random.random((128, 1, 1))))
     model1544x1544 = (
-        c.relu(c.layers.convolution(kernel5, input_CONV_1544x1544, strides=(1, 1), auto_padding=[False, False, False])))
+        c.relu(c.layers.convolution(kernel5, input_CONV_1544x1544, strides=(1, 1), auto_padding=[False, False, False])) + bias5)
 
     return [model84x84, model168x168, model336x336, model772x772, model1544x1544]
 
