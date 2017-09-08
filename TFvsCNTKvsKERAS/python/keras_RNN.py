@@ -2,8 +2,9 @@ from utils import *
 import argparse
 import numpy as np
 
-from keras.models import Sequential as Sequential_KERAS
-from keras.layers import Conv2D, MaxPooling2D, LSTM
+from keras.models import Sequential
+from keras.layers import LSTM
+from keras import backend as K
 
 parser = argparse.ArgumentParser(description='KERAS RNN')
 parser.add_argument('--num-runs', metavar='N', type=int, default=100)
@@ -11,10 +12,12 @@ parser.add_argument('--file-name', metavar='S', default='performance.txt')
 
 args = parser.parse_args()
 
+keras_backend(K, args.file_name)
+
 
 def create_RNN_model_KERAS():
 
-    model = Sequential_KERAS()
+    model = Sequential()
     model.add(LSTM(32, batch_input_shape=(1, 10, 64), return_sequences=True))
     model.add(LSTM(16, return_sequences=True))
     model.add(LSTM(256, return_sequences=True))

@@ -4,12 +4,15 @@ import numpy as np
 
 from keras.models import Sequential
 from keras.layers import Conv2D
+from keras import backend as K
 
 parser = argparse.ArgumentParser(description='KERAS CONV')
 parser.add_argument('--num-runs', metavar='N', type=int, default=500)
 parser.add_argument('--file-name', metavar='S', default='performance.txt')
 
 args = parser.parse_args()
+
+keras_backend(K, args.file_name)
 
 
 def create_CONV_model_KERAS():

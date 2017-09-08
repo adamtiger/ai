@@ -81,3 +81,9 @@ def generate_data_CNTK(var, shape):
         return {var: generate_random_data(shape)}
 
     return generator
+    
+# Keras backend check and print.
+def keras_backend(K, file_name):
+    with open(file_name, "a") as f:
+        f.write(K.backend() + " backend: ")
+            

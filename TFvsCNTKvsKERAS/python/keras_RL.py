@@ -2,8 +2,9 @@ from utils import *
 import argparse
 import numpy as np
 
-from keras.models import Sequential as Sequential_KERAS
-from keras.layers import Conv2D, MaxPooling2D, LSTM
+from keras.models import Sequential
+from keras.layers import Conv2D
+from keras import backend as K
 
 parser = argparse.ArgumentParser(description='KERAS RL')
 parser.add_argument('--num-runs', metavar='N', type=int, default=100)
@@ -11,10 +12,12 @@ parser.add_argument('--file-name', metavar='S', default='performance.txt')
 
 args = parser.parse_args()
 
+keras_backend(K, args.file_name)
+
 
 def create_RL_model_KERAS():
 
-    model = Sequential_KERAS()
+    model = Sequential()
     model.add(Conv2D(32, (8, 8), strides=(4, 4), padding='valid', activation='relu', input_shape=(84, 84, 4)))
     model.add(Conv2D(64, (4, 4), strides=(2, 2), padding='valid', activation='relu'))
     model.add(Conv2D(64, (3, 3), strides=(1, 1), padding='valid', activation='relu'))

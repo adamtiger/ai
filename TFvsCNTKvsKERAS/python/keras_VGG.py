@@ -2,8 +2,9 @@ from utils import *
 import argparse
 import numpy as np
 
-from keras.models import Sequential as Sequential_KERAS
-from keras.layers import Conv2D, MaxPooling2D, LSTM
+from keras.models import Sequential
+from keras.layers import Conv2D, MaxPooling2D
+from keras import backend as K
 
 parser = argparse.ArgumentParser(description='KERAS VGG')
 parser.add_argument('--num-runs', metavar='N', type=int, default=10)
@@ -11,9 +12,11 @@ parser.add_argument('--file-name', metavar='S', default='performance.txt')
 
 args = parser.parse_args()
 
+keras_backend(K, args.file_name)
+
 
 def create_VGG_model_KERAS():
-    model = Sequential_KERAS()
+    model = Sequential()
     model.add(Conv2D(64, (3, 3), strides=(1, 1), padding='same', activation='relu', input_shape=(224, 224, 3)))
     model.add(Conv2D(64, (3, 3), strides=(1, 1), padding='same', activation='relu'))
     model.add(MaxPooling2D(pool_size=(2, 2), strides=(2, 2), padding='valid'))

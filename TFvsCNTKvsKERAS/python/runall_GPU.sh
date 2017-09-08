@@ -1,23 +1,34 @@
 #!/bin/bash
 
-file_name="performance.txt"
+file_name="performance_GPU.txt"
 rm $file_name
 touch $file_name
 
+vgg=20
+rl=500
+rnn=500
+conv=500
+
 echo "CNTK tests."
-CUDA_VISIBLE_DEVICE=0 python cntk_VGG.py --num-runs 10 --file-name $file_name 
-CUDA_VISIBLE_DEVICE=0 python cntk_RL.py --num-runs 100 --file-name $file_name
-CUDA_VISIBLE_DEVICE=0 python cntk_RNN.py --num-runs 100 --file-name $file_name
-CUDA_VISIBLE_DEVICE=0 python cntk_CONV.py --num-runs 500 --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 python cntk_VGG.py --num-runs $vgg --file-name $file_name 
+CUDA_VISIBLE_DEVICES=0 python cntk_RL.py --num-runs $rl --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 python cntk_RNN.py --num-runs $rnn --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 python cntk_CONV.py --num-runs $conv --file-name $file_name
 
 echo "TF tests."
-CUDA_VISIBLE_DEVICE=0 python tf_VGG.py --num-runs 10 --file-name $file_name
-CUDA_VISIBLE_DEVICE=0 python tf_RL.py --num-runs 100 --file-name $file_name
-CUDA_VISIBLE_DEVICE=0 python tf_RNN.py --num-runs 100 --file-name $file_name
-CUDA_VISIBLE_DEVICE=0 python tf_CONV.py --num-runs 500 --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 python tf_VGG.py --num-runs $vgg --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 python tf_RL.py --num-runs $rl --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 python tf_RNN.py --num-runs $rnn --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 python tf_CONV.py --num-runs $conv --file-name $file_name
 
-echo "KERAS tests." # change the backend outside
-CUDA_VISIBLE_DEVICE=0 python keras_VGG.py --num-runs 10 --file-name $file_name
-CUDA_VISIBLE_DEVICE=0 python keras_RL.py --num-runs 100 --file-name $file_name
-CUDA_VISIBLE_DEVICE=0 python keras_RNN.py --num-runs 100 --file-name $file_name
-CUDA_VISIBLE_DEVICE=0 python keras_CONV.py --num-runs 500 --file-name $file_name
+echo "KERAS tests with TF backend."
+CUDA_VISIBLE_DEVICES=0 KERAS_BACKEND=tensorflow python -c "from keras import backend" python keras_VGG.py --num-runs $vgg --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 KERAS_BACKEND=tensorflow python -c "from keras import backend" python keras_RL.py --num-runs $rl --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 KERAS_BACKEND=tensorflow python -c "from keras import backend" python keras_RNN.py --num-runs $rnn --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 KERAS_BACKEND=tensorflow python -c "from keras import backend" python keras_CONV.py --num-runs $conv --file-name $file_name
+
+echo "KERAS tests with CNTK backend."
+CUDA_VISIBLE_DEVICES=0 KERAS_BACKEND=cntk python -c "from keras import backend" python keras_VGG.py --num-runs $vgg --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 KERAS_BACKEND=cntk python -c "from keras import backend" python keras_RL.py --num-runs $rl --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 KERAS_BACKEND=cntk python -c "from keras import backend" python keras_RNN.py --num-runs $rnn --file-name $file_name
+CUDA_VISIBLE_DEVICES=0 KERAS_BACKEND=cntk python -c "from keras import backend" python keras_CONV.py --num-runs $conv --file-name $file_name
