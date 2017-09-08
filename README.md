@@ -2,14 +2,6 @@
 
 # Looking deeper, understanding the world better
 
-## A3C
-
-In this project the aim is to implement the A3C algorithm. A3C stands for Asynchronous Advantage Actor Critic. The implementation basically follows the details provided by:
-
-[Asynchronous Methods for Deep Reinforcement Learning](https://arxiv.org/pdf/1602.01783.pdf)
-
-The project is in-progress.
-
 ## BasicExamples
 
 ### MountainCar
