@@ -1,48 +1,78 @@
-baseurl: "" # The subpath of your site. Use "" if you're hosting a blog at the root level.
-url: "adamtiger.github.io/ai" # the base hostname & protocol for your site.
-title: "Everything about ML, RL and AI"
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
 
-paginate: 5 #articles per page
-paginate_path: /ml/page:num #makes pagination working
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+lang: en-US
+title: Adam Budai's Blog
+email: adam.8.budai@gmail.com
+description: A blog about AI
+baseurl: # the optional subpath of your site, e.g. "/blog"
+url: https://adamtiger.github.io/ai
+author:
+  name: Adam Budai
+  twitter:
+  picture: #/assets/images/me.jpg
+twitter_username:
+github_username: adamtiger
+linkedin_username: adambudai
+logo: /assets/images/start.png
 
-#contacts
-git: "https://github.com/adamtiger"  #your github url here.
-twitter: "https://twitter.com/railsr7"  #Add your twitter url here.
-linkedin: "https://hu.linkedin.com/in/adambudai"
-
-#disqus comment
-disqus:
-    shortname: "DISQS" #your disqus comment short name
-
-#google analytics
-google:
-    tracking-id: "" #your tracking id here
-
-gems:
+# Build settings
+markdown: kramdown
+theme: jekyll-theme-basically-basic
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
   - jekyll-sitemap
   - jekyll-paginate
+feed:
+  path: atom.xml
 
-# This is used by feed.xml. Uncomment if you want to use it.
-# description: "..."
+# Pagination - https://jekyllrb.com/docs/pagination/
+paginate: 5
+paginate_path: /page:num/
 
+# Exclude from processing.
 exclude:
-  - "README.md"
-  - "CHANGELOG.md"
-  - "Gemfile"
-  - "Gemfile.lock"
+  - .asset-cache
+  - .bundle
+  - .codeclimate.yml
+  - .editorconfig
+  - .gitattributes
+  - .jekyll-assets-cache
+  - .sass-cache
+  - .scss-lint.yml
+  - CHANGELOG
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - node_modules
+  - Rakefile
+  - README
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - /docs # ignore Basically Basic sample site
+  - /example # ignore Basically Basic dev site
 
-permalink: /posts/:title
-
+# Front Matter Defaults
 defaults:
-  -
-    scope:
-      path: ""
-      type: "pages"
+  # _posts
+  - scope:
+      path: "_posts"
+      type: posts
     values:
-      layout: "default"
-  -
-    scope:
-      path: ""
-      type: "posts"
-    values:
-      layout: "post"
+      layout: post
+      read_time: true
