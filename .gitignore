@@ -31,6 +31,8 @@ BasicExamples/CppSources/DLL/ContainerProject/ipch/*
 BasicExamples/CppSources/DLL/ContainerProject/ContainerProject/Debug/*
 
 BasicExamples/PySources/.ipynb_checkpoints/*
+QRiteration/.ipynb_checkpoints/*
+
 *.dll
 
 # Visual C# Projects
