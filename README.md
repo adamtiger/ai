@@ -30,6 +30,10 @@ In this project the break-through result on using machine learning to play Atari
 
 In this case three games are examined: Breakout, Freeway and Riverraid. The environment is given by OpenAi gym, the neural network was built with Keras. The code was tested on GPU and the currently achieved maximal reward in a game was 181. The parameter tuning is still in-progress.
 
+## QRiteration
+
+Shows an implementation of the QR iteration and investigates some examples.
+
 ## WindyGridWorld
 
 In this project the several algorithms (Sarsa, Q, Q_lambda, Sarsa_lambda) were tested in the classical Windy Gridworld.
