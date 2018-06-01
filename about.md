@@ -3,6 +3,9 @@ title: "About"
 layout: about
 ---
 
-Machine learning is one of the fastest improving area of science. This site gathers and puts into context a lot of information about AI included: ethical questions, philosophycal questions. The main focus is on machine learning and especially on algorithms. 
 
-The main topics I am interested in: how to improve reinforcement learning algorithms, find a connection between chaos theory and reinforcement learning to make better predictions, deep neural networks to apply them in reinforcement learning, image processing algorithms and the impacts of artificial intelligence on humanity.
+Hi! I am a PhD student at the Budapest University of Technology and Economics. I am enthusiastic about the applications of machine learning because it can solve more and more tasks which were tractable only by humans so far. In machine learning my favourite learning framework is the reinforecement learning (RL). In RL, the algorithms learns from interacting with the environment instead of a passive observation which makes it more human-like. 
+
+Data Science is an umbrella name for the sciences which deal with extracting information from raw data. Nowadays more and more data is gathered about people, processes and nature due to the ubiquitous IoT equipments. With machine learning the models to predict changes become more and more accurate. Finding patterns in the data can be also supported by machine learning models. I like to learn more about these methods and apply them in real data.
+
+

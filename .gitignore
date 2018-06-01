@@ -4,6 +4,7 @@ Gemfile.lock
 .DS_Store
 *.svg
 _site/
+DDPG/
 A3C/
 BasicExamples/
 CV4RLframework/
