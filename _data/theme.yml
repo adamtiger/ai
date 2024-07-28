@@ -12,7 +12,7 @@ t:
   newer: "Newer"
   older: "Older"
   email: "Email"
-  subscribe: "Subscribe"
+  #subscribe: "Subscribe"
   read_more: "Read More"
   posts: "Posts"
   page: "Page"
