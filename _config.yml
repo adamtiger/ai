@@ -26,7 +26,7 @@ author:
 twitter_username:
 github_username: adamtiger
 linkedin_username: adambudai
-logo: /assets/images/start.png
+logo: #/assets/images/start.png
 
 # Build settings
 markdown: kramdown
