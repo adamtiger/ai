@@ -8,9 +8,9 @@ Welcome to my homepage!
 I started to learn about machine learning more then 10 years ago.
 Since then I participated in many research and industry projects.
 I have obtained my PhD degree at the Budapest University of Technology and Economics (BUTE).
-I developed novel algorithms for heart ventricule segmentation from cardiac magnetic resonance images.
+I developed novel algorithms for heart ventricle segmentation from cardiac magnetic resonance images.
 
-I taught some subjects (mostly c++ and AI seminars) at BUTE.
+I taught some subjects (mostly C++ and AI seminars) at BUTE.
 I was also a guest teacher (reinforcement learning) at Frankfurt School of Finance and Management.
 
 In the summer of 2019, we started our startup, called Routepatch, to build better route planning systems
